@@ -2,17 +2,24 @@ extends CharacterBody2D
 
 # --------- VARIABLES ---------- #
 
-@export_category("Player Properties") # You can tweak these changes according to your likings
-@export var move_speed : float = 400
-@export var jump_force : float = 600
-@export var gravity : float = 30
-@export var max_jump_count : int = 2
-var jump_count : int = 2
+@export_category("Player Properties")
 
-@export_category("Toggle Functions") # Double jump feature is disable by default (Can be toggled from inspector)
-@export var double_jump : = false
+@export var max_speed : float = 400
+@export var acceleration : float = 1300
+@export var max_run_speed: float = 800
+@export var run_acceleration: float = 2000
 
-var is_grounded : bool = false
+@export var friction : float = 1300
+@export var air_control : float = 0.7
+
+@export var jump_force : float = 800
+@export var gravity : float = 1600
+@export var fall_gravity : float = 2200
+@export var jump_cut_multiplier : float = 0.4
+
+@export var coyote_time : float = 0.1
+
+var coyote_timer : float = 0.0
 
 @onready var player_sprite = $AnimatedSprite2D
 @onready var spawn_point = %SpawnPoint
@@ -21,50 +28,72 @@ var is_grounded : bool = false
 
 # --------- BUILT-IN FUNCTIONS ---------- #
 
-func _process(_delta):
-	# Calling functions
-	movement()
-	player_animations()
-	flip_player()
-	
-# --------- CUSTOM FUNCTIONS ---------- #
-
-# <-- Player Movement Code -->
-func movement():
-	# Gravity
-	if !is_on_floor():
-		velocity.y += gravity
-	elif is_on_floor():
-		jump_count = max_jump_count
-	
+func _physics_process(delta):
+	apply_gravity(delta)
+	handle_horizontal_movement(delta)
 	handle_jumping()
-	
-	# Move Player
-	var inputAxis = Input.get_axis("Left", "Right")
-	velocity = Vector2(inputAxis * move_speed, velocity.y)
 	move_and_slide()
 
-# Handles jumping functionality (double jump or single jump, can be toggled from inspector)
-func handle_jumping():
-	if Input.is_action_just_pressed("Jump"):
-		if is_on_floor() and !double_jump:
-			jump()
-		elif double_jump and jump_count > 0:
-			jump()
-			jump_count -= 1
+	player_animations()
+	flip_player()
 
-# Player jump
+# --------- MOVEMENT ---------- #
+
+func apply_gravity(delta):
+	if is_on_floor():
+		coyote_timer = coyote_time
+	else:
+		coyote_timer -= delta
+
+		if velocity.y < 0:
+			velocity.y += gravity * delta
+		else:
+			velocity.y += fall_gravity * delta
+
+func handle_horizontal_movement(delta):
+	var input_axis = Input.get_axis("Left", "Right")
+
+	if input_axis != 0:
+		var accel = run_acceleration if Input.is_action_pressed("Run") else acceleration
+		var max_sp = max_run_speed if Input.is_action_pressed("Run") else max_speed
+		
+		if !is_on_floor():
+			accel *= air_control
+
+		velocity.x = move_toward(
+			velocity.x,
+			input_axis * max_sp,
+			accel * delta
+		)
+			
+	else:
+		if is_on_floor():
+			velocity.x = move_toward(
+				velocity.x,
+				0,
+				friction * delta
+			)
+
+func handle_jumping():
+	if Input.is_action_just_pressed("Jump") and coyote_timer > 0:
+		jump()
+
+	if Input.is_action_just_released("Jump") and velocity.y < 0:
+		velocity.y *= jump_cut_multiplier
+
 func jump():
+	coyote_timer = 0
 	jump_tween()
 	AudioManager.jump_sfx.play()
 	velocity.y = -jump_force
 
-# Handle Player Animations
+# --------- ANIMATIONS ---------- #
+
 func player_animations():
 	particle_trails.emitting = false
-	
+
 	if is_on_floor():
-		if abs(velocity.x) > 0:
+		if abs(velocity.x) > 20:
 			particle_trails.emitting = true
 			player_sprite.play("Walk", 1.5)
 		else:
@@ -72,14 +101,19 @@ func player_animations():
 	else:
 		player_sprite.play("Jump")
 
-# Flip player sprite based on X velocity
 func flip_player():
-	if velocity.x < 0: 
+	if velocity.x < 0:
 		player_sprite.flip_h = true
 	elif velocity.x > 0:
 		player_sprite.flip_h = false
 
-# Tween Animations
+# --------- TWEENS ---------- #
+
+func jump_tween():
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(0.7, 1.4), 0.1)
+	tween.tween_property(self, "scale", Vector2.ONE, 0.1)
+
 func death_tween():
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.15)
@@ -91,19 +125,12 @@ func death_tween():
 
 func respawn_tween():
 	var tween = create_tween()
-	tween.stop(); tween.play()
-	tween.tween_property(self, "scale", Vector2.ONE, 0.15) 
-
-func jump_tween():
-	var tween = create_tween()
-	tween.tween_property(self, "scale", Vector2(0.7, 1.4), 0.1)
-	tween.tween_property(self, "scale", Vector2.ONE, 0.1)
+	tween.tween_property(self, "scale", Vector2.ONE, 0.15)
 
 # --------- SIGNALS ---------- #
 
-# Reset the player's position to the current level spawn point if collided with any trap
-func _on_collision_body_entered(_body):
-	if _body.is_in_group("Traps"):
+func _on_collision_body_entered(body):
+	if body.is_in_group("Traps"):
 		AudioManager.death_sfx.play()
 		death_particles.emitting = true
 		death_tween()
