@@ -2,6 +2,15 @@ extends CharacterBody2D
 
 # --------- VARIABLES ---------- #
 
+@export_category("Fireball")
+
+@export var can_shoot_fireball : bool = true
+@export var fireball_scene : PackedScene
+@export var max_fireballs : int = 2
+@export var fire_cooldown : float = 0.25
+
+var fire_timer : float = 0.0
+
 @export_category("Player Properties")
 
 @export var max_speed : float = 400
@@ -29,9 +38,12 @@ var coyote_timer : float = 0.0
 # --------- BUILT-IN FUNCTIONS ---------- #
 
 func _physics_process(delta):
+	fire_timer -= delta
+	
 	apply_gravity(delta)
 	handle_horizontal_movement(delta)
 	handle_jumping()
+	handle_fireball()
 	move_and_slide()
 
 	player_animations()
@@ -80,6 +92,29 @@ func handle_jumping():
 
 	if Input.is_action_just_released("Jump") and velocity.y < 0:
 		velocity.y *= jump_cut_multiplier
+		
+func handle_fireball():
+	if !can_shoot_fireball:
+		return
+
+	if Input.is_action_just_pressed("Run") and fire_timer <= 0:
+		if get_tree().get_nodes_in_group("Fireballs").size() < max_fireballs:
+			shoot_fireball()
+			fire_timer = fire_cooldown
+			
+func shoot_fireball():
+	var fireball = fireball_scene.instantiate()
+	print(global_position)
+	var fireball_start_pos = global_position + Vector2(global_position.x + 1, global_position.y + 1)
+	#var fireball_start_pos = global_position + Vector2(24 * get_facing_direction(), -8)
+	print(fireball_start_pos)
+	fireball.global_position = global_position + Vector2(24 * get_facing_direction(), -8)
+	print(fireball.global_position)
+	fireball.direction = get_facing_direction()
+	fireball.add_to_group("Fireballs")
+	get_tree().current_scene.add_child(fireball)
+
+	# AudioManager.fireball_sfx.play()
 
 func jump():
 	coyote_timer = 0
@@ -106,6 +141,10 @@ func flip_player():
 		player_sprite.flip_h = true
 	elif velocity.x > 0:
 		player_sprite.flip_h = false
+		
+func get_facing_direction() -> int:
+	return -1 if player_sprite.flip_h else 1
+
 
 # --------- TWEENS ---------- #
 

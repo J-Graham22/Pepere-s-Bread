@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://75cdprocitwe"]
+
+[ext_resource type="Script" uid="uid://dcu7wh6rt6i6v" path="res://Scenes/Levels/fireball.gd" id="1_nt7j4"]
+[ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="2_phhlt"]
+
+[node name="Fireball" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_nt7j4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 13, 17, -3, 8, -12, -6, -12, -15, -4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_phhlt")
