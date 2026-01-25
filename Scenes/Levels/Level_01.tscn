@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cjanwm3sy2x37"]
+[gd_scene load_steps=15 format=4 uid="uid://cjanwm3sy2x37"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
 [ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://b3eweo1odt4od" path="res://Scripts/GameUI.gd" id="6_66mfc"]
 [ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="7_j7jun"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_gwcy2"]
+[ext_resource type="PackedScene" uid="uid://d1pf0tksqtxyj" path="res://Scenes/Prefabs/walker.tscn" id="10_5vjlm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gs0qk"]
 texture = ExtResource("5_wqbaa")
@@ -30,7 +31,7 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_ywwrl"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_gs0qk")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rndpx"]
@@ -42,6 +43,7 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_2fcbi"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_rndpx")
 
 [node name="Level_01" type="Node2D"]
@@ -54,6 +56,10 @@ next_scene = ExtResource("2_0ac5u")
 [node name="Player" parent="." instance=ExtResource("2_pay8t")]
 z_index = 1
 position = Vector2(150, 318)
+max_speed = 300.0
+acceleration = 1500.0
+max_run_speed = 700.0
+air_control = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(16, 36)
@@ -82,14 +88,6 @@ position = Vector2(712, 353)
 position = Vector2(844, 408)
 
 [node name="Level" type="Node2D" parent="."]
-
-[node name="GroundOld" type="TileMap" parent="Level" groups=["Ground"]]
-tile_set = SubResource("TileSet_ywwrl")
-format = 2
-
-[node name="TrapsOld" type="TileMap" parent="Level" groups=["Traps"]]
-tile_set = SubResource("TileSet_2fcbi")
-format = 2
 
 [node name="SpawnPoint" type="Marker2D" parent="Level"]
 unique_name_in_owner = true
@@ -177,3 +175,6 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("8_gwcy2")
 theme_override_font_sizes/font_size = 32
 text = "x 3"
+
+[node name="Walker" parent="." instance=ExtResource("10_5vjlm")]
+position = Vector2(1011, 370)

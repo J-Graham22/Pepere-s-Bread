@@ -104,12 +104,7 @@ func handle_fireball():
 			
 func shoot_fireball():
 	var fireball = fireball_scene.instantiate()
-	print(global_position)
-	var fireball_start_pos = global_position + Vector2(global_position.x + 1, global_position.y + 1)
-	#var fireball_start_pos = global_position + Vector2(24 * get_facing_direction(), -8)
-	print(fireball_start_pos)
 	fireball.global_position = global_position + Vector2(24 * get_facing_direction(), -8)
-	print(fireball.global_position)
 	fireball.direction = get_facing_direction()
 	fireball.add_to_group("Fireballs")
 	get_tree().current_scene.add_child(fireball)

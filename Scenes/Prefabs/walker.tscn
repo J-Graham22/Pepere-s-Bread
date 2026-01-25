@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1pf0tksqtxyj"]
+
+[ext_resource type="Script" uid="uid://blvvfylohxxy3" path="res://Scenes/Levels/walker.gd" id="1_rrb3y"]
+[ext_resource type="Texture2D" uid="uid://cdgognnt83s33" path="res://icon.svg" id="2_suc2y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrb3y"]
+size = Vector2(115, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suc2y"]
+size = Vector2(132, 15)
+
+[node name="Walker" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 13
+script = ExtResource("1_rrb3y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_rrb3y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_suc2y")
+
+[node name="Stompbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stompbox"]
+position = Vector2(-3, -64.5)
+shape = SubResource("RectangleShape2D_suc2y")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-55, 0)
+target_position = Vector2(0, 120)
+collision_mask = 4
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(55, 0)
+target_position = Vector2(0, 120)
+collision_mask = 4
+
+[connection signal="body_entered" from="Stompbox" to="." method="_on_stompbox_body_entered"]
