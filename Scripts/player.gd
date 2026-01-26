@@ -30,6 +30,14 @@ var fire_timer : float = 0.0
 
 var coyote_timer : float = 0.0
 
+var in_water: bool = false
+
+@export var water_gravity: float = 400
+@export var water_max_speed : float = 120
+@export var swim_jump_force : float = 250
+@export var water_drag : float = 600
+
+
 @onready var player_sprite = $AnimatedSprite2D
 @onready var spawn_point = %SpawnPoint
 @onready var particle_trails = $ParticleTrails
@@ -40,10 +48,14 @@ var coyote_timer : float = 0.0
 func _physics_process(delta):
 	fire_timer -= delta
 	
+	#if in_water:
+		#velocity = velocity.move_toward(Vector2.ZERO, water_drag * delta)
+
 	apply_gravity(delta)
 	handle_horizontal_movement(delta)
 	handle_jumping()
 	handle_fireball()
+	
 	move_and_slide()
 
 	player_animations()
@@ -52,15 +64,18 @@ func _physics_process(delta):
 # --------- MOVEMENT ---------- #
 
 func apply_gravity(delta):
-	if is_on_floor():
-		coyote_timer = coyote_time
+	if in_water:
+		velocity.y += water_gravity * delta
 	else:
-		coyote_timer -= delta
-
-		if velocity.y < 0:
-			velocity.y += gravity * delta
+		if is_on_floor():
+			coyote_timer = coyote_time
 		else:
-			velocity.y += fall_gravity * delta
+			coyote_timer -= delta
+
+			if velocity.y < 0:
+				velocity.y += gravity * delta
+			else:
+				velocity.y += fall_gravity * delta
 
 func handle_horizontal_movement(delta):
 	var input_axis = Input.get_axis("Left", "Right")
@@ -68,6 +83,10 @@ func handle_horizontal_movement(delta):
 	if input_axis != 0:
 		var accel = run_acceleration if Input.is_action_pressed("Run") else acceleration
 		var max_sp = max_run_speed if Input.is_action_pressed("Run") else max_speed
+		
+		if in_water:
+			max_sp = water_max_speed
+			accel *= 0.5
 		
 		if !is_on_floor():
 			accel *= air_control
@@ -87,6 +106,11 @@ func handle_horizontal_movement(delta):
 			)
 
 func handle_jumping():
+	if in_water:
+		if Input.is_action_just_pressed("Jump"):
+			velocity.y = -swim_jump_force
+		return
+	
 	if Input.is_action_just_pressed("Jump") and coyote_timer > 0:
 		jump()
 
@@ -168,3 +192,25 @@ func _on_collision_body_entered(body):
 		AudioManager.death_sfx.play()
 		death_particles.emitting = true
 		death_tween()
+
+
+func _on_water_body_entered(body: Node2D) -> void:
+	if body == self:
+		in_water = true
+		
+		if abs(body.velocity.x) > water_max_speed:
+			if body.velocity.x > 0:
+				body.velocity.x = water_max_speed
+			else:
+				body.velocity.x = -water_max_speed
+		if abs(body.velocity.y) > water_max_speed:
+			if body.velocity.y > 0:
+				body.velocity.y = water_max_speed
+			else:
+				body.velocity.y = -water_max_speed
+
+
+func _on_water_body_exited(body: Node2D) -> void:
+	if body == self:
+		in_water = false
+		body.velocity.y = -700
