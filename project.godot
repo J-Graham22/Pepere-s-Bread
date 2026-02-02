@@ -40,6 +40,11 @@ project/assembly_name="Pepere-s Bread"
 
 enabled=PackedStringArray()
 
+[global_group]
+
+PlayerAttack=""
+Enemy=""
+
 [input]
 
 Left={

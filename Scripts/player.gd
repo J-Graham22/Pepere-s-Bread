@@ -13,10 +13,13 @@ var fire_timer : float = 0.0
 
 @export_category("Player Properties")
 
+@export var max_health: int = 3
+
 @export var max_speed : float = 400
 @export var acceleration : float = 1300
 @export var max_run_speed: float = 800
 @export var run_acceleration: float = 2000
+@export var i_frames : float = 1.0
 
 @export var friction : float = 1300
 @export var air_control : float = 0.7
@@ -30,7 +33,11 @@ var fire_timer : float = 0.0
 
 var coyote_timer : float = 0.0
 
+var current_health: int
+
 var in_water: bool = false
+
+var invincible: bool = false
 
 @export var water_gravity: float = 400
 @export var water_max_speed : float = 120
@@ -44,6 +51,9 @@ var in_water: bool = false
 @onready var death_particles = $DeathParticles
 
 # --------- BUILT-IN FUNCTIONS ---------- #
+func _ready() -> void:
+	current_health =  max_health
+	call_deferred("deferred_health_changed")
 
 func _physics_process(delta):
 	fire_timer -= delta
@@ -140,8 +150,32 @@ func jump():
 	jump_tween()
 	AudioManager.jump_sfx.play()
 	velocity.y = -jump_force
+	
+func take_damage():
+	#todo: implement animation for taking damage
+	if invincible:
+		return
+		
+	invincible = true
+	current_health -= 1
+	emit_signal("health_changed", current_health, max_health)
+	
+	flash_damage()
+	
+	if current_health == 0:
+		die()
+		# and then respawn
+		current_health = max_health
+		
+	await get_tree().create_timer(i_frames).timeout
+	invincible = false
+	emit_signal("health_changed", current_health, max_health)
 
 # --------- ANIMATIONS ---------- #
+func flash_damage():
+	modulate = Color(1,0.4,0.4)
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color.WHITE
 
 func player_animations():
 	particle_trails.emitting = false
@@ -163,6 +197,11 @@ func flip_player():
 		
 func get_facing_direction() -> int:
 	return -1 if player_sprite.flip_h else 1
+	
+func die():
+	AudioManager.death_sfx.play()
+	death_particles.emitting = true
+	death_tween()
 
 
 # --------- TWEENS ---------- #
@@ -184,14 +223,18 @@ func death_tween():
 func respawn_tween():
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ONE, 0.15)
+	
+# --------- EXTERNAL SIGNALS ---------- #
+signal health_changed(current, max)
+
+func deferred_health_changed():
+	emit_signal("health_changed", current_health, max_health)
 
 # --------- SIGNALS ---------- #
 
 func _on_collision_body_entered(body):
 	if body.is_in_group("Traps"):
-		AudioManager.death_sfx.play()
-		death_particles.emitting = true
-		death_tween()
+		die()
 
 
 func _on_water_body_entered(body: Node2D) -> void:

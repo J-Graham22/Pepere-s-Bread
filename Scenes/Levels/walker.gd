@@ -45,21 +45,20 @@ func check_turnaround():
 func flip_sprite():
 	sprite.flip_h = direction > 0
 
-
-func _on_stompbox_body_entered(body: Node2D) -> void:
+func _on_area_body_entered(body: Node2D) -> void:
 	print(body)
-	if body.is_in_group("Player") and body.velocity.y > 0:
-		stomped(body)
-
-func stomped(player):
+	print(body.get_groups())
 	if is_dead:
 		return
-
+		
+	if body.is_in_group("Player"):
+		body.take_damage()
+		
+	if body.is_in_group("PlayerAttack"):
+		take_damage()
+	
+func take_damage():
 	is_dead = true
-	#sprite.play("Flat")  # squish animation
-
-	# Bounce the player up
-	player.velocity.y = -300
-
+	
 	await get_tree().create_timer(0.4).timeout
 	queue_free()

@@ -24,10 +24,11 @@ func _physics_process(delta):
 func handle_collisions():
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
 		var normal = collision.get_normal()
 
 		# Hit a wall → die
-		if abs(normal.x) > 0.7:
+		if abs(normal.x) > 0.7 and !collider.is_in_group("Enemy"):
 			queue_free()
 			return
 
