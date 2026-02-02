@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1pf0tksqtxyj"]
 
-[ext_resource type="Script" uid="uid://blvvfylohxxy3" path="res://Scenes/Levels/walker.gd" id="1_rrb3y"]
+[ext_resource type="Script" uid="uid://blvvfylohxxy3" path="res://Scripts/rabbit.gd" id="1_rrb3y"]
 [ext_resource type="Texture2D" uid="uid://cdgognnt83s33" path="res://icon.svg" id="2_suc2y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rrb3y"]
@@ -9,7 +9,7 @@ size = Vector2(115, 114)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suc2y"]
 size = Vector2(131, 123)
 
-[node name="Walker" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Rabbit" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 15
 script = ExtResource("1_rrb3y")

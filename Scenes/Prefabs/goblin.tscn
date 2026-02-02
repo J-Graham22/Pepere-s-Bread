@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://wi2u2cuco683"]
+
+[ext_resource type="Script" uid="uid://cpch3uwhd4atd" path="res://Scripts/goblin.gd" id="1_ddbud"]
+[ext_resource type="Texture2D" uid="uid://cdgognnt83s33" path="res://icon.svg" id="2_suc2y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrb3y"]
+size = Vector2(115, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suc2y"]
+size = Vector2(675, 292)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddbud"]
+size = Vector2(130, 128)
+
+[node name="Goblin" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 8
+collision_mask = 15
+script = ExtResource("1_ddbud")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_rrb3y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_suc2y")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(1.5, -88)
+shape = SubResource("RectangleShape2D_suc2y")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_ddbud")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-55, 0)
+target_position = Vector2(0, 120)
+collision_mask = 4
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(55, 0)
+target_position = Vector2(0, 120)
+collision_mask = 4
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

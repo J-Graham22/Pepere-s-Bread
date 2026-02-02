@@ -25,19 +25,16 @@ func _physics_process(delta: float) -> void:
 func check_turnaround():
 	# Hit a wall
 	if is_on_wall():
-		print('hit a wall')
 		direction *= -1
 		flip_sprite()
 
 	# About to fall off ledge
 	if direction == -1:
 		if !left_ledge_detector.is_colliding():
-			print('boutta fall off dis ledge')
 			direction *= -1
 			flip_sprite()
 	else:
 		if !right_ledge_detector.is_colliding():
-			print('boutta fall off dis ledge')
 			direction *= -1
 			flip_sprite()
 		
