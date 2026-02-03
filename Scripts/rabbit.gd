@@ -43,8 +43,6 @@ func flip_sprite():
 	sprite.flip_h = direction > 0
 
 func _on_area_body_entered(body: Node2D) -> void:
-	print(body)
-	print(body.get_groups())
 	if is_dead:
 		return
 		

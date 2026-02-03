@@ -10,7 +10,7 @@ size = Vector2(115, 114)
 size = Vector2(675, 292)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ddbud"]
-size = Vector2(130, 128)
+size = Vector2(133, 128)
 
 [node name="Goblin" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 8
@@ -36,9 +36,11 @@ position = Vector2(1.5, -88)
 shape = SubResource("RectangleShape2D_suc2y")
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -1)
+position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_ddbud")
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
@@ -52,5 +54,4 @@ target_position = Vector2(0, 120)
 collision_mask = 4
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-@export var speed: float = 60
-@export var chase_speed: float = 90
+@export var speed: float = 40
+var patrol_speed : float = speed
+@export var chase_speed: float = 100
 @export var gravity: float = 1400
 
 var player: Node = null
@@ -54,20 +55,32 @@ func follow_player():
 	flip_sprite()
 	
 func patrol():
-	velocity.x = direction * speed
+	var rand = RandomNumberGenerator.new()
+	rand.randomize()
+		
+	# if moving, 1% chance to stop and vice versa every frame
+	if randi() % 100 == 0:
+		if abs(velocity.x) > 0:
+			patrol_speed = 0
+		else:
+			patrol_speed = speed
+	
+	#0.1% chance to change direction every frame
+	if randi() % 1000 == 0:
+		direction *= -1
+		flip_sprite()
+		
+	#print(patrol_speed)
+	velocity.x = direction * patrol_speed
 
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player = body
 
-
-func _on_detection_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		player = null
-
-
 func _on_hitbox_body_entered(body: Node2D) -> void:
+	print('goblin collision')
+	print(body.get_groups())
 	if is_dead:
 		return
 		
@@ -80,5 +93,10 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func take_damage():
 	is_dead = true
 	
-	await get_tree().create_timer(0.4).timeout
-	queue_free() # Replace with function body.
+	#implement the death and rebirth here
+	self.visible = false
+	await get_tree().create_timer(5.0).timeout
+	self.visible = true
+	#queue_free() # Replace with function body.
+	is_dead = false
+	player = null
