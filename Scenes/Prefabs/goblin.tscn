@@ -43,6 +43,14 @@ collision_mask = 15
 position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_ddbud")
 
+[node name="Hitbox" type="Area2D" parent="Hitbox"]
+collision_layer = 8
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox/Hitbox"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_ddbud")
+
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(-55, 0)
 target_position = Vector2(0, 120)
