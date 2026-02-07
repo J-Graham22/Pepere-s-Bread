@@ -1,16 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://drwlvpw6m4fyp"]
+[gd_scene load_steps=5 format=3 uid="uid://drwlvpw6m4fyp"]
 
 [ext_resource type="Texture2D" uid="uid://cdgognnt83s33" path="res://icon.svg" id="2_qwpgl"]
-[ext_resource type="Script" uid="uid://pc1sed0inbmu" path="res://horned_rabbit.gd" id="2_rq0tv"]
+[ext_resource type="Script" uid="uid://pc1sed0inbmu" path="res://Scripts/horned_rabbit.gd" id="2_rq0tv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrb3y"]
-size = Vector2(115, 114)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qwpgl"]
+radius = 62.5
+height = 125.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suc2y"]
 size = Vector2(675, 292)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddbud"]
-size = Vector2(133, 128)
 
 [node name="HornedRabbit" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 8
@@ -20,8 +18,8 @@ script = ExtResource("2_rq0tv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, -1)
-shape = SubResource("RectangleShape2D_rrb3y")
+position = Vector2(-1, 3.5)
+shape = SubResource("CapsuleShape2D_qwpgl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_qwpgl")
@@ -39,9 +37,8 @@ shape = SubResource("RectangleShape2D_suc2y")
 collision_layer = 8
 collision_mask = 15
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0.5, -1)
-shape = SubResource("RectangleShape2D_ddbud")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PackedVector2Array(-62, -1, -62, -50, -54, -60, 49, -60, 59, -51, 61, 52, 52, 61, -51, 60, -60, 53)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(-55, 0)
@@ -54,4 +51,5 @@ target_position = Vector2(0, 120)
 collision_mask = 4
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
