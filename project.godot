@@ -44,6 +44,7 @@ enabled=PackedStringArray()
 
 PlayerAttack=""
 Enemy=""
+Water=""
 
 [input]
 

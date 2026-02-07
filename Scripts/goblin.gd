@@ -79,8 +79,8 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		player = body
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	print('goblin collision')
-	print(body.get_groups())
+	#print('goblin collision')
+	#print(body.get_groups())
 	if is_dead:
 		return
 		

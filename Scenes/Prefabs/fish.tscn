@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8vwtmajax838"]
+
+[ext_resource type="Texture2D" uid="uid://jaegp53ccc7w" path="res://Assets/Spritesheet/platformPack_tilesheet.png" id="1_jmj68"]
+[ext_resource type="Script" uid="uid://b5o466kdqgjnm" path="res://Scripts/fish.gd" id="1_r6g4q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r6g4q"]
+radius = 31.144823
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8fk0v"]
+radius = 119.26861
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tunti"]
+radius = 36.013885
+
+[node name="Fish" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_r6g4q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jmj68")
+region_enabled = true
+region_rect = Rect2(705.69275, 2.632721, 63.60431, 62.638077)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r6g4q")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_8fk0v")
+
+[node name="Hitbox2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2D"]
+shape = SubResource("CircleShape2D_tunti")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="area_entered" from="Hitbox2D" to="." method="_on_hitbox_2d_area_entered"]
+[connection signal="area_exited" from="Hitbox2D" to="." method="_on_hitbox_2d_area_exited"]
+[connection signal="body_entered" from="Hitbox2D" to="." method="_on_hitbox_2d_body_entered"]

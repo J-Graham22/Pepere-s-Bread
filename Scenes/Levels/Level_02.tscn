@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjb3dx2x4bocm"]
+[gd_scene load_steps=15 format=3 uid="uid://bjb3dx2x4bocm"]
 
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_lpo2y"]
 [ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Scenes/Prefabs/Coin.tscn" id="3_nht2m"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://b3eweo1odt4od" path="res://Scripts/GameUI.gd" id="6_um0jo"]
 [ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="7_ns8o6"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_doswy"]
+[ext_resource type="PackedScene" uid="uid://c8vwtmajax838" path="res://Scenes/Prefabs/fish.tscn" id="8_ombkc"]
+[ext_resource type="PackedScene" uid="uid://7bkgxopkfqec" path="res://Scenes/Prefabs/dumb_fish.tscn" id="9_es7ky"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gs0qk"]
 texture = ExtResource("5_8107p")
@@ -153,13 +155,22 @@ theme_override_fonts/font = ExtResource("8_doswy")
 theme_override_font_sizes/font_size = 32
 text = "x 3"
 
-[node name="Water" type="Area2D" parent="."]
+[node name="Water" type="Area2D" parent="." groups=["Water"]]
 position = Vector2(1275.39, 519.71)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
 position = Vector2(577.30505, 250.64496)
 shape = SubResource("RectangleShape2D_06uw3")
+
+[node name="Fish2" parent="." instance=ExtResource("8_ombkc")]
+position = Vector2(1459, 984)
+
+[node name="DumbFish" parent="." instance=ExtResource("9_es7ky")]
+position = Vector2(1598, 628)
+
+[node name="DumbFish2" parent="." instance=ExtResource("9_es7ky")]
+position = Vector2(2283, 740)
 
 [connection signal="body_entered" from="Water" to="Player" method="_on_water_body_entered"]
 [connection signal="body_exited" from="Water" to="Player" method="_on_water_body_exited"]

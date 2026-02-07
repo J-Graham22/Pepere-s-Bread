@@ -129,12 +129,9 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 
 func take_damage():
 	is_dead = true
-	visible = false
-	await get_tree().create_timer(5.0).timeout
-	visible = true
-	is_dead = false
-	player = null
-	state = PATROL
+	
+	await get_tree().create_timer(0.4).timeout
+	queue_free()
 
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
