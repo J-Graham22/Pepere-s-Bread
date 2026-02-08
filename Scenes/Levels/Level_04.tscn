@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://lrp4js5wi0tt"]
+[gd_scene load_steps=0 format=4 uid="uid://lrp4js5wi0tt"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_h31d5"]
 [ext_resource type="PackedScene" uid="uid://c6m18o5nkpqe6" path="res://Scenes/Levels/Level_05.tscn" id="2_h31d5"]
