@@ -1,22 +1,22 @@
-[gd_scene format=4 uid="uid://cjanwm3sy2x37"]
+[gd_scene format=4 uid="uid://c6m18o5nkpqe6"]
 
-[ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
-[ext_resource type="PackedScene" uid="uid://ckvxcmt44v5ot" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
-[ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_pay8t"]
-[ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Scenes/Prefabs/Coin.tscn" id="3_rrh80"]
-[ext_resource type="Script" uid="uid://b44aojg1wbe58" path="res://Scripts/GameManager.gd" id="4_vgfkr"]
-[ext_resource type="Texture2D" uid="uid://jaegp53ccc7w" path="res://Assets/Spritesheet/platformPack_tilesheet.png" id="5_wqbaa"]
-[ext_resource type="Script" uid="uid://b3eweo1odt4od" path="res://Scripts/GameUI.gd" id="6_66mfc"]
-[ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="7_j7jun"]
-[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_gwcy2"]
-[ext_resource type="Texture2D" uid="uid://621as0fwjhum" path="res://Assets/Textures/star_07.png" id="10_1bssr"]
-[ext_resource type="PackedScene" uid="uid://d1pf0tksqtxyj" path="res://Scenes/Prefabs/rabbit.tscn" id="10_5vjlm"]
-[ext_resource type="PackedScene" uid="uid://wi2u2cuco683" path="res://Scenes/Prefabs/goblin.tscn" id="12_aksfc"]
-[ext_resource type="PackedScene" uid="uid://dnoshi376cqqx" path="res://Scenes/Prefabs/Ingredient.tscn" id="13_5pmb1"]
-[ext_resource type="PackedScene" uid="uid://drwlvpw6m4fyp" path="res://Scenes/Prefabs/horned_rabbit.tscn" id="14_xpj05"]
+[ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_8xe5j"]
+[ext_resource type="PackedScene" uid="uid://bjb3dx2x4bocm" path="res://Scenes/Levels/Level_03.tscn" id="2_713ns"]
+[ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="3_c478d"]
+[ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Scenes/Prefabs/Coin.tscn" id="4_d83qo"]
+[ext_resource type="Texture2D" uid="uid://jaegp53ccc7w" path="res://Assets/Spritesheet/platformPack_tilesheet.png" id="5_s8dgd"]
+[ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="6_1vb2u"]
+[ext_resource type="Script" uid="uid://b44aojg1wbe58" path="res://Scripts/GameManager.gd" id="7_7l2ep"]
+[ext_resource type="Script" uid="uid://b3eweo1odt4od" path="res://Scripts/GameUI.gd" id="8_j77r3"]
+[ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="9_nuncc"]
+[ext_resource type="Texture2D" uid="uid://621as0fwjhum" path="res://Assets/Textures/star_07.png" id="10_ttuxi"]
+[ext_resource type="PackedScene" uid="uid://d1pf0tksqtxyj" path="res://Scenes/Prefabs/rabbit.tscn" id="11_gm4xm"]
+[ext_resource type="PackedScene" uid="uid://wi2u2cuco683" path="res://Scenes/Prefabs/goblin.tscn" id="12_1pxxe"]
+[ext_resource type="PackedScene" uid="uid://dnoshi376cqqx" path="res://Scenes/Prefabs/Ingredient.tscn" id="13_awoqt"]
+[ext_resource type="PackedScene" uid="uid://drwlvpw6m4fyp" path="res://Scenes/Prefabs/horned_rabbit.tscn" id="14_asfq2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gs0qk"]
-texture = ExtResource("5_wqbaa")
+texture = ExtResource("5_s8dgd")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 32, 32, 32, 32, -32, -32, -32)
@@ -39,7 +39,7 @@ physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_gs0qk")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rndpx"]
-texture = ExtResource("5_wqbaa")
+texture = ExtResource("5_s8dgd")
 texture_region_size = Vector2i(64, 64)
 0:5/0 = 0
 0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, 0, 32, 32, -32, 32)
@@ -50,14 +50,14 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_rndpx")
 
-[node name="Level_01" type="Node2D" unique_id=60656907]
+[node name="Level_05" type="Node2D" unique_id=60656907]
 
-[node name="LevelFinishDoor" parent="." unique_id=819173003 instance=ExtResource("1_oqkjg")]
+[node name="LevelFinishDoor" parent="." unique_id=819173003 instance=ExtResource("1_8xe5j")]
 z_index = 1
 position = Vector2(5354, 143)
-next_scene = ExtResource("2_0ac5u")
+next_scene = ExtResource("2_713ns")
 
-[node name="Player" parent="." unique_id=1934415232 instance=ExtResource("2_pay8t")]
+[node name="Player" parent="." unique_id=1934415232 instance=ExtResource("3_c478d")]
 z_index = 1
 position = Vector2(150, 318)
 max_speed = 300.0
@@ -81,13 +81,13 @@ editor_draw_drag_margin = true
 
 [node name="Coins" type="Node2D" parent="." unique_id=335489864]
 
-[node name="Coin" parent="Coins" unique_id=607797898 instance=ExtResource("3_rrh80")]
+[node name="Coin" parent="Coins" unique_id=607797898 instance=ExtResource("4_d83qo")]
 position = Vector2(576, 406)
 
-[node name="Coin2" parent="Coins" unique_id=619295854 instance=ExtResource("3_rrh80")]
+[node name="Coin2" parent="Coins" unique_id=619295854 instance=ExtResource("4_d83qo")]
 position = Vector2(712, 353)
 
-[node name="Coin3" parent="Coins" unique_id=728612348 instance=ExtResource("3_rrh80")]
+[node name="Coin3" parent="Coins" unique_id=728612348 instance=ExtResource("4_d83qo")]
 position = Vector2(844, 408)
 
 [node name="Level" type="Node2D" parent="." unique_id=1210692680]
@@ -116,7 +116,7 @@ offset_bottom = 420.0
 theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("8_gwcy2")
+theme_override_fonts/font = ExtResource("6_1vb2u")
 theme_override_font_sizes/font_size = 32
 text = "A & D To Move
 Spacebar To Jump"
@@ -129,14 +129,14 @@ offset_bottom = 382.0
 theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("8_gwcy2")
+theme_override_fonts/font = ExtResource("6_1vb2u")
 theme_override_font_sizes/font_size = 32
 text = "Level Finish
 Set the next scene
 from \"LevelFinishDoor\" Area"
 
 [node name="GameManager" type="Node2D" parent="." unique_id=227803373]
-script = ExtResource("4_vgfkr")
+script = ExtResource("7_7l2ep")
 
 [node name="UserInterface" type="CanvasLayer" parent="." unique_id=1428315962]
 
@@ -147,7 +147,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("6_66mfc")
+script = ExtResource("8_j77r3")
 
 [node name="Score" type="Control" parent="UserInterface/GameUI" unique_id=1224160146]
 unique_name_in_owner = true
@@ -162,7 +162,7 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 116.0
 offset_bottom = 116.0
-texture = ExtResource("7_j7jun")
+texture = ExtResource("9_nuncc")
 stretch_mode = 4
 
 [node name="ScoreLabel" type="Label" parent="UserInterface/GameUI/Score" unique_id=84674039]
@@ -175,7 +175,7 @@ offset_bottom = 84.0
 theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("8_gwcy2")
+theme_override_fonts/font = ExtResource("6_1vb2u")
 theme_override_font_sizes/font_size = 32
 text = "x 3"
 
@@ -191,7 +191,7 @@ layout_mode = 1
 offset_right = 512.0
 offset_bottom = 512.0
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("10_1bssr")
+texture = ExtResource("10_ttuxi")
 
 [node name="Heart2" type="TextureRect" parent="UserInterface/GameUI/PlayerHealth" unique_id=968963285]
 unique_name_in_owner = true
@@ -205,7 +205,7 @@ offset_right = 554.0
 offset_bottom = 510.0
 grow_horizontal = 2
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("10_1bssr")
+texture = ExtResource("10_ttuxi")
 
 [node name="Heart3" type="TextureRect" parent="UserInterface/GameUI/PlayerHealth" unique_id=1366771633]
 unique_name_in_owner = true
@@ -219,21 +219,21 @@ offset_right = 594.99994
 offset_bottom = 510.0
 grow_horizontal = 0
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("10_1bssr")
+texture = ExtResource("10_ttuxi")
 
-[node name="Rabbit" parent="." unique_id=407582502 instance=ExtResource("10_5vjlm")]
+[node name="Rabbit" parent="." unique_id=407582502 instance=ExtResource("11_gm4xm")]
 position = Vector2(1011, 370)
 
-[node name="Goblin" parent="." unique_id=525693579 instance=ExtResource("12_aksfc")]
+[node name="Goblin" parent="." unique_id=525693579 instance=ExtResource("12_1pxxe")]
 position = Vector2(2716, 124)
 
-[node name="Ingredient" parent="." unique_id=515742956 instance=ExtResource("13_5pmb1")]
+[node name="Ingredient" parent="." unique_id=515742956 instance=ExtResource("13_awoqt")]
 position = Vector2(217, 79)
 
-[node name="Ingredient2" parent="." unique_id=445985469 instance=ExtResource("13_5pmb1")]
+[node name="Ingredient2" parent="." unique_id=445985469 instance=ExtResource("13_awoqt")]
 position = Vector2(4428, -50)
 
-[node name="HornedRabbit" parent="." unique_id=851492793 instance=ExtResource("14_xpj05")]
+[node name="HornedRabbit" parent="." unique_id=851492793 instance=ExtResource("14_asfq2")]
 position = Vector2(4081, -76)
 
 [connection signal="health_changed" from="Player" to="UserInterface/GameUI" method="_on_player_health_changed"]
