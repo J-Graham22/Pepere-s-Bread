@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dhdlcms0n74e1"]
+[gd_scene load_steps=2 format=3 uid="uid://dhdlcms0n74e1"]
+
+[ext_resource type="Script" uid="uid://crlk534ydrica" path="res://Scripts/title_screen.gd" id="1_anq2l"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_anq2l")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -30,3 +33,31 @@ text = "Start"
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="SaveSlotsPanel" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slot1" type="Button" parent="SaveSlotsPanel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Slot2" type="Button" parent="SaveSlotsPanel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Slot3" type="Button" parent="SaveSlotsPanel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Back" type="Button" parent="SaveSlotsPanel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
