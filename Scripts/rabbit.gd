@@ -6,10 +6,11 @@ extends CharacterBody2D
 var direction: int = -1
 var is_dead: bool = false
 
-#@onready var sprite = $AnimatedSprite2D
-@onready var sprite = $Sprite2D
+@onready var sprite = $AnimatedSprite2D
+#@onready var sprite = $Sprite2D
 @onready var left_ledge_detector = $RayCastLeft
 @onready var right_ledge_detector = $RayCastRight
+@onready var death_particles = $DeathParticles
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -17,6 +18,9 @@ func _physics_process(delta: float) -> void:
 		
 	velocity.y += gravity * delta
 	velocity.x = direction * speed
+	
+	if abs(velocity.x) > 0:
+		sprite.play("Moving")
 
 	move_and_slide()
 	
@@ -56,4 +60,15 @@ func take_damage():
 	is_dead = true
 	
 	await get_tree().create_timer(0.4).timeout
+	die()
 	queue_free()
+	
+func die():
+	AudioManager.death_sfx.play()
+	death_particles.emitting = true
+	death_tween()
+	
+func death_tween():
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2.ZERO, 0.15)
+	await tween.finished
