@@ -1,6 +1,7 @@
-[gd_scene load_steps=0 format=4 uid="uid://lrp4js5wi0tt"]
+[gd_scene load_steps=20 format=4 uid="uid://lrp4js5wi0tt"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_h31d5"]
+[ext_resource type="PackedScene" uid="uid://c0qf8mryh7aer" path="res://Scenes/Levels/PauseMenu.tscn" id="1_hrgoi"]
 [ext_resource type="PackedScene" uid="uid://c6m18o5nkpqe6" path="res://Scenes/Levels/Level_05.tscn" id="2_h31d5"]
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="3_1ntqt"]
 [ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Scenes/Prefabs/Coin.tscn" id="4_0xxnf"]
@@ -50,14 +51,16 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_rndpx")
 
-[node name="Level_04" type="Node2D" unique_id=60656907]
+[node name="Level_04" type="Node2D"]
 
-[node name="LevelFinishDoor" parent="." unique_id=819173003 instance=ExtResource("1_h31d5")]
+[node name="PauseMenu" parent="." instance=ExtResource("1_hrgoi")]
+
+[node name="LevelFinishDoor" parent="." instance=ExtResource("1_h31d5")]
 z_index = 1
 position = Vector2(5354, 143)
 next_scene = ExtResource("2_h31d5")
 
-[node name="Player" parent="." unique_id=1934415232 instance=ExtResource("3_1ntqt")]
+[node name="Player" parent="." instance=ExtResource("3_1ntqt")]
 z_index = 1
 position = Vector2(150, 318)
 max_speed = 300.0
@@ -65,7 +68,7 @@ acceleration = 1500.0
 max_run_speed = 700.0
 air_control = 1.5
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=933695323]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(16, 36)
 limit_left = 0
 limit_smoothed = true
@@ -79,36 +82,36 @@ drag_bottom_margin = 0.4
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="Coins" type="Node2D" parent="." unique_id=335489864]
+[node name="Coins" type="Node2D" parent="."]
 
-[node name="Coin" parent="Coins" unique_id=607797898 instance=ExtResource("4_0xxnf")]
+[node name="Coin" parent="Coins" instance=ExtResource("4_0xxnf")]
 position = Vector2(576, 406)
 
-[node name="Coin2" parent="Coins" unique_id=619295854 instance=ExtResource("4_0xxnf")]
+[node name="Coin2" parent="Coins" instance=ExtResource("4_0xxnf")]
 position = Vector2(712, 353)
 
-[node name="Coin3" parent="Coins" unique_id=728612348 instance=ExtResource("4_0xxnf")]
+[node name="Coin3" parent="Coins" instance=ExtResource("4_0xxnf")]
 position = Vector2(844, 408)
 
-[node name="Level" type="Node2D" parent="." unique_id=1210692680]
+[node name="Level" type="Node2D" parent="."]
 
-[node name="SpawnPoint" type="Marker2D" parent="Level" unique_id=724519745]
+[node name="SpawnPoint" type="Marker2D" parent="Level"]
 unique_name_in_owner = true
 position = Vector2(173.925, 83)
 
-[node name="Ground" type="TileMapLayer" parent="Level" unique_id=1744052347 groups=["Ground"]]
+[node name="Ground" type="TileMapLayer" parent="Level" groups=["Ground"]]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAAAAcAAAAAAAAAAAABAAcAAAAAAAAAAAACAAcAAAAAAAAAAAADAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAAAAAgAAAADAAAAAAAAAAkAAAADAAAAAAABAAkAAAADAAAAAAACAAkAAAADAAAAAAADAAkAAAADAAAAAAAEAAkAAAADAAAAAAAEAAoAAAADAAAAAAADAAoAAAADAAAAAAACAAoAAAADAAAAAAABAAoAAAADAAAAAAAAAAoAAAADAAAAAAABAAgAAAADAAAAAAACAAgAAAADAAAAAAADAAgAAAADAAAAAAAEAAgAAAADAAAAAAANAAcAAAAAAAAAAAANAAgAAAADAAAAAAANAAkAAAADAAAAAAANAAoAAAADAAAAAAAOAAcAAAAAAAAAAAAOAAgAAAADAAAAAAAOAAkAAAADAAAAAAAOAAoAAAADAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAADAAAAAAAPAAkAAAADAAAAAAAPAAoAAAADAAAAAAAQAAcAAAAAAAAAAAAQAAgAAAADAAAAAAAQAAkAAAADAAAAAAAQAAoAAAADAAAAAAARAAcAAAAAAAAAAAARAAgAAAADAAAAAAARAAkAAAADAAAAAAARAAoAAAADAAAAAAASAAcAAAAAAAAAAAASAAgAAAADAAAAAAASAAkAAAADAAAAAAASAAoAAAADAAAAAAATAAcAAAAAAAAAAAATAAgAAAADAAAAAAATAAkAAAADAAAAAAATAAoAAAADAAAAAAAUAAcAAAAAAAAAAAAUAAgAAAADAAAAAAAUAAkAAAADAAAAAAAUAAoAAAADAAAAAAAVAAcAAAAAAAAAAAAVAAgAAAADAAAAAAAVAAkAAAADAAAAAAAVAAoAAAADAAAAAAAKAAoAAAADAAAAAAALAAoAAAADAAAAAAAMAAoAAAADAAAAAAAFAAoAAAADAAAAAAAGAAoAAAADAAAAAAAHAAoAAAADAAAAAAAIAAoAAAADAAAAAAAJAAoAAAADAAAAAAAFAAcAAAAAAAIAAAAIAAcAAAAAAAIAAAAJAAcAAAAAAAIAAAAMAAcAAAAAAAIAAAD//woAAAADAAAAAAD//wkAAAADAAAAAAD//wgAAAADAAAAAAD//wcAAAADAAAAAAD//wYAAAADAAAAAAD//wUAAAADAAAAAAD//wQAAAADAAAAAAD//wMAAAADAAAAAAD//wIAAAADAAAAAAD//wEAAAADAAAAAAD//wAAAAADAAAAAAAWAAcAAAADAAAAAAAXAAcAAAADAAAAAAAYAAcAAAADAAAAAAAZAAcAAAADAAAAAAAaAAcAAAADAAAAAAAbAAcAAAADAAAAAAAcAAcAAAADAAAAAAAdAAcAAAADAAAAAAAeAAcAAAADAAAAAAAfAAcAAAADAAAAAAAgAAcAAAADAAAAAAAhAAcAAAADAAAAAAAiAAcAAAADAAAAAAAiAAgAAAADAAAAAAAiAAkAAAADAAAAAAAiAAoAAAADAAAAAAAhAAoAAAADAAAAAAAgAAoAAAADAAAAAAAfAAoAAAADAAAAAAAeAAoAAAADAAAAAAAdAAoAAAADAAAAAAAcAAoAAAADAAAAAAAbAAoAAAADAAAAAAAaAAoAAAADAAAAAAAZAAoAAAADAAAAAAAYAAoAAAADAAAAAAAXAAoAAAADAAAAAAAWAAoAAAADAAAAAAAWAAkAAAADAAAAAAAWAAgAAAADAAAAAAAXAAgAAAADAAAAAAAYAAgAAAADAAAAAAAZAAgAAAADAAAAAAAaAAgAAAADAAAAAAAbAAgAAAADAAAAAAAcAAgAAAADAAAAAAAdAAgAAAADAAAAAAAeAAgAAAADAAAAAAAfAAgAAAADAAAAAAAgAAgAAAADAAAAAAAhAAgAAAADAAAAAAAhAAkAAAADAAAAAAAgAAkAAAADAAAAAAAfAAkAAAADAAAAAAAeAAkAAAADAAAAAAAdAAkAAAADAAAAAAAcAAkAAAADAAAAAAAbAAkAAAADAAAAAAAaAAkAAAADAAAAAAAZAAkAAAADAAAAAAAYAAkAAAADAAAAAAAXAAkAAAADAAAAAAAWAAYAAAAAAAAAAAAXAAYAAAAAAAAAAAAYAAYAAAAAAAAAAAAZAAYAAAAAAAAAAAAaAAUAAAAAAAAAAAAbAAUAAAAAAAAAAAAcAAQAAAAAAAAAAAAdAAQAAAAAAAAAAAAeAAQAAAAAAAAAAAAfAAMAAAAAAAAAAAAgAAMAAAAAAAAAAAAhAAIAAAAAAAAAAAAiAAIAAAAAAAAAAAAjAAIAAAAAAAAAAAAaAAYAAAADAAAAAAAbAAYAAAADAAAAAAAcAAYAAAADAAAAAAAdAAYAAAADAAAAAAAeAAYAAAADAAAAAAAfAAYAAAADAAAAAAAgAAYAAAADAAAAAAAhAAYAAAADAAAAAAAiAAYAAAADAAAAAAAjAAYAAAADAAAAAAAjAAUAAAADAAAAAAAjAAQAAAADAAAAAAAjAAMAAAADAAAAAAAiAAQAAAADAAAAAAAiAAUAAAADAAAAAAAiAAMAAAADAAAAAAAhAAMAAAADAAAAAAAhAAQAAAADAAAAAAAhAAUAAAADAAAAAAAgAAUAAAADAAAAAAAgAAQAAAADAAAAAAAfAAQAAAADAAAAAAAfAAUAAAADAAAAAAAeAAUAAAADAAAAAAAdAAUAAAADAAAAAAAcAAUAAAADAAAAAAASAAMAAAAAAAIAAAATAAMAAAAAAAIAAAAUAAMAAAAAAAIAAAAMAAIAAAAAAAIAAAANAAIAAAAAAAIAAAAOAAIAAAAAAAIAAAAGAAMAAAAAAAIAAAAHAAMAAAAAAAIAAAABAAIAAAAAAAIAAAACAAIAAAAAAAIAAAADAAIAAAAAAAIAAAAkAAQAAAADAAAAAAAlAAQAAAADAAAAAAAmAAQAAAADAAAAAAAnAAQAAAADAAAAAAAoAAQAAAADAAAAAAApAAQAAAADAAAAAAAqAAQAAAADAAAAAAArAAQAAAADAAAAAAAsAAQAAAADAAAAAAAtAAQAAAADAAAAAAAuAAQAAAADAAAAAAAvAAQAAAADAAAAAAAwAAQAAAADAAAAAAAwAAMAAAADAAAAAAAxAAMAAAADAAAAAAAyAAMAAAADAAAAAAAzAAMAAAADAAAAAAA0AAMAAAADAAAAAAA1AAMAAAADAAAAAAA2AAMAAAADAAAAAAA3AAMAAAADAAAAAAA4AAMAAAADAAAAAAA5AAMAAAADAAAAAAA6AAMAAAADAAAAAAA7AAMAAAADAAAAAAA8AAMAAAADAAAAAAA9AAMAAAADAAAAAAA9AAIAAAADAAAAAAA9AAEAAAADAAAAAAA+AAEAAAADAAAAAAA/AAEAAAADAAAAAABAAAEAAAADAAAAAABBAAEAAAADAAAAAABBAAIAAAADAAAAAABCAAIAAAADAAAAAABAAAIAAAADAAAAAAA/AAIAAAADAAAAAAA+AAIAAAADAAAAAABCAAEAAAADAAAAAABDAAEAAAADAAAAAABEAAEAAAADAAAAAABFAAEAAAADAAAAAABGAAEAAAADAAAAAABHAAEAAAADAAAAAABHAAIAAAADAAAAAABIAAIAAAADAAAAAABGAAIAAAADAAAAAABFAAIAAAADAAAAAABEAAIAAAADAAAAAABDAAIAAAADAAAAAABJAAIAAAADAAAAAABKAAIAAAADAAAAAABKAAMAAAADAAAAAABLAAMAAAADAAAAAABLAAQAAAADAAAAAABMAAQAAAADAAAAAABNAAQAAAADAAAAAABOAAQAAAADAAAAAABPAAQAAAADAAAAAABQAAQAAAADAAAAAABRAAQAAAADAAAAAABSAAQAAAADAAAAAABTAAQAAAADAAAAAABUAAQAAAADAAAAAABVAAQAAAADAAAAAABVAAMAAAADAAAAAABVAAIAAAADAAAAAABVAAEAAAADAAAAAABVAAAAAAADAAAAAABVAP//AAADAAAAAABVAP7/AAADAAAAAABVAP3/AAADAAAAAABVAPz/AAADAAAAAABVAPv/AAAAAAAAAABUAAMAAAAAAAAAAABTAAMAAAAAAAAAAABSAAMAAAAAAAAAAABRAAMAAAAAAAAAAABQAAMAAAAAAAAAAABPAAMAAAAAAAAAAABOAAMAAAAAAAAAAABNAAMAAAAAAAAAAABMAAMAAAAAAAAAAABLAAIAAAAAAAAAAABKAAEAAAAAAAAAAABJAAEAAAAAAAAAAABIAAEAAAAAAAAAAAA9AAAAAAAAAAAAAAA+AAAAAAAAAAAAAAA/AAAAAAAAAAAAAABBAAAAAAAAAAAAAABAAAAAAAAAAAAAAABCAAAAAAAAAAAAAABDAAAAAAAAAAAAAABEAAAAAAAAAAAAAABFAAAAAAAAAAAAAABGAAAAAAAAAAAAAABHAAAAAAAAAAAAAAA8AAIAAAAAAAAAAAA7AAIAAAAAAAAAAAA6AAIAAAAAAAAAAAA5AAIAAAAAAAAAAAA4AAIAAAAAAAAAAAA3AAIAAAAAAAAAAAA2AAIAAAAAAAAAAAA1AAIAAAAAAAAAAAA0AAIAAAAAAAAAAAAzAAIAAAAAAAAAAAAyAAIAAAAAAAAAAAAxAAIAAAAAAAAAAAAwAAIAAAAAAAAAAAAvAAMAAAAAAAAAAAAuAAMAAAAAAAAAAAAtAAMAAAAAAAAAAAAsAAMAAAAAAAAAAAArAAMAAAAAAAAAAAAqAAMAAAAAAAAAAAApAAMAAAAAAAAAAAAoAAMAAAAAAAAAAAAnAAMAAAAAAAAAAAAmAAMAAAAAAAAAAAAlAAMAAAAAAAAAAAAkAAMAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_ywwrl")
 
-[node name="Traps" type="TileMapLayer" parent="Level" unique_id=1362052448 groups=["Traps"]]
+[node name="Traps" type="TileMapLayer" parent="Level" groups=["Traps"]]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAMAAkAAAAAAAUAAAALAAkAAAAAAAUAAAAKAAkAAAAAAAUAAAAJAAkAAAAAAAUAAAAIAAkAAAAAAAUAAAAHAAkAAAAAAAUAAAAGAAkAAAAAAAUAAAAFAAkAAAAAAAUAAAA=")
 tile_set = SubResource("TileSet_2fcbi")
 
-[node name="TutorialText" type="Node2D" parent="." unique_id=521552569]
+[node name="TutorialText" type="Node2D" parent="."]
 
-[node name="Movement" type="Label" parent="TutorialText" unique_id=162248363]
+[node name="Movement" type="Label" parent="TutorialText"]
 offset_left = 264.0
 offset_top = 336.0
 offset_right = 542.0
@@ -121,7 +124,7 @@ theme_override_font_sizes/font_size = 32
 text = "A & D To Move
 Spacebar To Jump"
 
-[node name="SetNextScene" type="Label" parent="TutorialText" unique_id=1524568113]
+[node name="SetNextScene" type="Label" parent="TutorialText"]
 offset_left = 808.0
 offset_top = 256.0
 offset_right = 1239.0
@@ -135,12 +138,12 @@ text = "Level Finish
 Set the next scene
 from \"LevelFinishDoor\" Area"
 
-[node name="GameManager" type="Node2D" parent="." unique_id=227803373]
+[node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("7_7o14b")
 
-[node name="UserInterface" type="CanvasLayer" parent="." unique_id=1428315962]
+[node name="UserInterface" type="CanvasLayer" parent="."]
 
-[node name="GameUI" type="Control" parent="UserInterface" unique_id=1870949669]
+[node name="GameUI" type="Control" parent="UserInterface"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -149,13 +152,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_qi34h")
 
-[node name="Score" type="Control" parent="UserInterface/GameUI" unique_id=1224160146]
+[node name="Score" type="Control" parent="UserInterface/GameUI"]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ScoreTexture" type="TextureRect" parent="UserInterface/GameUI/Score" unique_id=1570569935]
+[node name="ScoreTexture" type="TextureRect" parent="UserInterface/GameUI/Score"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 16.0
@@ -165,7 +168,7 @@ offset_bottom = 116.0
 texture = ExtResource("9_nwfj5")
 stretch_mode = 4
 
-[node name="ScoreLabel" type="Label" parent="UserInterface/GameUI/Score" unique_id=84674039]
+[node name="ScoreLabel" type="Label" parent="UserInterface/GameUI/Score"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 104.0
@@ -179,13 +182,13 @@ theme_override_fonts/font = ExtResource("6_5wxui")
 theme_override_font_sizes/font_size = 32
 text = "x 3"
 
-[node name="PlayerHealth" type="Control" parent="UserInterface/GameUI" unique_id=1229531075]
+[node name="PlayerHealth" type="Control" parent="UserInterface/GameUI"]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 56.0
 offset_bottom = 50.0
 
-[node name="Heart" type="TextureRect" parent="UserInterface/GameUI/PlayerHealth" unique_id=2100278254]
+[node name="Heart" type="TextureRect" parent="UserInterface/GameUI/PlayerHealth"]
 unique_name_in_owner = true
 layout_mode = 1
 offset_right = 512.0
@@ -193,7 +196,7 @@ offset_bottom = 512.0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("10_ihdql")
 
-[node name="Heart2" type="TextureRect" parent="UserInterface/GameUI/PlayerHealth" unique_id=968963285]
+[node name="Heart2" type="TextureRect" parent="UserInterface/GameUI/PlayerHealth"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
@@ -207,7 +210,7 @@ grow_horizontal = 2
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("10_ihdql")
 
-[node name="Heart3" type="TextureRect" parent="UserInterface/GameUI/PlayerHealth" unique_id=1366771633]
+[node name="Heart3" type="TextureRect" parent="UserInterface/GameUI/PlayerHealth"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
@@ -221,19 +224,19 @@ grow_horizontal = 0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("10_ihdql")
 
-[node name="Rabbit" parent="." unique_id=407582502 instance=ExtResource("11_hp45s")]
+[node name="Rabbit" parent="." instance=ExtResource("11_hp45s")]
 position = Vector2(1011, 370)
 
-[node name="Goblin" parent="." unique_id=525693579 instance=ExtResource("12_nf53n")]
+[node name="Goblin" parent="." instance=ExtResource("12_nf53n")]
 position = Vector2(2716, 124)
 
-[node name="Ingredient" parent="." unique_id=515742956 instance=ExtResource("13_faege")]
+[node name="Ingredient" parent="." instance=ExtResource("13_faege")]
 position = Vector2(217, 79)
 
-[node name="Ingredient2" parent="." unique_id=445985469 instance=ExtResource("13_faege")]
+[node name="Ingredient2" parent="." instance=ExtResource("13_faege")]
 position = Vector2(4428, -50)
 
-[node name="HornedRabbit" parent="." unique_id=851492793 instance=ExtResource("14_so7ev")]
+[node name="HornedRabbit" parent="." instance=ExtResource("14_so7ev")]
 position = Vector2(4081, -76)
 
 [connection signal="health_changed" from="Player" to="UserInterface/GameUI" method="_on_player_health_changed"]

@@ -1,5 +1,6 @@
-[gd_scene load_steps=0 format=3 uid="uid://bh3naymjd6qfy"]
+[gd_scene load_steps=17 format=3 uid="uid://bh3naymjd6qfy"]
 
+[ext_resource type="PackedScene" uid="uid://c0qf8mryh7aer" path="res://Scenes/Levels/PauseMenu.tscn" id="1_ri2yq"]
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_lpo2y"]
 [ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Scenes/Prefabs/Coin.tscn" id="3_nht2m"]
 [ext_resource type="Script" uid="uid://b44aojg1wbe58" path="res://Scripts/GameManager.gd" id="4_ndpt4"]
@@ -48,13 +49,15 @@ sources/0 = SubResource("TileSetAtlasSource_rndpx")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06uw3"]
 size = Vector2(1174.61, 521.29)
 
-[node name="Level_03" type="Node2D" unique_id=342936738]
+[node name="Level_03" type="Node2D"]
 
-[node name="Player" parent="." unique_id=638484054 instance=ExtResource("2_lpo2y")]
+[node name="PauseMenu" parent="." instance=ExtResource("1_ri2yq")]
+
+[node name="Player" parent="." instance=ExtResource("2_lpo2y")]
 z_index = 1
 position = Vector2(150, 318)
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2070955649]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(16, 36)
 limit_left = 0
 limit_smoothed = true
@@ -68,39 +71,39 @@ drag_bottom_margin = 0.4
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="Coins" type="Node2D" parent="." unique_id=852688640]
+[node name="Coins" type="Node2D" parent="."]
 
-[node name="Coin" parent="Coins" unique_id=953083445 instance=ExtResource("3_nht2m")]
+[node name="Coin" parent="Coins" instance=ExtResource("3_nht2m")]
 position = Vector2(696, 416)
 
-[node name="Coin2" parent="Coins" unique_id=1152938244 instance=ExtResource("3_nht2m")]
+[node name="Coin2" parent="Coins" instance=ExtResource("3_nht2m")]
 position = Vector2(864, 353)
 
-[node name="Coin3" parent="Coins" unique_id=981691507 instance=ExtResource("3_nht2m")]
+[node name="Coin3" parent="Coins" instance=ExtResource("3_nht2m")]
 position = Vector2(1024, 416)
 
-[node name="GameManager" type="Node2D" parent="." unique_id=1042587099]
+[node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("4_ndpt4")
 
-[node name="Level" type="Node2D" parent="." unique_id=970972196]
+[node name="Level" type="Node2D" parent="."]
 
-[node name="Ground" type="TileMap" parent="Level" unique_id=1717524081 groups=["Ground"]]
+[node name="Ground" type="TileMap" parent="Level" groups=["Ground"]]
 tile_set = SubResource("TileSet_ywwrl")
 format = 2
 layer_0/tile_data = PackedInt32Array(458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 524288, 196608, 0, 589824, 196608, 0, 524289, 196608, 0, 589825, 196608, 0, 524290, 196608, 0, 589826, 196608, 0, 524291, 196608, 0, 589827, 196608, 0, 524292, 196608, 0, 589828, 196608, 0, 524293, 196608, 0, 589829, 196608, 0, 524294, 196608, 0, 589830, 196608, 0, 524295, 196608, 0, 589831, 196608, 0, 524296, 196608, 0, 589832, 196608, 0, 524297, 196608, 0, 589833, 196608, 0, 458764, 0, 2, 458765, 0, 2, 458766, 0, 2, 458769, 0, 0, 458770, 0, 0, 458771, 0, 0, 524305, 196608, 0, 524306, 196608, 0, 589842, 196608, 0, 589843, 196608, 0, 524307, 196608, 0, 589841, 196608, 0, 589834, 196608, 0, 589835, 196608, 0, 589836, 196608, 0, 589837, 196608, 0, 589838, 196608, 0, 589839, 196608, 0, 589840, 196608, 0, 655360, 196608, 0, 655361, 196608, 0, 655362, 196608, 0, 655363, 196608, 0, 655364, 196608, 0, 655365, 196608, 0, 655366, 196608, 0, 655367, 196608, 0, 655368, 196608, 0, 655369, 196608, 0, 655370, 196608, 0, 655371, 196608, 0, 655372, 196608, 0, 655373, 196608, 0, 655374, 196608, 0, 655375, 196608, 0, 655376, 196608, 0, 655377, 196608, 0, 655378, 196608, 0, 655379, 196608, 0, 458778, 0, 0, 458779, 0, 0, 458780, 0, 0, 458781, 0, 0, 458782, 0, 0, 589850, 196608, 0, 524314, 196608, 0, 655386, 196608, 0, 524315, 196608, 0, 589851, 196608, 0, 655388, 196608, 0, 589852, 196608, 0, 524316, 196608, 0, 589853, 196608, 0, 524317, 196608, 0, 589854, 196608, 0, 589855, 196608, 0, 524319, 196608, 0, 655390, 196608, 0, 655389, 196608, 0, 655387, 196608, 0, 524318, 196608, 0, 655391, 196608, 0, 458783, 0, 0, 458784, 0, 0, 458785, 0, 0, 458786, 0, 0, 458790, 0, 0, 458791, 0, 0, 458792, 0, 0, 458793, 0, 0, 720913, 196608, 0, 786449, 196608, 0, 851985, 196608, 0, 917521, 196608, 0, 917522, 196608, 0, 983057, 196608, 0, 1048593, 196608, 0, 1114129, 196608, 0, 1114130, 196608, 0, 1114131, 196608, 0, 1114132, 196608, 0, 1114133, 196608, 0, 1114134, 196608, 0, 1114135, 196608, 0, 1114136, 196608, 0, 1114137, 196608, 0, 1114138, 196608, 0, 1114139, 196608, 0, 1114140, 196608, 0, 1114141, 196608, 0, 1114142, 196608, 0, 1114143, 196608, 0, 1114144, 196608, 0, 1114145, 196608, 0, 1114146, 196608, 0, 1114147, 196608, 0, 1114148, 196608, 0, 1114149, 196608, 0, 1048613, 196608, 0, 1048614, 196608, 0, 1114150, 196608, 0, 1114151, 196608, 0, 1114152, 196608, 0, 1114153, 196608, 0, 1048617, 196608, 0, 983081, 196608, 0, 917545, 196608, 0, 852009, 196608, 0, 786473, 196608, 0, 720937, 196608, 0, 655401, 196608, 0, 589865, 196608, 0, 524329, 196608, 0, 524328, 196608, 0, 524327, 196608, 0, 524326, 196608, 0, 524322, 196608, 0, 524321, 196608, 0, 524320, 196608, 0, 589856, 196608, 0, 655392, 196608, 0, 720928, 196608, 0, 786464, 196608, 0, 786465, 196608, 0, 720929, 196608, 0, 720930, 196608, 0, 655394, 196608, 0, 655393, 196608, 0, 786470, 196608, 0, 720934, 196608, 0, 655398, 196608, 0, 983059, 196608, 0, 983058, 196608, 0, 983056, 196608, 0, 917520, 196608, 0, 851984, 196608, 0, 786450, 196608, 0, 851986, 196608, 0, 851987, 196608, 0, 917523, 196608, 0, 720914, 196608, 0, 1048594, 196608, 0, 786451, 196608, 0, 720915, 196608, 0, 1048596, 196608, 0, 1048595, 196608, 0, 1048598, 196608, 0, 1048597, 196608, 0, 1048599, 196608, 0, 1048600, 196608, 0, 1048601, 196608, 0, 1048602, 196608, 0, 786458, 196608, 0, 720922, 196608, 0, 720923, 196608, 0, 720924, 196608, 0, 786460, 196608, 0, 1048603, 196608, 0, 786459, 196608, 0, 786462, 196608, 0, 786463, 196608, 0, 720927, 196608, 0, 720926, 196608, 0, 720925, 196608, 0, 589857, 196608, 0, 589858, 196608, 0, 589862, 196608, 0, 589863, 196608, 0, 589864, 196608, 0, 655400, 196608, 0, 720936, 196608, 0, 786472, 196608, 0, 852008, 196608, 0, 917544, 196608, 0, 983080, 196608, 0, 1048616, 196608, 0, 1048615, 196608, 0, 983079, 196608, 0, 917543, 196608, 0, 852007, 196608, 0, 786471, 196608, 0, 720935, 196608, 0, 655399, 196608, 0, 655402, 196608, 0, 786466, 196608, 0, 1048604, 196608, 0, 1048605, 196608, 0, 1048606, 196608, 0, 1048607, 196608, 0, 1048608, 196608, 0, 1048609, 196608, 0, 1048610, 196608, 0, 1048611, 196608, 0, 1048612, 196608, 0, 983078, 196608, 0, 917542, 196608, 0, 852006, 196608, 0, 786461, 196608, 0, 524308, 262144, 0, 524309, 262144, 0, 524310, 262144, 0, 524311, 262144, 0, 524312, 262144, 0, 524313, 262144, 0, 589849, 262144, 1, 655385, 262144, 1, 589844, 262144, 1, 589845, 262144, 1, 589846, 262144, 1, 589847, 262144, 1, 589848, 262144, 1, 720921, 262144, 1, 786457, 262144, 1, 851993, 262144, 1, 851994, 262144, 1, 851995, 262144, 1, 851996, 262144, 1, 851997, 262144, 1, 851998, 262144, 1, 851999, 262144, 1, 852000, 262144, 1, 852001, 262144, 1, 852002, 262144, 1, 852003, 262144, 1, 786467, 262144, 1, 720931, 262144, 1, 655395, 262144, 1, 589859, 262144, 1, 589860, 262144, 1, 589861, 262144, 1, 655397, 262144, 1, 655396, 262144, 1, 720932, 262144, 1, 786468, 262144, 1, 720933, 262144, 1, 786469, 262144, 1, 852005, 262144, 1, 917541, 262144, 1, 852004, 262144, 1, 917540, 262144, 1, 983076, 262144, 1, 983077, 262144, 1, 983075, 262144, 1, 917539, 262144, 1, 983074, 262144, 1, 983073, 262144, 1, 983072, 262144, 1, 983071, 262144, 1, 983070, 262144, 1, 983069, 262144, 1, 983068, 262144, 1, 983067, 262144, 1, 983066, 262144, 1, 983065, 262144, 1, 983064, 262144, 1, 983063, 262144, 1, 983062, 262144, 1, 983061, 262144, 1, 983060, 262144, 1, 917524, 262144, 1, 851988, 262144, 1, 851989, 262144, 1, 786453, 262144, 1, 720917, 262144, 1, 720916, 262144, 1, 786452, 262144, 1, 655380, 262144, 1, 655381, 262144, 1, 655382, 262144, 1, 655383, 262144, 1, 655384, 262144, 1, 720920, 262144, 1, 720919, 262144, 1, 720918, 262144, 1, 917525, 262144, 1, 917526, 262144, 1, 851990, 262144, 1, 786454, 262144, 1, 786455, 262144, 1, 786456, 262144, 1, 851991, 262144, 1, 851992, 262144, 1, 917528, 262144, 1, 917527, 262144, 1, 917529, 262144, 1, 917530, 262144, 1, 917531, 262144, 1, 917532, 262144, 1, 917533, 262144, 1, 917534, 262144, 1, 917535, 262144, 1, 917536, 262144, 1, 917537, 262144, 1, 917538, 262144, 1, 524323, 262144, 0, 524324, 262144, 0, 524325, 262144, 0)
 
-[node name="Traps" type="TileMap" parent="Level" unique_id=660141525 groups=["Traps"]]
+[node name="Traps" type="TileMap" parent="Level" groups=["Traps"]]
 tile_set = SubResource("TileSet_2fcbi")
 format = 2
 layer_0/tile_data = PackedInt32Array(524298, 0, 5, 524299, 0, 5, 524300, 0, 5, 524301, 0, 5, 524302, 0, 5, 524303, 0, 5, 524304, 0, 5)
 
-[node name="SpawnPoint" type="Marker2D" parent="Level" unique_id=1378725988]
+[node name="SpawnPoint" type="Marker2D" parent="Level"]
 unique_name_in_owner = true
 position = Vector2(232, 328)
 
-[node name="TutorialText" type="Node2D" parent="." unique_id=914113506]
+[node name="TutorialText" type="Node2D" parent="."]
 
-[node name="Credits" type="Label" parent="TutorialText" unique_id=1414898744]
+[node name="Credits" type="Label" parent="TutorialText"]
 offset_left = 1416.0
 offset_top = 256.0
 offset_right = 1694.0
@@ -115,9 +118,9 @@ STARTER KIT BY
 G2P STUDIOS"
 horizontal_alignment = 1
 
-[node name="UserInterface" type="CanvasLayer" parent="." unique_id=1794739243]
+[node name="UserInterface" type="CanvasLayer" parent="."]
 
-[node name="GameUI" type="Control" parent="UserInterface" unique_id=1714181166]
+[node name="GameUI" type="Control" parent="UserInterface"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,13 +129,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_um0jo")
 
-[node name="Score" type="Control" parent="UserInterface/GameUI" unique_id=1373669667]
+[node name="Score" type="Control" parent="UserInterface/GameUI"]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ScoreTexture" type="TextureRect" parent="UserInterface/GameUI/Score" unique_id=452104837]
+[node name="ScoreTexture" type="TextureRect" parent="UserInterface/GameUI/Score"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 16.0
@@ -142,7 +145,7 @@ offset_bottom = 116.0
 texture = ExtResource("7_ns8o6")
 stretch_mode = 4
 
-[node name="ScoreLabel" type="Label" parent="UserInterface/GameUI/Score" unique_id=1982018835]
+[node name="ScoreLabel" type="Label" parent="UserInterface/GameUI/Score"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 104.0
@@ -156,24 +159,24 @@ theme_override_fonts/font = ExtResource("8_doswy")
 theme_override_font_sizes/font_size = 32
 text = "x 3"
 
-[node name="Water" type="Area2D" parent="." unique_id=1561646237 groups=["Water"]]
+[node name="Water" type="Area2D" parent="." groups=["Water"]]
 position = Vector2(1275.39, 519.71)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Water" unique_id=1648879230]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
 position = Vector2(577.30505, 250.64496)
 shape = SubResource("RectangleShape2D_06uw3")
 
-[node name="Fish2" parent="." unique_id=917855927 instance=ExtResource("8_ombkc")]
+[node name="Fish2" parent="." instance=ExtResource("8_ombkc")]
 position = Vector2(1459, 984)
 
-[node name="DumbFish" parent="." unique_id=940762762 instance=ExtResource("9_es7ky")]
+[node name="DumbFish" parent="." instance=ExtResource("9_es7ky")]
 position = Vector2(1598, 628)
 
-[node name="DumbFish2" parent="." unique_id=1747849485 instance=ExtResource("9_es7ky")]
+[node name="DumbFish2" parent="." instance=ExtResource("9_es7ky")]
 position = Vector2(2283, 740)
 
-[node name="LevelFinishDoor" parent="." unique_id=961629253 instance=ExtResource("10_7qsfn")]
+[node name="LevelFinishDoor" parent="." instance=ExtResource("10_7qsfn")]
 position = Vector2(2553, 400)
 
 [connection signal="body_entered" from="Water" to="Player" method="_on_water_body_entered"]

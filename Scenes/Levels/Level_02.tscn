@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=4 uid="uid://ckvxcmt44v5ot"]
+[gd_scene load_steps=21 format=4 uid="uid://ckvxcmt44v5ot"]
 
+[ext_resource type="PackedScene" uid="uid://c0qf8mryh7aer" path="res://Scenes/Levels/PauseMenu.tscn" id="1_6mkr2"]
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_lvv4x"]
 [ext_resource type="PackedScene" uid="uid://bh3naymjd6qfy" path="res://Scenes/Levels/Level_03.tscn" id="2_jlrok"]
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_lpo2y"]
@@ -56,6 +57,8 @@ physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_rndpx")
 
 [node name="Level_02" type="Node2D"]
+
+[node name="PauseMenu" parent="." instance=ExtResource("1_6mkr2")]
 
 [node name="LevelFinishDoor" parent="." instance=ExtResource("1_lvv4x")]
 z_index = 1
