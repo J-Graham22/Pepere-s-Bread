@@ -1,53 +1,187 @@
-[gd_scene load_steps=5 format=3 uid="uid://drwlvpw6m4fyp"]
+[gd_scene load_steps=25 format=3 uid="uid://drwlvpw6m4fyp"]
 
-[ext_resource type="Texture2D" uid="uid://cdgognnt83s33" path="res://icon.svg" id="2_qwpgl"]
+[ext_resource type="Texture2D" uid="uid://daim0d1kvj3qe" path="res://Assets/Spritesheet/Rabbit_Horned_Attack.png" id="2_7bs77"]
 [ext_resource type="Script" uid="uid://pc1sed0inbmu" path="res://Scripts/horned_rabbit.gd" id="2_rq0tv"]
+[ext_resource type="Texture2D" uid="uid://cvcoehlvtewe3" path="res://Assets/Spritesheet/Rabbit_Horned_Idle.png" id="3_s01wl"]
+[ext_resource type="Texture2D" uid="uid://geb22lyve53e" path="res://Assets/Spritesheet/Rabbit_Horned_Move.png" id="4_wum81"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qwpgl"]
-radius = 62.5
-height = 125.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tu67"]
+atlas = ExtResource("2_7bs77")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2li47"]
+atlas = ExtResource("2_7bs77")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eeyiy"]
+atlas = ExtResource("2_7bs77")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ak8w"]
+atlas = ExtResource("2_7bs77")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c40xg"]
+atlas = ExtResource("2_7bs77")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swci5"]
+atlas = ExtResource("2_7bs77")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxac5"]
+atlas = ExtResource("3_s01wl")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cho15"]
+atlas = ExtResource("3_s01wl")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x66wp"]
+atlas = ExtResource("3_s01wl")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mptps"]
+atlas = ExtResource("3_s01wl")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc44f"]
+atlas = ExtResource("4_wum81")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6uh07"]
+atlas = ExtResource("4_wum81")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvwbf"]
+atlas = ExtResource("4_wum81")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3yg7"]
+atlas = ExtResource("4_wum81")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnurm"]
+atlas = ExtResource("4_wum81")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wl46g"]
+atlas = ExtResource("4_wum81")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tmrym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tu67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2li47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eeyiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ak8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c40xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swci5")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxac5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cho15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x66wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mptps")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tc44f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6uh07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvwbf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3yg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnurm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wl46g")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wovx1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suc2y"]
-size = Vector2(675, 292)
+size = Vector2(222, 69)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7bs77"]
 
 [node name="HornedRabbit" type="CharacterBody2D" groups=["Enemy"]]
+scale = Vector2(3, 3)
 collision_layer = 8
 collision_mask = 15
 script = ExtResource("2_rq0tv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tmrym")
+animation = &"Attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 3.5)
-shape = SubResource("CapsuleShape2D_qwpgl")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_qwpgl")
+position = Vector2(-2.5, 6.48)
+scale = Vector2(1.11, 1.11)
+shape = SubResource("CircleShape2D_wovx1")
 
 [node name="DetectionArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 8
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(1.5, -88)
+position = Vector2(1, -13.5)
 shape = SubResource("RectangleShape2D_suc2y")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 15
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
-polygon = PackedVector2Array(-62, -1, -62, -50, -54, -60, 49, -60, 59, -51, 61, 52, 52, 61, -51, 60, -60, 53)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-2, 5)
+scale = Vector2(1.19, 1.19)
+shape = SubResource("CircleShape2D_7bs77")
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2(-55, 0)
-target_position = Vector2(0, 120)
+position = Vector2(-13.96, 0)
+target_position = Vector2(0.293334, 32.666668)
 collision_mask = 4
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2(55, 0)
-target_position = Vector2(0, 120)
+position = Vector2(10.38, 0)
+target_position = Vector2(-1.0466661, 33)
 collision_mask = 4
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

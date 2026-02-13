@@ -21,7 +21,7 @@ var is_dead: bool = false
 var has_left_floor: bool = false
 var player_in_range: bool = false
 
-@onready var sprite = $Sprite2D
+@onready var sprite = $AnimatedSprite2D
 @onready var left_ledge_detector = $RayCastLeft
 @onready var right_ledge_detector = $RayCastRight
 @onready var windup_timer = Timer.new()
@@ -41,12 +41,16 @@ func _physics_process(delta: float) -> void:
 
 	match state:
 		PATROL:
+			sprite.play("Walking")
 			patrol()
 		WINDUP:
+			sprite.play("Idle")
 			velocity.x = 0
 		LUNGING:
+			sprite.play("Attack")
 			handle_lunge_landing()
 		COOLDOWN:
+			sprite.play("Idle")
 			velocity.x = 0
 
 	move_and_slide()
@@ -59,20 +63,23 @@ func start_windup():
 	if not player_in_range:
 		return
 	state = WINDUP
+	sprite.play("Idle")
 	windup_timer.start()
 
 func _on_windup_finished():
 	if not player:
 		state = PATROL
+		sprite.play("Walking")
 		return
 
 	state = LUNGING
+	sprite.play("Attack")
 	has_left_floor = false
 
 	var lunge_dir = (player.global_position - global_position).normalized()
 	velocity.x = lunge_dir.x * lunge_speed
 	velocity.y = -jump_force
-	flip_sprite()
+	check_turnaround()
 	#await get_tree().create_timer(lunge_cooldown).timeout
 	
 func handle_lunge_landing():
@@ -82,6 +89,7 @@ func handle_lunge_landing():
 	if is_on_floor() and has_left_floor:
 		has_left_floor = false
 		start_cooldown()
+		sprite.play("Idle")
 		
 func start_cooldown():
 	state = COOLDOWN
@@ -91,6 +99,7 @@ func start_cooldown():
 		start_windup()
 	else:
 		state = PATROL
+		sprite.play("Walking")
 
 func check_turnaround():
 	if state != PATROL:

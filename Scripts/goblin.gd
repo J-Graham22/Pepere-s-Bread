@@ -6,17 +6,26 @@ var patrol_speed : float = speed
 @export var gravity: float = 1400
 
 var player: Node = null
-var direction: int = -1
-var is_dead: bool = false
+var direction: int = 1
 
-#@onready var sprite = $AnimatedSprite2D
-@onready var sprite = $Sprite2D
+@onready var sprite = $AnimatedSprite2D
 @onready var left_ledge_detector = $RayCastLeft
 @onready var right_ledge_detector = $RayCastRight
 
+enum {
+	PATROL,
+	CHASE,
+	DEAD,
+	REVIVING
+}
+
+var state = PATROL
+
+
 func _physics_process(delta: float) -> void:
-	if is_dead:
+	if state == DEAD or state == REVIVING:
 		return
+
 		
 	if player:
 		follow_player()
@@ -24,6 +33,7 @@ func _physics_process(delta: float) -> void:
 		patrol()
 
 	move_and_slide()
+	handle_animations()
 	check_turnaround()
 	
 func check_turnaround():
@@ -43,7 +53,7 @@ func check_turnaround():
 			flip_sprite()
 			
 func flip_sprite():
-	sprite.flip_h = direction > 0
+	sprite.flip_h = direction < 0
 	
 func follow_player():
 	if player.global_position.x > global_position.x:
@@ -73,6 +83,17 @@ func patrol():
 	#print(patrol_speed)
 	velocity.x = direction * patrol_speed
 
+func handle_animations():
+	if state == DEAD or state == REVIVING:
+		return
+
+	if abs(velocity.x) > 0:
+		if player:
+			sprite.play("Run")
+		else:
+			sprite.play("Walk")
+	else:
+		sprite.play("Idle")
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
@@ -81,8 +102,9 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	#print('goblin collision')
 	#print(body.get_groups())
-	if is_dead:
+	if state == DEAD or state == REVIVING:
 		return
+
 		
 	if body.is_in_group("Player"):
 		body.take_damage()
@@ -91,12 +113,32 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		take_damage()
 	
 func take_damage():
-	is_dead = true
+	if state == DEAD or state == REVIVING:
+		return
+
+	state = DEAD
+	velocity = Vector2.ZERO
+	sprite.play("Die")
 	
+	await sprite.animation_finished
+	print('finished dying i guess')
+	sprite.stop()
+	sprite.frame = sprite.sprite_frames.get_frame_count("Die") - 1
 	#implement the death and rebirth here
-	self.visible = false
 	await get_tree().create_timer(5.0).timeout
-	self.visible = true
 	#queue_free() # Replace with function body.
-	is_dead = false
+	revive()
+	
+func revive():
+	state = REVIVING
+	sprite.play_backwards("Die")
+	
+	await sprite.animation_finished
+	
+	state = PATROL
 	player = null
+	sprite.play("Idle")
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	pass # Replace with function body.
