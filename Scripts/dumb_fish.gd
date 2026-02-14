@@ -9,7 +9,7 @@ var direction: int = -1
 var is_dead: bool = false
 var in_water: bool = true
 
-@onready var sprite = $Sprite2D
+@onready var sprite = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -38,6 +38,8 @@ func check_turnaround():
 		flip_sprite()
 
 func flip_sprite():
+	if not sprite:
+		return
 	sprite.flip_h = direction > 0
 
 func take_damage():

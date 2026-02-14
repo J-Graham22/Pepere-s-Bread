@@ -121,12 +121,11 @@ func take_damage():
 	sprite.play("Die")
 	
 	await sprite.animation_finished
-	print('finished dying i guess')
+	
 	sprite.stop()
 	sprite.frame = sprite.sprite_frames.get_frame_count("Die") - 1
 	#implement the death and rebirth here
-	await get_tree().create_timer(5.0).timeout
-	#queue_free() # Replace with function body.
+	await get_tree().create_timer(3.0).timeout
 	revive()
 	
 func revive():
@@ -138,7 +137,3 @@ func revive():
 	state = PATROL
 	player = null
 	sprite.play("Idle")
-
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-	pass # Replace with function body.

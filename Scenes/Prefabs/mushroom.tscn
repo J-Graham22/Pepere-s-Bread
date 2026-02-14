@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://hdu6ba8rgb56"]
+[gd_scene load_steps=63 format=3 uid="uid://hdu6ba8rgb56"]
 
 [ext_resource type="Script" uid="uid://cvoisbt4xbfsx" path="res://Scripts/mushroom.gd" id="1_wrrck"]
 [ext_resource type="Texture2D" uid="uid://t61vpbb7tm8h" path="res://Assets/Spritesheet/Mushroom/Mushroom-Die.png" id="2_evt51"]
@@ -413,40 +413,40 @@ height = 125.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suc2y"]
 size = Vector2(675, 292)
 
-[node name="Mushroom" type="CharacterBody2D" unique_id=669423298 groups=["Enemy"]]
+[node name="Mushroom" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 15
 script = ExtResource("1_wrrck")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1090114518]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2fwgk")
 animation = &"Stun"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2093421680]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 3.5)
 shape = SubResource("CapsuleShape2D_qwpgl")
 
-[node name="DetectionArea" type="Area2D" parent="." unique_id=971371893]
+[node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1000352412]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(1.5, -88)
 shape = SubResource("RectangleShape2D_suc2y")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=2128125656]
+[node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 15
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox" unique_id=1560929559]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
 polygon = PackedVector2Array(-62, -1, -62, -50, -54, -60, 49, -60, 59, -51, 61, 52, 52, 61, -51, 60, -60, 53)
 
-[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1478719419]
+[node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(-55, 0)
 target_position = Vector2(0, 120)
 collision_mask = 4
 
-[node name="RayCastRight" type="RayCast2D" parent="." unique_id=576319269]
+[node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(55, 0)
 target_position = Vector2(0, 120)
 collision_mask = 4

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dehptn2mrpb1x"]
+[gd_scene load_steps=73 format=3 uid="uid://dehptn2mrpb1x"]
 
 [ext_resource type="Script" uid="uid://c785bi5n7ibj2" path="res://Scripts/flier.gd" id="1_dh7f1"]
 [ext_resource type="Texture2D" uid="uid://b2uyq2u7b6f71" path="res://Assets/Spritesheet/Flying Enemy/Enemy3-Die.png" id="2_3p2fg"]
@@ -407,7 +407,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_afim8")
 }],
-"loop": true,
+"loop": false,
 "name": &"SmashEnd",
 "speed": 5.0
 }, {
@@ -462,19 +462,22 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qcde3")
 }],
-"loop": true,
+"loop": false,
 "name": &"StartSmash",
 "speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qwpgl"]
-radius = 41.5
-height = 83.0
+radius = 22.0
+height = 63.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suc2y"]
 size = Vector2(120, 1546)
 
-[node name="Flier" type="CharacterBody2D" unique_id=1097212997 groups=["Enemy"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_c7xc1"]
+
+[node name="Flier" type="CharacterBody2D" groups=["Enemy"]]
+scale = Vector2(2, 2)
 collision_layer = 8
 collision_mask = 15
 script = ExtResource("1_dh7f1")
@@ -483,36 +486,42 @@ patrol_acc = 450.0
 dive_speed = 350.0
 recovery_speed = 250.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=429381961]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7u6w7")
-animation = &"Idle"
+animation = &"StartSmash"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=455908958]
-position = Vector2(-1, 3.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -6.29)
 shape = SubResource("CapsuleShape2D_qwpgl")
 
-[node name="DetectionArea" type="Area2D" parent="." unique_id=111715460]
+[node name="DetectionArea" type="Area2D" parent="."]
 visible = false
 collision_layer = 8
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=865482305]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(1, 710)
 shape = SubResource("RectangleShape2D_suc2y")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=657917341]
+[node name="Hitbox" type="Area2D" parent="."]
 visible = false
 collision_layer = 8
 collision_mask = 15
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox" unique_id=404327893]
-polygon = PackedVector2Array(-62, -1, -62, -50, -54, -60, 49, -60, 59, -51, 61, 52, 52, 61, -51, 60, -60, 53)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-0.78, -2.95)
+scale = Vector2(3.2, 3.2)
+shape = SubResource("CircleShape2D_c7xc1")
 
-[node name="LeftBound" type="Marker2D" parent="." unique_id=533068832]
+[node name="LeftBound" type="Marker2D" parent="."]
 position = Vector2(-300, 0)
 
-[node name="RightBound" type="Marker2D" parent="." unique_id=69439704]
+[node name="RightBound" type="Marker2D" parent="."]
 position = Vector2(300, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 38)
+collision_mask = 4
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

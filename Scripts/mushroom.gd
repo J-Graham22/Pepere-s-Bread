@@ -27,7 +27,7 @@ var is_dead: bool = false
 var has_left_floor: bool = false
 var player_in_range: bool = false
 
-@onready var sprite = $Sprite2D
+@onready var sprite = $AnimatedSprite2D
 @onready var left_ledge_detector = $RayCastLeft
 @onready var right_ledge_detector = $RayCastRight
 @onready var windup_timer = Timer.new()

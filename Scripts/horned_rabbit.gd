@@ -79,7 +79,12 @@ func _on_windup_finished():
 	var lunge_dir = (player.global_position - global_position).normalized()
 	velocity.x = lunge_dir.x * lunge_speed
 	velocity.y = -jump_force
-	check_turnaround()
+	if velocity.x > 0:
+		direction = 1
+	else:
+		direction = -1
+	flip_sprite()
+	
 	#await get_tree().create_timer(lunge_cooldown).timeout
 	
 func handle_lunge_landing():
@@ -117,6 +122,8 @@ func check_turnaround():
 		flip_sprite()
 
 func flip_sprite():
+	if not sprite:
+		return
 	sprite.flip_h = direction > 0
 
 func _on_detection_area_body_entered(body: Node2D) -> void:

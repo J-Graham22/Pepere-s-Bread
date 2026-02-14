@@ -8,7 +8,9 @@ extends CharacterBody2D
 
 enum {
 	PATROL,
+	START_SMASH,
 	PLUNGE,
+	END_SMASH,
 	RECOVER
 }
 
@@ -20,7 +22,8 @@ var is_dead: bool = false
 
 @onready var left_bound = $LeftBound.global_position.x
 @onready var right_bound = $RightBound.global_position.x
-@onready var sprite = $Sprite2D
+@onready var sprite = $AnimatedSprite2D
+@onready var raycast = $RayCast2D
 
 func _ready() -> void:
 	start_height = global_position.y
@@ -29,8 +32,12 @@ func _physics_process(delta: float) -> void:
 	match state:
 		PATROL:
 			patrol(delta)
+		START_SMASH:
+			start_smash()
 		PLUNGE:
 			plunge()
+		END_SMASH:
+			end_smash()
 		RECOVER:
 			return_to_patrol(delta)
 
@@ -47,6 +54,7 @@ func patrol(delta: float):
 		direction = -1
 		
 	flip_sprite()
+	sprite.play("Fly")
 	check_for_player()
 	
 func check_for_player():
@@ -54,17 +62,30 @@ func check_for_player():
 		return
 		
 	if abs(player.global_position.x - global_position.x) <= alignment_margin:
-		state = PLUNGE
 		velocity = Vector2.ZERO
+		state = START_SMASH
+
+		
+func start_smash():
+		sprite.play("StartSmash")
+		await sprite.animation_finished
+		state = PLUNGE
 	
 func plunge():
 	velocity.x = 0
 	velocity.y = dive_speed
-	
-	if is_on_floor():
-		state = RECOVER
+	sprite.play("Smashing")
+	if is_on_floor() or raycast.is_colliding():
+		velocity = Vector2.ZERO
+		state = END_SMASH
+		
+func end_smash():
+	sprite.play("SmashEnd")
+	await sprite.animation_finished
+	state = RECOVER
 
 func return_to_patrol(delta: float):
+	sprite.play("Idle")
 	velocity.x = 0
 	velocity.y = move_toward(velocity.y, -recovery_speed, recovery_speed * delta)
 	
@@ -74,6 +95,8 @@ func return_to_patrol(delta: float):
 		state = PATROL
 
 func flip_sprite():
+	if not sprite:
+		return
 	sprite.flip_h = direction > 0
 
 
