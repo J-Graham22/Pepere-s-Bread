@@ -1,7 +1,62 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8vwtmajax838"]
+[gd_scene format=3 uid="uid://c8vwtmajax838"]
 
-[ext_resource type="Texture2D" uid="uid://jaegp53ccc7w" path="res://Assets/Spritesheet/platformPack_tilesheet.png" id="1_jmj68"]
 [ext_resource type="Script" uid="uid://b5o466kdqgjnm" path="res://Scripts/fish.gd" id="1_r6g4q"]
+[ext_resource type="Texture2D" uid="uid://ds3v48ugbvsb" path="res://Assets/Spritesheet/FISH SET 1.png" id="2_8fk0v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tunti"]
+atlas = ExtResource("2_8fk0v")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kubad"]
+atlas = ExtResource("2_8fk0v")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vdmg"]
+atlas = ExtResource("2_8fk0v")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4jm3"]
+atlas = ExtResource("2_8fk0v")
+region = Rect2(256, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8mfg"]
+atlas = ExtResource("2_8fk0v")
+region = Rect2(320, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqcme"]
+atlas = ExtResource("2_8fk0v")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xw3bv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tunti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kubad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vdmg")
+}],
+"loop": true,
+"name": &"Die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4jm3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8mfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqcme")
+}],
+"loop": true,
+"name": &"Swim",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r6g4q"]
 radius = 31.144823
@@ -12,31 +67,28 @@ radius = 119.26861
 [sub_resource type="CircleShape2D" id="CircleShape2D_tunti"]
 radius = 36.013885
 
-[node name="Fish" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Fish" type="CharacterBody2D" unique_id=14067545 groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_r6g4q")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1202645673]
+sprite_frames = SubResource("SpriteFrames_xw3bv")
+animation = &"Die"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_jmj68")
-region_enabled = true
-region_rect = Rect2(705.69275, 2.632721, 63.60431, 62.638077)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1733310565]
 shape = SubResource("CircleShape2D_r6g4q")
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1351370037]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=429808923]
 shape = SubResource("CircleShape2D_8fk0v")
 
-[node name="Hitbox2D" type="Area2D" parent="."]
+[node name="Hitbox2D" type="Area2D" parent="." unique_id=844893282]
 collision_layer = 8
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2D" unique_id=323211288]
 shape = SubResource("CircleShape2D_tunti")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
