@@ -1,5 +1,8 @@
 extends Area2D
 
+@export var sprite_texture: Texture2D
+@onready var sprite = $Sprite2D
+
 @export var amplitude := 4
 @export var frequency := 5
 
@@ -10,6 +13,10 @@ signal collected()
 
 func _ready():
 	initial_position = position
+	
+	if sprite_texture == null:
+		sprite_texture = sprite.texture
+	sprite.texture = sprite_texture
 
 func _process(delta):
 	ingredient_hover(delta) 
