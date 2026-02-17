@@ -39,6 +39,8 @@ var in_water: bool = false
 
 var invincible: bool = false
 
+var checkpoint_pos: Vector2 = Vector2.INF
+
 @export var water_gravity: float = 400
 @export var water_max_speed : float = 120
 @export var swim_jump_force : float = 250
@@ -170,6 +172,13 @@ func take_damage():
 	await get_tree().create_timer(i_frames).timeout
 	invincible = false
 	emit_signal("health_changed", current_health, max_health)
+	
+func is_at_max_health():
+	return current_health == max_health
+	
+func heal():
+	current_health += 1
+	emit_signal("health_changed", current_health, max_health)
 
 # --------- ANIMATIONS ---------- #
 func flash_damage():
@@ -202,7 +211,15 @@ func die():
 	AudioManager.death_sfx.play()
 	death_particles.emitting = true
 	death_tween()
-
+	
+func set_checkpoint(pos: Vector2):
+	checkpoint_pos = pos
+	
+func get_spawn_point():
+	if checkpoint_pos != Vector2.INF:
+		return checkpoint_pos
+	else:
+		return spawn_point.global_position
 
 # --------- TWEENS ---------- #
 
@@ -215,7 +232,7 @@ func death_tween():
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.15)
 	await tween.finished
-	global_position = spawn_point.global_position
+	global_position = get_spawn_point()
 	await get_tree().create_timer(0.3).timeout
 	AudioManager.respawn_sfx.play()
 	respawn_tween()

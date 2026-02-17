@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://drwlvpw6m4fyp"]
+[gd_scene load_steps=25 format=3 uid="uid://drwlvpw6m4fyp"]
 
 [ext_resource type="Script" uid="uid://pc1sed0inbmu" path="res://Scripts/horned_rabbit.gd" id="1_wovx1"]
 [ext_resource type="Texture2D" uid="uid://daim0d1kvj3qe" path="res://Assets/Spritesheet/Rabbit_Horned_Attack.png" id="2_7bs77"]
@@ -142,45 +142,44 @@ size = Vector2(222, 69)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7bs77"]
 
-[node name="HornedRabbit" type="CharacterBody2D" unique_id=456470204 groups=["Enemy"]]
+[node name="HornedRabbit" type="CharacterBody2D" groups=["Enemy"]]
 scale = Vector2(3, 3)
 collision_layer = 8
 collision_mask = 15
 script = ExtResource("1_wovx1")
-lunge_speed = 100.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1698870376]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tmrym")
 animation = &"Attack"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1437823944]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, 6.48)
 scale = Vector2(1.11, 1.11)
 shape = SubResource("CircleShape2D_wovx1")
 
-[node name="DetectionArea" type="Area2D" parent="." unique_id=1190237542]
+[node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=77618950]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(1, -13.5)
 shape = SubResource("RectangleShape2D_suc2y")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=969405928]
+[node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 15
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1272018927]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-2, 5)
 scale = Vector2(1.19, 1.19)
 shape = SubResource("CircleShape2D_7bs77")
 
-[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1846155167]
+[node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(-13.96, 0)
 target_position = Vector2(0.293334, 32.666668)
 collision_mask = 4
 
-[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1887647566]
+[node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(10.38, 0)
 target_position = Vector2(-1.0466661, 33)
 collision_mask = 4

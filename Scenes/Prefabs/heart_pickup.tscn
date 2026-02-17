@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu33yfxmovxgw"]
+
+[ext_resource type="Script" uid="uid://clj2f7bs0i1ht" path="res://Scripts/heart_pickup.gd" id="1_nfepe"]
+[ext_resource type="Texture2D" uid="uid://bk5jpet3s4pl1" path="res://Assets/Spritesheet/Tileset.png" id="2_tphkp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0ca6"]
+size = Vector2(56, 47)
+
+[node name="HeartPickup" type="Area2D"]
+script = ExtResource("1_nfepe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1.5)
+shape = SubResource("RectangleShape2D_s0ca6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tphkp")
+region_enabled = true
+region_rect = Rect2(384, 0, 64, 64)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
