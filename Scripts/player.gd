@@ -8,6 +8,9 @@ enum Character {
 }
 @export var character_toggle: Character = Character.JESS
 
+var jess_frames = preload("res://Assets/Spritesheet/Jess/jess_sprite_frames.tres")
+var jamie_frames = preload("res://Assets/Spritesheet/Jamie/jamie_sprite_frames.tres")
+
 @export_category("Fireball")
 
 @export var can_shoot_fireball : bool = true
@@ -16,6 +19,10 @@ enum Character {
 @export var fire_cooldown : float = 0.25
 
 var fire_timer : float = 0.0
+
+@export_category("Magic Sword")
+
+@export var can_swing : bool = true
 
 @export_category("Player Properties")
 
@@ -61,7 +68,17 @@ var checkpoint_pos: Vector2 = Vector2.INF
 # --------- BUILT-IN FUNCTIONS ---------- #
 func _ready() -> void:
 	current_health =  max_health
+	apply_character()
 	call_deferred("deferred_health_changed")
+	
+func apply_character():
+	match character_toggle:
+		Character.JESS:
+			player_sprite.sprite_frames = jess_frames
+			return
+		Character.JAMIE:
+			player_sprite.sprite_frames = jamie_frames
+			return
 
 func _physics_process(delta):
 	fire_timer -= delta
@@ -72,7 +89,10 @@ func _physics_process(delta):
 	apply_gravity(delta)
 	handle_horizontal_movement(delta)
 	handle_jumping()
-	handle_fireball()
+	if character_toggle == Character.JESS:
+		handle_fireball()
+	if character_toggle == Character.JAMIE:
+		handle_swing()
 	
 	move_and_slide()
 
@@ -152,6 +172,9 @@ func shoot_fireball():
 	get_tree().current_scene.add_child(fireball)
 
 	# AudioManager.fireball_sfx.play()
+	
+func handle_swing():
+	pass
 
 func jump():
 	coyote_timer = 0

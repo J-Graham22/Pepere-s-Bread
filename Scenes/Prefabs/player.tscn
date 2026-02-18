@@ -1,55 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://w7m6tehvvy3g"]
+[gd_scene format=3 uid="uid://w7m6tehvvy3g"]
 
 [ext_resource type="Script" uid="uid://ddn7s6b3tfkik" path="res://Scripts/player.gd" id="1_qt7d6"]
 [ext_resource type="PackedScene" uid="uid://75cdprocitwe" path="res://Scenes/Prefabs/Fireball.tscn" id="2_0ctox"]
-[ext_resource type="Texture2D" uid="uid://cbss87b7xk5lc" path="res://Assets/Spritesheet/platformerPack_character.png" id="2_q0cxm"]
+[ext_resource type="SpriteFrames" uid="uid://bvyg47psedema" path="res://Assets/Spritesheet/Jamie/jamie_sprite_frames.tres" id="3_0ctox"]
 [ext_resource type="Texture2D" uid="uid://dxp77wq60c2rr" path="res://Assets/Textures/CloudTexture.png" id="3_8vxmb"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_57bci"]
-atlas = ExtResource("2_q0cxm")
-region = Rect2(0, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y2um1"]
-atlas = ExtResource("2_q0cxm")
-region = Rect2(96, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cjvmv"]
-atlas = ExtResource("2_q0cxm")
-region = Rect2(192, 0, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k3yh2"]
-atlas = ExtResource("2_q0cxm")
-region = Rect2(288, 0, 96, 96)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4nss6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_57bci")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y2um1")
-}],
-"loop": true,
-"name": &"Jump",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cjvmv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k3yh2")
-}],
-"loop": true,
-"name": &"Walk",
-"speed": 5.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n4sts"]
 radius = 27.0
@@ -66,26 +20,28 @@ point_count = 3
 offsets = PackedFloat32Array(0.25, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1517432624 groups=["Player"]]
 collision_mask = 12
 script = ExtResource("1_qt7d6")
 fireball_scene = ExtResource("2_0ctox")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_4nss6")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1913094770]
+position = Vector2(0, 5.845)
+scale = Vector2(1.405, 1.405)
+sprite_frames = ExtResource("3_0ctox")
 animation = &"Walk"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=225297445]
 position = Vector2(0, 15)
 shape = SubResource("CapsuleShape2D_n4sts")
 
-[node name="Collision" type="Area2D" parent="."]
+[node name="Collision" type="Area2D" parent="." unique_id=459013555]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=579881332]
 position = Vector2(0, 14.5)
 shape = SubResource("RectangleShape2D_tvbjh")
 
-[node name="ParticleTrails" type="CPUParticles2D" parent="."]
+[node name="ParticleTrails" type="CPUParticles2D" parent="." unique_id=1524624316]
 position = Vector2(0, 42)
 emitting = false
 amount = 20
@@ -103,7 +59,7 @@ scale_amount_max = 0.6
 scale_amount_curve = SubResource("Curve_m2jh0")
 color_ramp = SubResource("Gradient_3gc37")
 
-[node name="DeathParticles" type="CPUParticles2D" parent="."]
+[node name="DeathParticles" type="CPUParticles2D" parent="." unique_id=424683502]
 position = Vector2(-1, 15)
 emitting = false
 amount = 20
