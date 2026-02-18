@@ -1,6 +1,12 @@
 extends CharacterBody2D
 
 # --------- VARIABLES ---------- #
+@export_category("Character")
+enum Character {
+	JESS,
+	JAMIE
+}
+@export var character_toggle: Character = Character.JESS
 
 @export_category("Fireball")
 
@@ -177,6 +183,8 @@ func is_at_max_health():
 	return current_health == max_health
 	
 func heal():
+	if is_at_max_health():
+		return
 	current_health += 1
 	emit_signal("health_changed", current_health, max_health)
 
@@ -233,6 +241,7 @@ func death_tween():
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.15)
 	await tween.finished
 	global_position = get_spawn_point()
+	velocity = Vector2.ZERO
 	await get_tree().create_timer(0.3).timeout
 	AudioManager.respawn_sfx.play()
 	respawn_tween()

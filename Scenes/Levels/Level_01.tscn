@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dnsb515mcsldi" path="res://Assets/Sugar.png" id="16_siisw"]
 [ext_resource type="PackedScene" uid="uid://bu33yfxmovxgw" path="res://Scenes/Prefabs/heart_pickup.tscn" id="17_5v11l"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gs0qk"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0ca6"]
 texture = ExtResource("5_wqbaa")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
@@ -36,7 +36,7 @@ texture_region_size = Vector2i(64, 64)
 3:0/0 = 0
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_siisw"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5v11l"]
 texture = ExtResource("7_jt6p5")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
@@ -64,16 +64,16 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 11
-sources/0 = SubResource("TileSetAtlasSource_gs0qk")
-sources/1 = SubResource("TileSetAtlasSource_siisw")
+sources/0 = SubResource("TileSetAtlasSource_s0ca6")
+sources/1 = SubResource("TileSetAtlasSource_5v11l")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rndpx"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_07uvp"]
 texture = ExtResource("5_wqbaa")
 texture_region_size = Vector2i(64, 64)
 0:5/0 = 0
 0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 16, 0, 32, 32, -32, 32)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0ca6"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6jlo1"]
 texture = ExtResource("7_jt6p5")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
@@ -98,10 +98,10 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 11
-sources/0 = SubResource("TileSetAtlasSource_rndpx")
-sources/1 = SubResource("TileSetAtlasSource_s0ca6")
+sources/0 = SubResource("TileSetAtlasSource_07uvp")
+sources/1 = SubResource("TileSetAtlasSource_6jlo1")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jt6p5"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3dt7p"]
 texture = ExtResource("7_jt6p5")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
@@ -333,7 +333,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_siisw"]
 tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetAtlasSource_jt6p5")
+sources/0 = SubResource("TileSetAtlasSource_3dt7p")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jt6p5"]
 atlas = ExtResource("7_jt6p5")
@@ -363,6 +363,7 @@ sky = SubResource("Sky_siisw")
 script = ExtResource("1_s0ca6")
 
 [node name="PauseMenu" parent="." instance=ExtResource("1_i7ntp")]
+visible = false
 offset = Vector2(300, 300)
 transform = Transform2D(1, 0, 0, 1, 300, 300)
 
@@ -396,13 +397,112 @@ editor_draw_drag_margin = true
 [node name="Coins" type="Node2D" parent="."]
 
 [node name="Coin" parent="Coins" instance=ExtResource("3_rrh80")]
-position = Vector2(576, 406)
+position = Vector2(340, 356)
 
 [node name="Coin2" parent="Coins" instance=ExtResource("3_rrh80")]
-position = Vector2(712, 353)
+position = Vector2(677, 271)
 
 [node name="Coin3" parent="Coins" instance=ExtResource("3_rrh80")]
-position = Vector2(844, 408)
+position = Vector2(965, 349)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(883, 306)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(415, 315)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(571, 277)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(783, 281)
+
+[node name="Coin8" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(487, 291)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1780, 327)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1953, 689)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1952, 534)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1955, 426)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1948, 303)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1865, 280)
+
+[node name="Coin15" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(3262, -72)
+
+[node name="Coin16" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(2403, -215)
+
+[node name="Coin17" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(2477, -156)
+
+[node name="Coin18" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(2515, -66)
+
+[node name="Coin19" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(2949, -88)
+
+[node name="Coin20" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(3052, -131)
+
+[node name="Coin21" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(3171, -119)
+
+[node name="Coin22" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(2308, -187)
+
+[node name="Coin23" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1328, -187)
+
+[node name="Coin24" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1360, -127)
+
+[node name="Coin25" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1701, -114)
+
+[node name="Coin26" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1747, -200)
+
+[node name="Coin27" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1838, -230)
+
+[node name="Coin28" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1943, -220)
+
+[node name="Coin29" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(2047, -178)
+
+[node name="Coin30" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(564, -241)
+
+[node name="Coin31" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(661, -183)
+
+[node name="Coin32" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(857, -217)
+
+[node name="Coin33" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(920, -264)
+
+[node name="Coin34" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1008, -255)
+
+[node name="Coin35" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1204, -221)
+
+[node name="Coin36" parent="Coins" instance=ExtResource("3_rrh80")]
+position = Vector2(1273, -243)
 
 [node name="Level" type="Node2D" parent="."]
 
@@ -428,6 +528,7 @@ tile_set = SubResource("TileSet_siisw")
 y_sort_origin = -1
 
 [node name="TutorialText" type="Node2D" parent="."]
+visible = false
 
 [node name="Movement" type="Label" parent="TutorialText"]
 offset_left = 264.0
@@ -460,6 +561,7 @@ from \"LevelFinishDoor\" Area"
 script = ExtResource("4_vgfkr")
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="GameUI" type="Control" parent="UserInterface"]
 layout_mode = 3
@@ -545,6 +647,7 @@ scale = Vector2(0.1, 0.1)
 texture = SubResource("AtlasTexture_5v11l")
 
 [node name="Rabbit" parent="." instance=ExtResource("10_5vjlm")]
+visible = false
 position = Vector2(644, 463)
 
 [node name="Ingredient" parent="." instance=ExtResource("13_5pmb1")]
@@ -559,6 +662,7 @@ sprite_texture = ExtResource("16_siisw")
 position = Vector2(2700, 245)
 
 [node name="HornedRabbit2" parent="." instance=ExtResource("14_xpj05")]
+visible = false
 position = Vector2(3463, -59)
 
 [node name="Rabbit2" parent="." instance=ExtResource("10_5vjlm")]

@@ -2,9 +2,19 @@ extends Node
 
 const SAVE_PATH := "user://savegame.json"
 
-#TODO TODO, fix all this later, too tired now
+func save(last_completed_level: int):
+	var save_dict = {
+		"last_completed_level": last_completed_level
+	}
+	return save_dict
 
-func save_game():
+func save_game(save_slot: int):
+	if save_slot <= 0 or save_slot >= 4: #valid numbers are 1,2,3
+		return
+		
+	var save_path = "user://savegame_" + str(save_slot) + ".save"
+	var save_file = FileAccess.open(save_path, FileAccess.WRITE)
+	
 	var data = {
 		"player": get_node("/root/Main/Player").get_save_data(),
 		"world": get_node("/root/Main/World").get_save_data()

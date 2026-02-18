@@ -40,12 +40,19 @@ func _physics_process(delta: float) -> void:
 	check_turnaround()
 
 func patrol():
+	velocity.y = 0
 	velocity.x = direction * speed
 	
 func player_spotted():
 	var player_dir = (player.global_position - global_position).normalized()
 	velocity.x = player_dir.x * speed
 	velocity.y = player_dir.y * speed
+	
+	if velocity.x < 0:
+		direction = -1
+	if velocity.x > 0:
+		direction = 1
+	flip_sprite()
 	
 func out_of_water(delta: float):
 	velocity.y += gravity_in_air * delta

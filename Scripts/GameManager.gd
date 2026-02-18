@@ -7,6 +7,13 @@ var score : int = 0
 # Adds 1 to score variable
 func add_score():
 	score += 1
+	
+func reset_score():
+	# should be used at the end of each level
+	score = 0
+	
+func get_score():
+	return score
 
 # Loads next level
 func load_next_level(next_scene : PackedScene):
