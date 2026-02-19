@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://7bkgxopkfqec"]
+[gd_scene load_steps=13 format=3 uid="uid://7bkgxopkfqec"]
 
 [ext_resource type="Script" uid="uid://d34kxt87csaek" path="res://Scripts/dumb_fish.gd" id="1_2ufvd"]
 [ext_resource type="Texture2D" uid="uid://ds3v48ugbvsb" path="res://Assets/Spritesheet/FISH SET 1.png" id="2_ql342"]
@@ -71,23 +71,23 @@ radius = 31.144823
 [sub_resource type="CircleShape2D" id="CircleShape2D_tunti"]
 radius = 36.138622
 
-[node name="DumbFish" type="CharacterBody2D" unique_id=1866383401 groups=["Enemy"]]
+[node name="DumbFish" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_2ufvd")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2026354203]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nwhfl")
 animation = &"Die"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1527018036]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r6g4q")
 
-[node name="Hitbox2D" type="Area2D" parent="." unique_id=541554022]
+[node name="Hitbox2D" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2D" unique_id=1018666051]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2D"]
 shape = SubResource("CircleShape2D_tunti")
 
 [connection signal="area_entered" from="Hitbox2D" to="." method="_on_hitbox_2d_area_entered"]

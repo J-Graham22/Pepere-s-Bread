@@ -10,6 +10,8 @@ var is_dead: bool = false
 var in_water: bool = true
 
 @onready var sprite = $AnimatedSprite2D
+@onready var hitbox = $Hitbox2D
+@onready var water = %Water
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -22,11 +24,15 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	check_turnaround()
+	
+func set_in_water(val: bool):
+	in_water = val
 
 func patrol():
 	velocity.x = direction * speed
 	
 func out_of_water(delta: float):
+	velocity.x = 0
 	velocity.y += gravity_in_air * delta
 	
 	if is_on_floor():
@@ -50,8 +56,6 @@ func take_damage():
 
 
 func _on_hitbox_2d_body_entered(body: Node2D) -> void:
-	print('dumb fish collision')
-	print(body.get_groups())
 	if is_dead:
 		return
 
@@ -60,13 +64,3 @@ func _on_hitbox_2d_body_entered(body: Node2D) -> void:
 
 	if body.is_in_group("PlayerAttack"):
 		take_damage()
-
-
-func _on_hitbox_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Water"):
-		in_water = true
-
-
-func _on_hitbox_2d_area_exited(area: Area2D) -> void:
-	if area.is_in_group("Water"):
-		in_water = false

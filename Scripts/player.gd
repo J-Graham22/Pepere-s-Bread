@@ -79,6 +79,9 @@ func apply_character():
 		Character.JAMIE:
 			player_sprite.sprite_frames = jamie_frames
 			return
+			
+func is_jess():
+	return character_toggle == Character.JESS
 
 func _physics_process(delta):
 	fire_timer -= delta

@@ -38,6 +38,9 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	check_turnaround()
+	
+func set_in_water(val: bool):
+	in_water = val
 
 func patrol():
 	velocity.y = 0
@@ -55,6 +58,7 @@ func player_spotted():
 	flip_sprite()
 	
 func out_of_water(delta: float):
+	velocity.x = 0
 	velocity.y += gravity_in_air * delta
 	
 	if is_on_floor():
@@ -92,8 +96,6 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 
 
 func _on_hitbox_2d_body_entered(body: Node2D) -> void:
-	print('fish collision')
-	print(body.get_groups())
 	if is_dead:
 		return
 
@@ -102,11 +104,3 @@ func _on_hitbox_2d_body_entered(body: Node2D) -> void:
 
 	if body.is_in_group("PlayerAttack"):
 		take_damage()
-
-func _on_hitbox_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Water"):
-		in_water = true
-
-func _on_hitbox_2d_area_exited(area: Area2D) -> void:
-	if area.is_in_group("Water"):
-		in_water = false
