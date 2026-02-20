@@ -17,8 +17,7 @@ offset_right = 2808.0
 offset_bottom = 1599.0
 color = Color(0.88441503, 0.5584146, 0.49325675, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
+[node name="StartScreen" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,48 +25,52 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="StartScreen"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Pepere's Bread"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Start" type="Button" parent="VBoxContainer"]
+[node name="Start" type="Button" parent="StartScreen"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Start"
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="Button" parent="StartScreen"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Quit"
 
 [node name="SaveSlotsPanel" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SaveSlotsPanel"]
 layout_mode = 0
-offset_right = 1928.0
-offset_bottom = 1079.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SaveSlotsPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Slot1" type="Button" parent="SaveSlotsPanel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "1"
 
 [node name="Slot2" type="Button" parent="SaveSlotsPanel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "2"
 
 [node name="Slot3" type="Button" parent="SaveSlotsPanel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "3"
@@ -77,9 +80,48 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "<-- Back"
 
-[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="CharacterSelect" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterSelect"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Label" type="Label" parent="CharacterSelect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Choose Character"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterSelect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Jess" type="Button" parent="CharacterSelect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Jess"
+
+[node name="Jamie" type="Button" parent="CharacterSelect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Jamie"
+
+[node name="CharacterBack" type="Button" parent="CharacterSelect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "<-- Back"
+
+[connection signal="pressed" from="StartScreen/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="StartScreen/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="SaveSlotsPanel/VBoxContainer/HBoxContainer/Slot1" to="." method="_on_slot_1_pressed"]
 [connection signal="pressed" from="SaveSlotsPanel/VBoxContainer/HBoxContainer/Slot2" to="." method="_on_slot_2_pressed"]
 [connection signal="pressed" from="SaveSlotsPanel/VBoxContainer/HBoxContainer/Slot3" to="." method="_on_slot_3_pressed"]
 [connection signal="pressed" from="SaveSlotsPanel/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CharacterSelect/VBoxContainer/HBoxContainer/Jess" to="." method="_on_jess_pressed"]
+[connection signal="pressed" from="CharacterSelect/VBoxContainer/HBoxContainer/Jamie" to="." method="_on_jamie_pressed"]
+[connection signal="pressed" from="CharacterSelect/VBoxContainer/CharacterBack" to="." method="_on_character_back_pressed"]

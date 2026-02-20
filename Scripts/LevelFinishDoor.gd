@@ -14,6 +14,9 @@ func _on_body_entered(body):
 			return
 		# need to check that player has retrieved the necessary ingredients
 		#and Input.is_action_pressed("Confirm"):
+		GameState.last_completed_level += 1
+		SaveManager.save_game()
+		
 		get_tree().call_group("Player", "death_tween") # death_tween is called here just to give the feeling of player entering the door.
 		GameManager.reset_score() # resetting score between levels
 		AudioManager.level_complete_sfx.play()

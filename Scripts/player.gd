@@ -68,6 +68,11 @@ var checkpoint_pos: Vector2 = Vector2.INF
 # --------- BUILT-IN FUNCTIONS ---------- #
 func _ready() -> void:
 	current_health =  max_health
+	if GameState.selected_character == GameState.Character.JESS:
+		character_toggle = Character.JESS
+	else:
+		character_toggle = Character.JAMIE
+	
 	apply_character()
 	call_deferred("deferred_health_changed")
 	

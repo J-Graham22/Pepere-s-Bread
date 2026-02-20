@@ -27,6 +27,8 @@ config/icon="res://Icon.png"
 GameManager="*res://Scripts/GameManager.gd"
 SceneTransition="*res://Scenes/Managers/SceneTransition.tscn"
 AudioManager="*res://Scenes/Managers/AudioManager.tscn"
+SaveManager="*res://Scenes/Managers/SaveManager.tscn"
+GameState="*res://Scripts/GameState.gd"
 
 [display]
 
