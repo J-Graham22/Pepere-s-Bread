@@ -126,8 +126,14 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		
 func take_damage():
 	current_health -= 1
+	flash_damage()
 	if current_health == 0:
 		is_dead = true
 		
 		await get_tree().create_timer(0.4).timeout
 		queue_free()
+		
+func flash_damage():
+	modulate = Color(1,0.4,0.4)
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color.WHITE

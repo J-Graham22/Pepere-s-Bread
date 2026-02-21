@@ -144,6 +144,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		take_damage()
 
 func take_damage():
+	flash_damage()
 	is_dead = true
 	
 	await get_tree().create_timer(0.4).timeout
@@ -154,3 +155,8 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player = null
 		player_in_range = false
+		
+func flash_damage():
+	modulate = Color(1,0.4,0.4)
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color.WHITE

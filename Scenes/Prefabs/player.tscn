@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://w7m6tehvvy3g"]
+[gd_scene load_steps=10 format=3 uid="uid://w7m6tehvvy3g"]
 
 [ext_resource type="Script" uid="uid://ddn7s6b3tfkik" path="res://Scripts/player.gd" id="1_qt7d6"]
 [ext_resource type="PackedScene" uid="uid://75cdprocitwe" path="res://Scenes/Prefabs/Fireball.tscn" id="2_0ctox"]
 [ext_resource type="SpriteFrames" uid="uid://bvyg47psedema" path="res://Assets/Spritesheet/Jamie/jamie_sprite_frames.tres" id="3_0ctox"]
 [ext_resource type="Texture2D" uid="uid://dxp77wq60c2rr" path="res://Assets/Textures/CloudTexture.png" id="3_8vxmb"]
+[ext_resource type="PackedScene" uid="uid://ccrs27ngklj7d" path="res://Scenes/Prefabs/Slash.tscn" id="3_cb7df"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n4sts"]
 radius = 27.0
@@ -20,28 +21,31 @@ point_count = 3
 offsets = PackedFloat32Array(0.25, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
-[node name="Player" type="CharacterBody2D" unique_id=1517432624 groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 12
 script = ExtResource("1_qt7d6")
 fireball_scene = ExtResource("2_0ctox")
+slash_scene = ExtResource("3_cb7df")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1913094770]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 5.845)
 scale = Vector2(1.405, 1.405)
 sprite_frames = ExtResource("3_0ctox")
-animation = &"Walk"
+animation = &"Attack"
+frame = 3
+frame_progress = 0.4083545
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=225297445]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
 shape = SubResource("CapsuleShape2D_n4sts")
 
-[node name="Collision" type="Area2D" parent="." unique_id=459013555]
+[node name="Collision" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=579881332]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
 position = Vector2(0, 14.5)
 shape = SubResource("RectangleShape2D_tvbjh")
 
-[node name="ParticleTrails" type="CPUParticles2D" parent="." unique_id=1524624316]
+[node name="ParticleTrails" type="CPUParticles2D" parent="."]
 position = Vector2(0, 42)
 emitting = false
 amount = 20
@@ -59,7 +63,7 @@ scale_amount_max = 0.6
 scale_amount_curve = SubResource("Curve_m2jh0")
 color_ramp = SubResource("Gradient_3gc37")
 
-[node name="DeathParticles" type="CPUParticles2D" parent="." unique_id=424683502]
+[node name="DeathParticles" type="CPUParticles2D" parent="."]
 position = Vector2(-1, 15)
 emitting = false
 amount = 20

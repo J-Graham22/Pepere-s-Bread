@@ -57,6 +57,7 @@ func _on_area_body_entered(body: Node2D) -> void:
 		take_damage()
 	
 func take_damage():
+	flash_damage()
 	is_dead = true
 	
 	await get_tree().create_timer(0.4).timeout
@@ -72,3 +73,8 @@ func death_tween():
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.15)
 	await tween.finished
+
+func flash_damage():
+	modulate = Color(1,0.4,0.4)
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color.WHITE

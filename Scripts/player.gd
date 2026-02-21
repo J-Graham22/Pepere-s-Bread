@@ -19,10 +19,13 @@ var jamie_frames = preload("res://Assets/Spritesheet/Jamie/jamie_sprite_frames.t
 @export var fire_cooldown : float = 0.25
 
 var fire_timer : float = 0.0
+var swing_timer: float = 0.0
 
 @export_category("Magic Sword")
 
-@export var can_swing : bool = true
+@export var can_swing_sword : bool = true
+@export var slash_scene: PackedScene
+@export var swing_cooldown : float = 0.25
 
 @export_category("Player Properties")
 
@@ -90,6 +93,7 @@ func is_jess():
 
 func _physics_process(delta):
 	fire_timer -= delta
+	swing_timer -= delta
 	
 	#if in_water:
 		#velocity = velocity.move_toward(Vector2.ZERO, water_drag * delta)
@@ -182,7 +186,19 @@ func shoot_fireball():
 	# AudioManager.fireball_sfx.play()
 	
 func handle_swing():
-	pass
+	if !can_swing_sword:
+		return
+
+	if Input.is_action_just_pressed("Run") and swing_timer <= 0:
+		swing()
+		swing_timer = swing_cooldown
+			
+func swing():
+	player_sprite.play("Attack")
+	var slash = slash_scene.instantiate()
+	slash.global_position = global_position + Vector2(24 * get_facing_direction(), -8)
+	slash.direction = get_facing_direction()
+	get_tree().current_scene.add_child(slash)
 
 func jump():
 	coyote_timer = 0

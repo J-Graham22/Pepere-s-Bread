@@ -116,6 +116,8 @@ func take_damage():
 	if state == DEAD or state == REVIVING:
 		return
 
+	flash_damage()
+
 	state = DEAD
 	velocity = Vector2.ZERO
 	sprite.play("Die")
@@ -137,3 +139,8 @@ func revive():
 	state = PATROL
 	player = null
 	sprite.play("Idle")
+
+func flash_damage():
+	modulate = Color(1,0.4,0.4)
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color.WHITE

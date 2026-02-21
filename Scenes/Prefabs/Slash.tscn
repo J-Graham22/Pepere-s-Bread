@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccrs27ngklj7d"]
+
+[ext_resource type="Texture2D" uid="uid://bk5jpet3s4pl1" path="res://Assets/Spritesheet/Tileset.png" id="1_gt62x"]
+[ext_resource type="Script" uid="uid://d4mssd4f8ki4j" path="res://Scripts/slash.gd" id="1_yqlgy"]
+
+[node name="Slash" type="CharacterBody2D" groups=["PlayerAttack"]]
+script = ExtResource("1_yqlgy")
+lifetime = 0.25
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5, 10)
+rotation = 4.712389
+texture = ExtResource("1_gt62x")
+region_enabled = true
+region_rect = Rect2(576, 128, 64, 64)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(5, 10)
+rotation = 4.712389
+polygon = PackedVector2Array(-32, -5, 32, -5, 29, 2, 26, 6, -25, 6, -29, 2)

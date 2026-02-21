@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://75cdprocitwe"]
 
 [ext_resource type="Script" uid="uid://dcu7wh6rt6i6v" path="res://Scripts/fireball.gd" id="1_nt7j4"]
-[ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="2_phhlt"]
+[ext_resource type="Texture2D" uid="uid://bk5jpet3s4pl1" path="res://Assets/Spritesheet/Tileset.png" id="2_nt7j4"]
 
 [node name="Fireball" type="CharacterBody2D" groups=["PlayerAttack"]]
 collision_layer = 2
@@ -12,4 +12,6 @@ script = ExtResource("1_nt7j4")
 polygon = PackedVector2Array(0, 13, 17, -3, 8, -12, -6, -12, -15, -4)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_phhlt")
+texture = ExtResource("2_nt7j4")
+region_enabled = true
+region_rect = Rect2(512, 128, 64, 64)

@@ -363,9 +363,6 @@ sky = SubResource("Sky_siisw")
 script = ExtResource("1_s0ca6")
 
 [node name="PauseMenu" parent="." instance=ExtResource("1_i7ntp")]
-visible = false
-offset = Vector2(300, 300)
-transform = Transform2D(1, 0, 0, 1, 300, 300)
 
 [node name="LevelFinishDoor" parent="." instance=ExtResource("1_oqkjg")]
 z_index = 1
@@ -561,7 +558,6 @@ from \"LevelFinishDoor\" Area"
 script = ExtResource("4_vgfkr")
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="GameUI" type="Control" parent="UserInterface"]
 layout_mode = 3
@@ -647,7 +643,6 @@ scale = Vector2(0.1, 0.1)
 texture = SubResource("AtlasTexture_5v11l")
 
 [node name="Rabbit" parent="." instance=ExtResource("10_5vjlm")]
-visible = false
 position = Vector2(644, 463)
 
 [node name="Ingredient" parent="." instance=ExtResource("13_5pmb1")]
@@ -662,7 +657,6 @@ sprite_texture = ExtResource("16_siisw")
 position = Vector2(2700, 245)
 
 [node name="HornedRabbit2" parent="." instance=ExtResource("14_xpj05")]
-visible = false
 position = Vector2(3463, -59)
 
 [node name="Rabbit2" parent="." instance=ExtResource("10_5vjlm")]

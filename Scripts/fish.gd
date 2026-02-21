@@ -78,6 +78,7 @@ func flip_sprite():
 	sprite.flip_h = direction > 0
 
 func take_damage():
+	flash_damage()
 	is_dead = true
 	
 	await get_tree().create_timer(0.4).timeout
@@ -104,3 +105,8 @@ func _on_hitbox_2d_body_entered(body: Node2D) -> void:
 
 	if body.is_in_group("PlayerAttack"):
 		take_damage()
+		
+func flash_damage():
+	modulate = Color(1,0.4,0.4)
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color.WHITE

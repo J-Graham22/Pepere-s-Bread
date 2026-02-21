@@ -7,29 +7,28 @@ extends CharacterBody2D
 
 enum {
 	PATROL,
-	WINDUP,
-	LUNGING,
+	ATTACK,
 	COOLDOWN
 }
 
 var state = PATROL
-var player: Node2D = null
 var direction: int = -1
 var is_dead: bool = false
-var has_left_floor: bool = false
 var player_in_range: bool = false
 
-@onready var sprite = $AnimatedSprite2D
+var max_health: int = 10
+var current_health
+
+@onready var sprite = $Sprite2D
 @onready var left_ledge_detector = $RayCastLeft
 @onready var right_ledge_detector = $RayCastRight
 @onready var windup_timer = Timer.new()
-@onready var attack_point = $AttackPoint
+@onready var animation_player = $AnimationPlayer
+@onready var flail_hitbox = $FlailHitbox
+@onready var detection_area = $DetectionArea
 
 func _ready():
-	windup_timer.one_shot = true
-	windup_timer.wait_time = windup_time
-	windup_timer.timeout.connect(_on_windup_finished)
-	add_child(windup_timer)
+	current_health = max_health
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -40,16 +39,10 @@ func _physics_process(delta: float) -> void:
 
 	match state:
 		PATROL:
-			sprite.play("Walking")
+			animation_player.play("Walk")
 			patrol()
-		WINDUP:
-			sprite.play("Idle")
-			velocity.x = 0
-		LUNGING:
-			sprite.play("Attack")
-			handle_lunge_landing()
 		COOLDOWN:
-			sprite.play("Idle")
+			animation_player.play("Idle")
 			velocity.x = 0
 
 	move_and_slide()
@@ -57,53 +50,13 @@ func _physics_process(delta: float) -> void:
 
 func patrol():
 	velocity.x = direction * speed
-
-func start_windup():
-	if not player_in_range:
-		return
-	state = WINDUP
-	sprite.play("Idle")
-	windup_timer.start()
-
-func _on_windup_finished():
-	if not player:
-		state = PATROL
-		sprite.play("Walking")
-		return
-
-	state = LUNGING
-	sprite.play("Attack")
-	has_left_floor = false
-
-	var lunge_dir = (player.global_position - global_position).normalized()
-	velocity.x = lunge_dir.x * lunge_speed
-	velocity.y = -jump_force
-	if velocity.x > 0:
-		direction = 1
-	else:
-		direction = -1
-	flip_sprite()
-	
-	#await get_tree().create_timer(lunge_cooldown).timeout
-	
-func handle_lunge_landing():
-	if not is_on_floor():
-		has_left_floor = true
-		
-	if is_on_floor() and has_left_floor:
-		has_left_floor = false
-		start_cooldown()
-		sprite.play("Idle")
 		
 func start_cooldown():
 	state = COOLDOWN
 	await get_tree().create_timer(lunge_cooldown).timeout
 
-	if player_in_range:
-		start_windup()
-	else:
-		state = PATROL
-		sprite.play("Walking")
+	state = PATROL
+	animation_player.play("Walk")
 
 func check_turnaround():
 	if state != PATROL:
@@ -113,24 +66,17 @@ func check_turnaround():
 		direction *= -1
 		flip_sprite()
 
-	if direction == -1 and !left_ledge_detector.is_colliding():
-		direction *= -1
-		flip_sprite()
-	elif direction == 1 and !right_ledge_detector.is_colliding():
-		direction *= -1
-		flip_sprite()
-
 func flip_sprite():
 	if not sprite:
 		return
 	sprite.flip_h = direction > 0
+	flail_hitbox.scale.x = direction
+	detection_area.scale.x = direction
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		player = body
-		player_in_range = true
 		if state == PATROL:
-			start_windup()
+			attack()
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if is_dead:
@@ -143,17 +89,30 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		take_damage()
 
 func take_damage():
-	is_dead = true
+	flash_damage()
+	current_health -= 1
 	
-	await get_tree().create_timer(0.4).timeout
-	queue_free()
-
-
-func _on_detection_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		player = null
-		player_in_range = false
+	if current_health == 0:
+		is_dead = true
+		#play dead animation
+		await  animation_player.play("Die")
+		
+		await get_tree().create_timer(0.4).timeout
+		queue_free()
+	else:
+		await animation_player.play("Hit")
 
 func attack():
-	sprite.play("Attack")
-	pass
+	velocity.x = 0
+	await animation_player.play("Attack")
+	start_cooldown()
+
+
+func _on_flail_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		body.take_damage()
+		
+func flash_damage():
+	modulate = Color(1,0.4,0.4)
+	await get_tree().create_timer(0.1).timeout
+	modulate = Color.WHITE
