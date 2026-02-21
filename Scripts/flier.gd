@@ -14,6 +14,9 @@ enum {
 	RECOVER
 }
 
+var max_health: int = 3
+var current_health
+
 var state = PATROL
 var direction = 1
 var start_height = 0.0
@@ -26,6 +29,7 @@ var is_dead: bool = false
 @onready var raycast = $RayCast2D
 
 func _ready() -> void:
+	current_health = max_health
 	start_height = global_position.y
 
 func _physics_process(delta: float) -> void:
@@ -121,7 +125,9 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		take_damage()
 		
 func take_damage():
-	is_dead = true
-	
-	await get_tree().create_timer(0.4).timeout
-	queue_free()
+	current_health -= 1
+	if current_health == 0:
+		is_dead = true
+		
+		await get_tree().create_timer(0.4).timeout
+		queue_free()
