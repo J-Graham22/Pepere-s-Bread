@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d3si3d4qntjku"
+path="res://.godot/imported/3-Audio 0006 [2026-02-22 001145].wav-6db50cbb007bd6d2ee71246fac1904a9.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Music/Proj Files/Fields Level Project/Samples/Recorded/3-Audio 0006 [2026-02-22 001145].wav"
+dest_files=["res://.godot/imported/3-Audio 0006 [2026-02-22 001145].wav-6db50cbb007bd6d2ee71246fac1904a9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

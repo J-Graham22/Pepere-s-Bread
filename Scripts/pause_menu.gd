@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@export var main_menu: PackedScene
+
 func _ready():
 	visible = false
 
@@ -31,7 +33,7 @@ func _on_resume_pressed() -> void:
 func _on_quit_to_menu_pressed() -> void:
 	get_tree().paused = false
 	# todo: set this to load main menu
-	get_tree().quit()
+	SceneTransition.load_scene(main_menu)
 
 
 func _on_quit_to_desktop_pressed() -> void:

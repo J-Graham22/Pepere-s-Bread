@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dg0f4agnfswh4"
+path="res://.godot/imported/4-Audio 0004 [2026-02-22 024218].wav-338b21204164df88396d03d83fcd5871.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Music/Proj Files/Title Theme Project/Samples/Recorded/4-Audio 0004 [2026-02-22 024218].wav"
+dest_files=["res://.godot/imported/4-Audio 0004 [2026-02-22 024218].wav-338b21204164df88396d03d83fcd5871.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

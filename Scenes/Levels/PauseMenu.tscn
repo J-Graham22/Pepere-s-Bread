@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0qf8mryh7aer"]
+[gd_scene load_steps=3 format=3 uid="uid://c0qf8mryh7aer"]
 
 [ext_resource type="Script" uid="uid://di82p3g4wxc3j" path="res://Scripts/pause_menu.gd" id="1_kuani"]
+[ext_resource type="PackedScene" uid="uid://dhdlcms0n74e1" path="res://Scenes/Levels/TitleScreen.tscn" id="2_1xl0e"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_kuani")
+main_menu = ExtResource("2_1xl0e")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8

@@ -263,6 +263,7 @@ func get_facing_direction() -> int:
 	return -1 if player_sprite.flip_h else 1
 	
 func die():
+	player_died.emit()
 	AudioManager.death_sfx.play()
 	death_particles.emitting = true
 	death_tween()
@@ -299,6 +300,7 @@ func respawn_tween():
 	
 # --------- EXTERNAL SIGNALS ---------- #
 signal health_changed(current, max)
+signal player_died
 
 func deferred_health_changed():
 	emit_signal("health_changed", current_health, max_health)

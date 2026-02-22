@@ -12,12 +12,14 @@ enum {
 }
 
 var state = PATROL
-var direction: int = -1
+var direction: int = 1
 var is_dead: bool = false
 var player_in_range: bool = false
 
 var max_health: int = 10
 var current_health
+
+var is_animating : bool = false
 
 @onready var sprite = $Sprite2D
 @onready var left_ledge_detector = $RayCastLeft
@@ -27,11 +29,14 @@ var current_health
 @onready var flail_hitbox = $FlailHitbox
 @onready var detection_area = $DetectionArea
 
+signal health_changed(current, max)
+signal skeleton_died
+
 func _ready():
 	current_health = max_health
 
 func _physics_process(delta: float) -> void:
-	if is_dead:
+	if is_dead or is_animating:
 		return
 
 	if not is_on_floor():
@@ -82,6 +87,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if is_dead:
 		return
 
+	print(body)
 	if body.is_in_group("Player"):
 		body.take_damage()
 
@@ -91,21 +97,28 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func take_damage():
 	flash_damage()
 	current_health -= 1
+	health_changed.emit(current_health, max_health)
 	
 	if current_health == 0:
+		skeleton_died.emit()
 		is_dead = true
 		#play dead animation
-		await  animation_player.play("Die")
+		animation_player.play("Die")
+		is_animating = true
 		
-		await get_tree().create_timer(0.4).timeout
-		queue_free()
+
 	else:
-		await animation_player.play("Hit")
+		animation_player.play("Hit")
+		is_animating = true
+		
+func die():
+	await get_tree().create_timer(0.4).timeout
+	queue_free()
 
 func attack():
 	velocity.x = 0
-	await animation_player.play("Attack")
-	start_cooldown()
+	animation_player.play("Attack")
+	is_animating = true
 
 
 func _on_flail_hitbox_body_entered(body: Node2D) -> void:
@@ -116,3 +129,15 @@ func flash_damage():
 	modulate = Color(1,0.4,0.4)
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color.WHITE
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	match anim_name:
+		"Die":
+			is_animating = false
+			die()
+		"Hit":
+			is_animating = false
+		"Attack":
+			is_animating = false
+			start_cooldown()
