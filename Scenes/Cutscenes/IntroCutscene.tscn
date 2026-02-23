@@ -1,0 +1,250 @@
+[gd_scene load_steps=12 format=3 uid="uid://c4rttxwul1roj"]
+
+[ext_resource type="Script" uid="uid://cwtacevugaw2a" path="res://Scripts/intro_cutscene.gd" id="1_g6d6d"]
+[ext_resource type="Texture2D" uid="uid://cspdns36p11l" path="res://Assets/Spritesheet/Mimi/no apron/idle.png" id="2_kp4nm"]
+[ext_resource type="Texture2D" uid="uid://rrli4mvp8fx" path="res://Assets/Spritesheet/Jess/walk.png" id="3_w48tq"]
+[ext_resource type="Texture2D" uid="uid://cuchkc1bka73q" path="res://Assets/Spritesheet/Jamie/walk.png" id="4_hkj3v"]
+
+[sub_resource type="Animation" id="Animation_w48tq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeRect/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mimi:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jamie:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-134, 730)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Jamie:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [39]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Jess:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-132, 730)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Jess:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [39]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FadeRect/ColorRect:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hkj3v"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeRect/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g6d6d"]
+resource_name = "mimi_idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mimi:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_5owow"]
+resource_name = "jami3_walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jamie:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-134, 730), Vector2(1100, 739)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jamie:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.26666668, 0.33333334, 0.43333334, 0.56666666, 0.7, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [39, 40, 41, 42, 43, 44, 45, 46, 39]
+}
+
+[sub_resource type="Animation" id="Animation_35fy4"]
+resource_name = "jess_enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jess:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-132, 730), Vector2(553, 732)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jess:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.066509515, 0.19420777, 0.28998148, 0.42034012, 0.56400067, 0.6837178, 0.8060953, 0.8938879, 0.9710389, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [39, 40, 41, 42, 43, 44, 44, 45, 46, 47, 39]
+}
+
+[sub_resource type="Animation" id="Animation_x8suh"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeRect/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_polrv"]
+_data = {
+&"RESET": SubResource("Animation_w48tq"),
+&"fade_in": SubResource("Animation_x8suh"),
+&"fade_out": SubResource("Animation_hkj3v"),
+&"jami3_enter": SubResource("Animation_5owow"),
+&"jess_enter": SubResource("Animation_35fy4"),
+&"mimi_idle": SubResource("Animation_g6d6d")
+}
+
+[node name="IntroCutscene" type="Node2D"]
+script = ExtResource("1_g6d6d")
+
+[node name="Background" type="Sprite2D" parent="."]
+
+[node name="Mimi" type="Sprite2D" parent="."]
+position = Vector2(1673, 730)
+scale = Vector2(3, 3)
+texture = ExtResource("2_kp4nm")
+hframes = 13
+vframes = 4
+frame = 13
+
+[node name="Jess" type="Sprite2D" parent="."]
+position = Vector2(-132, 730)
+scale = Vector2(3, 3)
+texture = ExtResource("3_w48tq")
+hframes = 13
+vframes = 4
+frame = 39
+
+[node name="Jamie" type="Sprite2D" parent="."]
+position = Vector2(-134, 730)
+scale = Vector2(3, 3)
+texture = ExtResource("4_hkj3v")
+hframes = 13
+vframes = 4
+frame = 39
+
+[node name="DialogueUI" type="CanvasLayer" parent="."]
+
+[node name="ObjectiveUI" type="CanvasLayer" parent="."]
+
+[node name="FadeRect" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="FadeRect"]
+offset_right = 1946.0
+offset_bottom = 1101.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_polrv")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -10,7 +10,7 @@ extends Node2D
 @onready var skeleton_health_bar : TextureProgressBar = %SkeletonHealth/TextureProgressBar
 #@onready var skeleton_health_bar : ProgressBar = %SkeletonHealth/ProgressBar
 
-
+var battle_finished : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 
 
 func _on_arena_trigger_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and not battle_finished:
 		start_boss_fight()
 		
 func start_boss_fight():
@@ -36,7 +36,15 @@ func start_boss_fight():
 	
 	exit_blocker.set_deferred("disabled", false)
 	
-func end_boss_fight():
+	skeleton_health_ui.visible = true
+	
+func end_boss_fight(boss_dead : bool):
+	if boss_dead:
+		exit_blocker.queue_free()
+		exit_blocker.process_mode = Node.PROCESS_MODE_DISABLED
+		
+		battle_finished = true
+	
 	var cam = %Camera2D
 
 	cam.limit_left = -100000
@@ -44,7 +52,7 @@ func end_boss_fight():
 	cam.limit_top = -100000
 	cam.limit_bottom = 100000
 	
-	exit_blocker.set_deferred("disabled", true)
+	skeleton_health_ui.visible = false
 
 
 func _on_skeleton_boss_health_changed(current: Variant, max: Variant) -> void:
@@ -53,8 +61,8 @@ func _on_skeleton_boss_health_changed(current: Variant, max: Variant) -> void:
 
 
 func _on_skeleton_boss_skeleton_died() -> void:
-	end_boss_fight()
+	end_boss_fight(true)
 
 
 func _on_player_player_died() -> void:
-	end_boss_fight()
+	end_boss_fight(false)

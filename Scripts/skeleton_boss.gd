@@ -34,6 +34,7 @@ signal skeleton_died
 
 func _ready():
 	current_health = max_health
+	call_deferred("deferred_health_changed")
 
 func _physics_process(delta: float) -> void:
 	if is_dead or is_animating:
@@ -74,7 +75,7 @@ func check_turnaround():
 func flip_sprite():
 	if not sprite:
 		return
-	sprite.flip_h = direction > 0
+	sprite.flip_h = direction < 0
 	flail_hitbox.scale.x = direction
 	detection_area.scale.x = direction
 
@@ -141,3 +142,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		"Attack":
 			is_animating = false
 			start_cooldown()
+			
+func deferred_health_changed():
+	emit_signal("health_changed", current_health, max_health)

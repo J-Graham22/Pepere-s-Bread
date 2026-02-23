@@ -32,9 +32,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		patrol()
 
+	check_turnaround()
 	move_and_slide()
 	handle_animations()
-	check_turnaround()
 	
 func check_turnaround():
 	# Hit a wall
@@ -45,17 +45,30 @@ func check_turnaround():
 	# About to fall off ledge
 	if direction == -1:
 		if !left_ledge_detector.is_colliding():
-			direction *= -1
-			flip_sprite()
+			print(direction)
+			print(state)
+			if state == CHASE:
+				# then just stop
+				velocity.x = 0
+			else:
+				direction *= -1
+				flip_sprite()
 	else:
 		if !right_ledge_detector.is_colliding():
-			direction *= -1
-			flip_sprite()
+			print(direction)
+			print(state)
+			if state == CHASE:
+				# then just stop
+				velocity.x = 0
+			else:
+				direction *= -1
+				flip_sprite()
 			
 func flip_sprite():
 	sprite.flip_h = direction < 0
 	
 func follow_player():
+	state = CHASE
 	if player.global_position.x > global_position.x:
 		direction = 1
 	else:
