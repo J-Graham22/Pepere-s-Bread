@@ -39,8 +39,10 @@ func save_exists(save_slot: int):
 	var save_path = get_slot_path(save_slot)
 
 	if FileAccess.file_exists(save_path):
+		print('save exists')
 		return true
 	else:
+		print('save does not exist')
 		return false
 
 func get_slot_path(slot: int): 

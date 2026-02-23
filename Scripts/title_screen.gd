@@ -46,19 +46,22 @@ func _on_back_pressed() -> void:
 	
 func populate_save_slots():
 	if check_save_exists(1):
-		var current_level = SaveManager.load_game(1) + 1
+		SaveManager.load_game(1)
+		var current_level = GameState.last_completed_level + 1
 		slot1.text = "Level %d" % current_level
 	else:
 		slot1.text = "New Game"
 		
 	if check_save_exists(2):
-		var current_level = SaveManager.load_game(2) + 1
+		SaveManager.load_game(2)
+		var current_level = GameState.last_completed_level + 1
 		slot2.text = "Level %d" % current_level
 	else:
 		slot2.text = "New Game"
 		
 	if check_save_exists(3):
-		var current_level = SaveManager.load_game(3) + 1
+		SaveManager.load_game(3)
+		var current_level = GameState.last_completed_level + 1
 		slot3.text = "Level %d" % current_level
 	else:
 		slot3.text = "New Game"
@@ -85,11 +88,11 @@ func create_new_game_and_start(slot: int, character: GameState.Character):
 	GameState.selected_character = character
 	
 	SaveManager.save_game()
-	load_level(slot)
+	load_level(GameState.last_completed_level + 1)
 	
 func load_save_file(slot: int):
 	SaveManager.load_game(slot)
-	load_level(slot)
+	load_level(GameState.last_completed_level + 1)
 	
 func load_level(level: int):
 	match level:
