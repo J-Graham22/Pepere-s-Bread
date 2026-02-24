@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhdlcms0n74e1"]
+[gd_scene format=3 uid="uid://dhdlcms0n74e1"]
 
 [ext_resource type="Script" uid="uid://crlk534ydrica" path="res://Scripts/title_screen.gd" id="1_anq2l"]
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" unique_id=120888566]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,13 +11,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_anq2l")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2117692747]
 layout_mode = 0
 offset_right = 2808.0
 offset_bottom = 1599.0
 color = Color(0.88441503, 0.5584146, 0.49325675, 1)
 
-[node name="StartScreen" type="VBoxContainer" parent="."]
+[node name="StartScreen" type="VBoxContainer" parent="." unique_id=576843410]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,96 +25,116 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="StartScreen"]
+[node name="Label" type="Label" parent="StartScreen" unique_id=1031071260]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Pepere's Bread"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Start" type="Button" parent="StartScreen"]
+[node name="Start" type="Button" parent="StartScreen" unique_id=1430230334]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Start"
 
-[node name="Quit" type="Button" parent="StartScreen"]
+[node name="Quit" type="Button" parent="StartScreen" unique_id=1214128685]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Quit"
 
-[node name="SaveSlotsPanel" type="Control" parent="."]
+[node name="SaveSlotsPanel" type="Control" parent="." unique_id=2096792488]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SaveSlotsPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SaveSlotsPanel" unique_id=1388893341]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SaveSlotsPanel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SaveSlotsPanel/VBoxContainer" unique_id=1468565588]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Slot1" type="Button" parent="SaveSlotsPanel/VBoxContainer/HBoxContainer"]
+[node name="Slot1" type="Button" parent="SaveSlotsPanel/VBoxContainer/HBoxContainer" unique_id=270572304]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "1"
 
-[node name="Slot2" type="Button" parent="SaveSlotsPanel/VBoxContainer/HBoxContainer"]
+[node name="Slot2" type="Button" parent="SaveSlotsPanel/VBoxContainer/HBoxContainer" unique_id=285693966]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "2"
 
-[node name="Slot3" type="Button" parent="SaveSlotsPanel/VBoxContainer/HBoxContainer"]
+[node name="Slot3" type="Button" parent="SaveSlotsPanel/VBoxContainer/HBoxContainer" unique_id=377401780]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "3"
 
-[node name="Back" type="Button" parent="SaveSlotsPanel/VBoxContainer"]
+[node name="Back" type="Button" parent="SaveSlotsPanel/VBoxContainer" unique_id=1109980775]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "<-- Back"
 
-[node name="CharacterSelect" type="Control" parent="."]
+[node name="CharacterSelect" type="Control" parent="." unique_id=1225340706]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CharacterSelect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterSelect" unique_id=1799289006]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="Label" type="Label" parent="CharacterSelect/VBoxContainer"]
+[node name="Label" type="Label" parent="CharacterSelect/VBoxContainer" unique_id=1052296777]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Choose Character"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CharacterSelect/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterSelect/VBoxContainer" unique_id=1247986742]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Jess" type="Button" parent="CharacterSelect/VBoxContainer/HBoxContainer"]
+[node name="Jess" type="Button" parent="CharacterSelect/VBoxContainer/HBoxContainer" unique_id=1127858287]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Jess"
 
-[node name="Jamie" type="Button" parent="CharacterSelect/VBoxContainer/HBoxContainer"]
+[node name="Jamie" type="Button" parent="CharacterSelect/VBoxContainer/HBoxContainer" unique_id=882192879]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Jamie"
 
-[node name="CharacterBack" type="Button" parent="CharacterSelect/VBoxContainer"]
+[node name="CharacterBack" type="Button" parent="CharacterSelect/VBoxContainer" unique_id=1157114363]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "<-- Back"
+
+[node name="SaveSlotInfo" type="Control" parent="." unique_id=148239265]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SaveSlotInfo" unique_id=780180686]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="SaveSlotInfo/VBoxContainer" unique_id=72092018]
+layout_mode = 2
+text = "Placeholder"
+
+[node name="Button" type="Button" parent="SaveSlotInfo/VBoxContainer" unique_id=1156106943]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="SaveSlotInfo/VBoxContainer" unique_id=2133741315]
+layout_mode = 2
 
 [connection signal="pressed" from="StartScreen/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="StartScreen/Quit" to="." method="_on_quit_pressed"]
