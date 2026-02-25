@@ -1,34 +1,44 @@
-[gd_scene format=3 uid="uid://bssjjygu83iwl"]
+[gd_scene load_steps=5 format=3 uid="uid://bssjjygu83iwl"]
 
 [ext_resource type="Script" uid="uid://6jtp6qd55rwf" path="res://Scripts/AudioManager.gd" id="1_hp1cr"]
 [ext_resource type="AudioStream" uid="uid://d3ldv4818s140" path="res://Assets/Sound/FX/30_Jump_03.wav" id="2_esrla"]
+[ext_resource type="AudioStream" uid="uid://dwoxr3smkong6" path="res://Assets/Sound/Cutscene Audio/Mimi Intro Cut Scene (Jessica).mp3" id="3_rhsx5"]
+[ext_resource type="AudioStream" uid="uid://bbp24segvb4o3" path="res://Assets/Sound/Cutscene Audio/Mimi Intro Cut Scene (Jami3).mp3" id="4_qes3j"]
 
-[node name="AudioManager" type="Node" unique_id=1593929836]
+[node name="AudioManager" type="Node"]
 script = ExtResource("1_hp1cr")
 
-[node name="JumpSfx" type="AudioStreamPlayer" parent="." unique_id=1029971022]
+[node name="JumpSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_esrla")
 volume_db = 1.5
 
-[node name="CoinPickup" type="AudioStreamPlayer" parent="." unique_id=467446277]
+[node name="CoinPickup" type="AudioStreamPlayer" parent="."]
 volume_db = 1.5
 
-[node name="DeathSfx" type="AudioStreamPlayer" parent="." unique_id=1766579803]
+[node name="DeathSfx" type="AudioStreamPlayer" parent="."]
 
-[node name="RespawnSfx" type="AudioStreamPlayer" parent="." unique_id=678177922]
+[node name="RespawnSfx" type="AudioStreamPlayer" parent="."]
 
-[node name="LevelCompleteSfx" type="AudioStreamPlayer" parent="." unique_id=682706516]
+[node name="LevelCompleteSfx" type="AudioStreamPlayer" parent="."]
 volume_db = -2.0
 pitch_scale = 0.5
 
-[node name="TtileTheme" type="AudioStreamPlayer" parent="." unique_id=275597106]
+[node name="TtileTheme" type="AudioStreamPlayer" parent="."]
 
-[node name="Level1Theme" type="AudioStreamPlayer" parent="." unique_id=1859152634]
+[node name="Level1Theme" type="AudioStreamPlayer" parent="."]
 
-[node name="Level2Theme" type="AudioStreamPlayer" parent="." unique_id=980633857]
+[node name="Level2Theme" type="AudioStreamPlayer" parent="."]
 
-[node name="Level3Theme" type="AudioStreamPlayer" parent="." unique_id=612568747]
+[node name="Level3Theme" type="AudioStreamPlayer" parent="."]
 
-[node name="Level4Theme" type="AudioStreamPlayer" parent="." unique_id=1598338833]
+[node name="Level4Theme" type="AudioStreamPlayer" parent="."]
 
-[node name="Level5Theme" type="AudioStreamPlayer" parent="." unique_id=2122999108]
+[node name="Level5Theme" type="AudioStreamPlayer" parent="."]
+
+[node name="CutsceneSounds" type="Node" parent="."]
+
+[node name="Intro - Jess" type="AudioStreamPlayer" parent="CutsceneSounds"]
+stream = ExtResource("3_rhsx5")
+
+[node name="Intro - Jamie" type="AudioStreamPlayer" parent="CutsceneSounds"]
+stream = ExtResource("4_qes3j")

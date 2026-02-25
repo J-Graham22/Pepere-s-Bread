@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbp24segvb4o3"
+path="res://.godot/imported/Mimi Intro Cut Scene (Jami3).mp3-57301c35c4dcbaddc6ca746e6489ec8b.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Cutscene Audio/Mimi Intro Cut Scene (Jami3).mp3"
+dest_files=["res://.godot/imported/Mimi Intro Cut Scene (Jami3).mp3-57301c35c4dcbaddc6ca746e6489ec8b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

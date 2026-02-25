@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b4vt8ur7dxnos"
+path="res://.godot/imported/Mimi Completion Dialogue (Jessica).mp3-e94412e25172cefa2e49b3c9b7d40255.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Cutscene Audio/Mimi Completion Dialogue (Jessica).mp3"
+dest_files=["res://.godot/imported/Mimi Completion Dialogue (Jessica).mp3-e94412e25172cefa2e49b3c9b7d40255.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

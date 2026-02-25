@@ -7,3 +7,6 @@ extends Node
 @onready var death_sfx = $DeathSfx
 @onready var respawn_sfx = $RespawnSfx
 @onready var level_complete_sfx = $LevelCompleteSfx
+
+@onready var intro_jess = $"CutsceneSounds/Intro - Jess"
+@onready var intro_jamie = $"CutsceneSounds/Intro - Jamie"

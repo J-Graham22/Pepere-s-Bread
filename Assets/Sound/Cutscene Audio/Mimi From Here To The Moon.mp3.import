@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dxpn3qicoqhhr"
+path="res://.godot/imported/Mimi From Here To The Moon.mp3-7c1c45828edc069dc5a1be71033e9ea2.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Cutscene Audio/Mimi From Here To The Moon.mp3"
+dest_files=["res://.godot/imported/Mimi From Here To The Moon.mp3-7c1c45828edc069dc5a1be71033e9ea2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

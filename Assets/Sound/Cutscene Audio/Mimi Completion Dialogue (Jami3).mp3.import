@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://delc5bs027ula"
+path="res://.godot/imported/Mimi Completion Dialogue (Jami3).mp3-8219ddd8120985fcbcf3e50d3f87f4d4.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Cutscene Audio/Mimi Completion Dialogue (Jami3).mp3"
+dest_files=["res://.godot/imported/Mimi Completion Dialogue (Jami3).mp3-8219ddd8120985fcbcf3e50d3f87f4d4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

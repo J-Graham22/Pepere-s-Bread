@@ -8,7 +8,7 @@ enum Character {
 var current_save_slot: int = 1
 
 var last_completed_level: int = 0
-var selected_character: Character = Character.JAMIE
+var selected_character: Character = Character.JESS
 
 func save():
 	var save_dict = {
