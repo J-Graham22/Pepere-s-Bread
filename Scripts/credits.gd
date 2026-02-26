@@ -9,3 +9,9 @@ func _ready() -> void:
 func roll_credits():
 	animator.play("credits_scroll")
 	await animator.animation_finished
+	
+	animator.play("show_memorial")
+	await animator.animation_finished
+	
+	animator.play_backwards("show_memorial")
+	await animator.animation_finished
