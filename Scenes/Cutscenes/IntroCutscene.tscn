@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://c4rttxwul1roj"]
+[gd_scene format=4 uid="uid://c4rttxwul1roj"]
 
 [ext_resource type="Script" uid="uid://cwtacevugaw2a" path="res://Scripts/intro_cutscene.gd" id="1_g6d6d"]
 [ext_resource type="Texture2D" uid="uid://cspdns36p11l" path="res://Assets/Spritesheet/Mimi/no apron/idle.png" id="2_kp4nm"]
@@ -81,6 +81,18 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DialogueUI/Panel:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_x8suh"]
 resource_name = "fade_in"
@@ -110,6 +122,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vwcu4"]
+resource_name = "hide_dialogue"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DialogueUI/Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_5owow"]
@@ -185,15 +213,33 @@ tracks/0/keys = {
 "values": [13, 14]
 }
 
+[sub_resource type="Animation" id="Animation_gmutj"]
+resource_name = "show_dialogue"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DialogueUI/Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_polrv"]
 _data = {
 &"RESET": SubResource("Animation_w48tq"),
 &"fade_in": SubResource("Animation_x8suh"),
 &"fade_out": SubResource("Animation_hkj3v"),
+&"hide_dialogue": SubResource("Animation_vwcu4"),
 &"jami3_enter": SubResource("Animation_5owow"),
 &"jami3_exit": SubResource("Animation_dahj5"),
 &"jess_enter": SubResource("Animation_35fy4"),
-&"mimi_idle": SubResource("Animation_g6d6d")
+&"mimi_idle": SubResource("Animation_g6d6d"),
+&"show_dialogue": SubResource("Animation_gmutj")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_35fy4"]
@@ -252,13 +298,13 @@ physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_35fy4")
 sources/1 = SubResource("TileSetAtlasSource_x8suh")
 
-[node name="IntroCutscene" type="Node2D"]
+[node name="IntroCutscene" type="Node2D" unique_id=1682908649]
 script = ExtResource("1_g6d6d")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=1814110622]
 visible = false
 
-[node name="Mimi" type="Sprite2D" parent="."]
+[node name="Mimi" type="Sprite2D" parent="." unique_id=470798399]
 position = Vector2(1674, 751)
 scale = Vector2(3, 3)
 texture = ExtResource("2_kp4nm")
@@ -266,7 +312,7 @@ hframes = 13
 vframes = 4
 frame = 13
 
-[node name="Jess" type="Sprite2D" parent="."]
+[node name="Jess" type="Sprite2D" parent="." unique_id=1044638595]
 z_index = 1
 position = Vector2(-132, 730)
 scale = Vector2(3, 3)
@@ -275,7 +321,7 @@ hframes = 13
 vframes = 4
 frame = 39
 
-[node name="Jamie" type="Sprite2D" parent="."]
+[node name="Jamie" type="Sprite2D" parent="." unique_id=423210650]
 z_index = 1
 position = Vector2(-134, 730)
 scale = Vector2(3, 3)
@@ -284,29 +330,42 @@ hframes = 13
 vframes = 4
 frame = 39
 
-[node name="DialogueUI" type="CanvasLayer" parent="."]
+[node name="DialogueUI" type="CanvasLayer" parent="." unique_id=688706066]
 
-[node name="ObjectiveUI" type="CanvasLayer" parent="."]
+[node name="Panel" type="Panel" parent="DialogueUI" unique_id=672231447]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+offset_left = 434.0
+offset_top = 83.0
+offset_right = 1689.0
+offset_bottom = 654.0
 
-[node name="FadeRect" type="CanvasLayer" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogueUI/Panel" unique_id=941258109]
+layout_mode = 0
+offset_right = 1255.0
+offset_bottom = 571.0
+theme_override_font_sizes/normal_font_size = 45
+text = "asdf"
 
-[node name="ColorRect" type="ColorRect" parent="FadeRect"]
-offset_right = 1948.0
-offset_bottom = 1415.0
+[node name="ObjectiveUI" type="CanvasLayer" parent="." unique_id=73075798]
+
+[node name="FadeRect" type="CanvasLayer" parent="." unique_id=645137088]
+
+[node name="ColorRect" type="ColorRect" parent="FadeRect" unique_id=849884137]
+offset_right = 3628.0
+offset_bottom = 1852.0
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_polrv")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=195137125]
+libraries/ = SubResource("AnimationLibrary_polrv")
 
-[node name="Background2" type="ColorRect" parent="."]
+[node name="Background2" type="ColorRect" parent="." unique_id=363145683]
 z_index = -2
-offset_right = 1948.0
-offset_bottom = 1415.0
+offset_right = 4222.0
+offset_bottom = 2368.0
 color = Color(0.97538847, 0.90663517, 0.75465506, 1)
 
-[node name="Ground" type="TileMapLayer" parent="."]
+[node name="Ground" type="TileMapLayer" parent="." unique_id=2057633223]
 z_index = -1
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAAAA0AAQAFAAkAAAABAA0AAQAFAAkAAAACAA0AAQAFAAkAAAADAA0AAQAFAAkAAAAEAA0AAQAFAAkAAAAFAA0AAQAFAAkAAAAGAA0AAQAFAAkAAAAHAA0AAQAFAAkAAAAIAA0AAQAFAAkAAAAJAA0AAQAFAAkAAAAKAA0AAQAFAAkAAAALAA0AAQAFAAkAAAAMAA0AAQAFAAkAAAANAA0AAQAFAAkAAAAOAA0AAQAFAAkAAAAPAA0AAQAFAAkAAAAQAA0AAQAFAAkAAAARAA0AAQAFAAkAAAASAA0AAQAFAAkAAAATAA0AAQAFAAkAAAAUAA0AAQAFAAkAAAAVAA0AAQAFAAkAAAAWAA0AAQAFAAkAAAAXAA0AAQAFAAkAAAAYAA0AAQAFAAkAAAAZAA0AAQAFAAkAAAAaAA0AAQAFAAkAAAAbAA0AAQAFAAkAAAAcAA0AAQAFAAkAAAAdAA0AAQAFAAkAAAAAAA4AAQAEAAkAAAABAA4AAQAEAAkAAAACAA4AAQAEAAkAAAADAA4AAQAEAAkAAAAEAA4AAQAEAAkAAAAFAA4AAQAEAAkAAAAGAA4AAQAEAAkAAAAHAA4AAQAEAAkAAAAIAA4AAQAEAAkAAAAJAA4AAQAEAAkAAAAKAA4AAQAEAAkAAAALAA4AAQAEAAkAAAAMAA4AAQAEAAkAAAANAA4AAQAEAAkAAAAOAA4AAQAEAAkAAAAPAA4AAQAEAAkAAAAQAA4AAQAEAAkAAAARAA4AAQAEAAkAAAASAA4AAQAEAAkAAAATAA4AAQAEAAkAAAAUAA4AAQAEAAkAAAAVAA4AAQAEAAkAAAAWAA4AAQAEAAkAAAAXAA4AAQAEAAkAAAAXAA8AAQAEAAkAAAAYAA8AAQAEAAkAAAAZAA8AAQAEAAkAAAAaAA8AAQAEAAkAAAAaAA4AAQAEAAkAAAAZAA4AAQAEAAkAAAAYAA4AAQAEAAkAAAAbAA4AAQAEAAkAAAAcAA4AAQAEAAkAAAAdAA4AAQAEAAkAAAAdAA8AAQAEAAkAAAAcAA8AAQAEAAkAAAAbAA8AAQAEAAkAAAAWAA8AAQAEAAkAAAAVAA8AAQAEAAkAAAAUAA8AAQAEAAkAAAATAA8AAQAEAAkAAAASAA8AAQAEAAkAAAARAA8AAQAEAAkAAAAQAA8AAQAEAAkAAAAPAA8AAQAEAAkAAAAOAA8AAQAEAAkAAAANAA8AAQAEAAkAAAAMAA8AAQAEAAkAAAALAA8AAQAEAAkAAAAKAA8AAQAEAAkAAAAJAA8AAQAEAAkAAAAIAA8AAQAEAAkAAAAHAA8AAQAEAAkAAAAFAA8AAQAEAAkAAAAGAA8AAQAEAAkAAAAEAA8AAQAEAAkAAAADAA8AAQAEAAkAAAACAA8AAQAEAAkAAAABAA8AAQAEAAkAAAAAAA8AAQAEAAkAAAAAABAAAQAEAAkAAAAAABEAAQAEAAkAAAABABEAAQAEAAkAAAACABEAAQAEAAkAAAADABEAAQAEAAkAAAAEABEAAQAEAAkAAAAFABEAAQAEAAkAAAAGABEAAQAEAAkAAAAHABEAAQAEAAkAAAAIABEAAQAEAAkAAAAJABEAAQAEAAkAAAAKABEAAQAEAAkAAAADABAAAQAEAAkAAAACABAAAQAEAAkAAAABABAAAQAEAAkAAAAEABAAAQAEAAkAAAAFABAAAQAEAAkAAAAGABAAAQAEAAkAAAAHABAAAQAEAAkAAAAIABAAAQAEAAkAAAAJABAAAQAEAAkAAAAKABAAAQAEAAkAAAALABAAAQAEAAkAAAAMABAAAQAEAAkAAAASABAAAQAEAAkAAAARABAAAQAEAAkAAAAQABAAAQAEAAkAAAAPABAAAQAEAAkAAAAOABAAAQAEAAkAAAANABAAAQAEAAkAAAATABAAAQAEAAkAAAAUABAAAQAEAAkAAAAVABAAAQAEAAkAAAALABEAAQAEAAkAAAAMABEAAQAEAAkAAAANABEAAQAEAAkAAAAOABEAAQAEAAkAAAAPABEAAQAEAAkAAAAQABEAAQAEAAkAAAATABEAAQAEAAkAAAAUABEAAQAEAAkAAAAVABEAAQAEAAkAAAAWABAAAQAEAAkAAAAXABAAAQAEAAkAAAASABEAAQAEAAkAAAARABEAAQAEAAkAAAAYABAAAQAEAAkAAAAZABAAAQAEAAkAAAAaABAAAQAEAAkAAAAZABEAAQAEAAkAAAAYABEAAQAEAAkAAAAXABEAAQAEAAkAAAAWABEAAQAEAAkAAAAaABEAAQAEAAkAAAAbABEAAQAEAAkAAAAcABEAAQAEAAkAAAAdABEAAQAEAAkAAAAdABAAAQAEAAkAAAAcABAAAQAEAAkAAAAbABAAAQAEAAkAAAAAABIAAQAEAAkAAAAAABMAAQAEAAkAAAAAABQAAQAEAAkAAAABABQAAQAEAAkAAAACABQAAQAEAAkAAAADABQAAQAEAAkAAAAEABQAAQAEAAkAAAAFABQAAQAEAAkAAAAGABQAAQAEAAkAAAAHABQAAQAEAAkAAAAIABQAAQAEAAkAAAALABQAAQAEAAkAAAAKABQAAQAEAAkAAAAJABQAAQAEAAkAAAAMABQAAQAEAAkAAAANABQAAQAEAAkAAAAOABQAAQAEAAkAAAAPABQAAQAEAAkAAAAQABQAAQAEAAkAAAARABQAAQAEAAkAAAASABQAAQAEAAkAAAATABQAAQAEAAkAAAAUABQAAQAEAAkAAAAVABQAAQAEAAkAAAAWABQAAQAEAAkAAAAXABQAAQAEAAkAAAAYABQAAQAEAAkAAAAZABQAAQAEAAkAAAAaABQAAQAEAAkAAAAbABQAAQAEAAkAAAAcABQAAQAEAAkAAAAdABQAAQAEAAkAAAAeABQAAQAEAAkAAAAfABQAAQAEAAkAAAAgABQAAQAEAAkAAAAhABQAAQAEAAkAAAAhABMAAQAEAAkAAAAhABIAAQAEAAkAAAAhABEAAQAEAAkAAAAhABAAAQAEAAkAAAAhAA8AAQAEAAkAAAAhAA4AAQAEAAkAAAAgAA4AAQAEAAkAAAAfAA4AAQAEAAkAAAAeAA4AAQAEAAkAAAAeAA8AAQAEAAkAAAAeABAAAQAEAAkAAAAeABEAAQAEAAkAAAAdABIAAQAEAAkAAAAdABMAAQAEAAkAAAD//w4AAQAEAAkAAAD+/w4AAQAEAAkAAAD9/w4AAQAEAAkAAAD9/w8AAQAEAAkAAAD9/xAAAQAEAAkAAAD9/xEAAQAEAAkAAAD9/xIAAQAEAAkAAAD9/xMAAQAEAAkAAAD9/xQAAQAEAAkAAAD+/xQAAQAEAAkAAAD//xQAAQAEAAkAAAD//xMAAQAEAAkAAAD//xIAAQAEAAkAAAD//xEAAQAEAAkAAAD//xAAAQAEAAkAAAD//w8AAQAEAAkAAAD+/w8AAQAEAAkAAAD+/xAAAQAEAAkAAAD+/xEAAQAEAAkAAAD+/xMAAQAEAAkAAAD+/xIAAQAEAAkAAAAHABMAAQAEAAkAAAAHABIAAQAEAAkAAAAGABIAAQAEAAkAAAAFABIAAQAEAAkAAAAEABIAAQAEAAkAAAADABIAAQAEAAkAAAACABIAAQAEAAkAAAABABIAAQAEAAkAAAABABMAAQAEAAkAAAACABMAAQAEAAkAAAADABMAAQAEAAkAAAAEABMAAQAEAAkAAAAFABMAAQAEAAkAAAAGABMAAQAEAAkAAAAIABIAAQAEAAkAAAAIABMAAQAEAAkAAAAJABMAAQAEAAkAAAAJABIAAQAEAAkAAAAKABIAAQAEAAkAAAAKABMAAQAEAAkAAAALABMAAQAEAAkAAAALABIAAQAEAAkAAAAMABIAAQAEAAkAAAAMABMAAQAEAAkAAAANABMAAQAEAAkAAAANABIAAQAEAAkAAAAOABIAAQAEAAkAAAAOABMAAQAEAAkAAAAPABMAAQAEAAkAAAAPABIAAQAEAAkAAAAQABIAAQAEAAkAAAAQABMAAQAEAAkAAAARABMAAQAEAAkAAAARABIAAQAEAAkAAAASABIAAQAEAAkAAAASABMAAQAEAAkAAAATABMAAQAEAAkAAAATABIAAQAEAAkAAAAUABIAAQAEAAkAAAAUABMAAQAEAAkAAAAVABMAAQAEAAkAAAAVABIAAQAEAAkAAAAWABIAAQAEAAkAAAAWABMAAQAEAAkAAAAXABMAAQAEAAkAAAAXABIAAQAEAAkAAAAYABIAAQAEAAkAAAAYABMAAQAEAAkAAAAZABMAAQAEAAkAAAAZABIAAQAEAAkAAAAaABIAAQAEAAkAAAAaABMAAQAEAAkAAAAbABMAAQAEAAkAAAAbABIAAQAEAAkAAAAcABIAAQAEAAkAAAAcABMAAQAEAAkAAAAeABIAAQAEAAkAAAAeABMAAQAEAAkAAAAfABMAAQAEAAkAAAAfABIAAQAEAAkAAAAfABEAAQAEAAkAAAAfABAAAQAEAAkAAAAfAA8AAQAEAAkAAAAgAA8AAQAEAAkAAAAgABAAAQAEAAkAAAAgABEAAQAEAAkAAAAgABIAAQAEAAkAAAAgABMAAQAEAAkAAAAeAA0AAQAFAAkAAAAfAA0AAQAFAAkAAAAgAA0AAQAFAAkAAAAhAA0AAQAFAAkAAAD//w0AAQAFAAkAAAD+/w0AAQAFAAkAAAD9/w0AAQAFAAkAAAA=")
