@@ -46,6 +46,15 @@ func jess_intro():
 	animator.play("hide_dialogue")
 	await animator.animation_finished
 	
+	AudioManager.achievement_sfx.play()
+	animator.play("show_obj")
+	await animator.animation_finished
+	
+	await get_tree().create_timer(5.0).timeout
+	
+	animator.play_backwards("show_obj")
+	await animator.animation_finished
+	
 	jess_sprite.flip_h = true
 	animator.play_backwards("jess_enter")
 	await animator.animation_finished
@@ -71,6 +80,8 @@ func jamie_intro():
 	
 	animator.play("hide_dialogue")
 	await animator.animation_finished
+	
+	
 	
 	jamie_sprite.flip_h = true
 	animator.play_backwards("jami3_enter")

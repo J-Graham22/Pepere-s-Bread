@@ -7,6 +7,7 @@ func _ready() -> void:
 
 
 func roll_credits():
+	AudioManager.credits.play()
 	animator.play("credits_scroll")
 	await animator.animation_finished
 	
