@@ -129,6 +129,7 @@ _data = {
 }
 
 [node name="SceneTransition" type="CanvasLayer"]
+process_mode = 3
 layer = 2
 script = ExtResource("1_gssjm")
 
@@ -139,6 +140,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(576, 324)
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="SceneTransitionAnim" type="AnimationPlayer" parent="."]

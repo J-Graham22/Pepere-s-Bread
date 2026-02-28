@@ -14,4 +14,6 @@ func roll_credits():
 	animator.play("credits_scroll")
 	await animator.animation_finished
 	
+	get_tree().paused = false
+
 	SceneTransition.load_scene(main_menu)

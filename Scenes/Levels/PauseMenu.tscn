@@ -4,6 +4,7 @@
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
+layer = 10
 script = ExtResource("1_kuani")
 
 [node name="ColorRect" type="ColorRect" parent="."]

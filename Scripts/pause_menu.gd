@@ -21,9 +21,11 @@ func pause_game():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func resume_game():
+	print(Input.mouse_mode)
 	get_tree().paused = false
 	visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	print(Input.mouse_mode)
 
 
 func _on_resume_pressed() -> void:
