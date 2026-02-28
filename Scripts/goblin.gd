@@ -131,6 +131,7 @@ func take_damage():
 
 	flash_damage()
 
+	AudioManager.enemy_death_sfx.play()
 	state = DEAD
 	velocity = Vector2.ZERO
 	sprite.play("Die")

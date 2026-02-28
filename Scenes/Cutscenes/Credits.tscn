@@ -9,26 +9,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Background/RichTextLabel:position")
+tracks/0/path = NodePath("Background/InMemorium:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 1500)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Background/InMemorium:modulate")
+tracks/1/path = NodePath("Background/RichTextLabel:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Vector2(0, 1400)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -45,7 +45,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_ntiw3"]
 resource_name = "credits_scroll"
-length = 210.0
+length = 230.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -53,10 +53,10 @@ tracks/0/path = NodePath("Background/RichTextLabel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 22.12, 23.1204, 155.73213, 156.76413, 209.26666),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 200.575),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 1500), Vector2(0, 713.5333), Vector2(-300, 556.804), Vector2(-300, -689.322), Vector2(0, -851.00244), Vector2(0, -3200)]
+"values": [Vector2(-300, 1400), Vector2(-300, -3500)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -65,10 +65,22 @@ tracks/1/path = NodePath("Background/Recipe:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 22.1, 23.14, 155.73334, 209.43333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(3.4359741, 7.730942, 101.36124, 113.81664),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background/InMemorium:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(205.29945, 210.02393, 222.90883, 230),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_mjjw8"]
@@ -105,9 +117,9 @@ offset_bottom = 1372.0
 color = Color(0, 0, 0, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Background"]
-offset_top = 1500.0
+offset_top = 1400.0
 offset_right = 1940.0
-offset_bottom = 4290.0
+offset_bottom = 4730.0
 theme_override_font_sizes/normal_font_size = 32
 text = "Credits
 
@@ -125,14 +137,11 @@ LiberatedPixelCup.GitHub.IO
 
 Assets
 
-Fireball Animation
-Nyknck - itch.io
-
-Slash Effects
-Frostwindz itch.io
-
 Ingredients & Bread
 OldboiHungry
+
+Tileset
+Justin “PUNX” Graham
 
 Enemies
 
@@ -170,6 +179,21 @@ owlstorm__retro-video-game-sfx-jump_Freesound.org
 FISH Audio
 PolyPawns
 
+Retro coin 4 by Driken5482
+https://pixabay.com/sound-effects/film-special-effects-retro-coin-4-236671/
+
+Kitchen FX by Evil_Ear_Recordings
+https://pixabay.com/sound-effects/household-kitchen-fx-64728/
+
+Slash by 666HeroHero
+https://pixabay.com/sound-effects/film-special-effects-slash-21834/
+
+Thud Impact Sound SFX by Virtual_Vibes
+https://pixabay.com/sound-effects/film-special-effects-thud-impact-sound-sfx-379990/
+
+death2 by Edimar_Radime
+https://pixabay.com/sound-effects/film-special-effects-death2-340040/
+
 
 "
 fit_content = true
@@ -181,9 +205,9 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 630.0
-offset_top = 300.0
+offset_top = 120.0
 offset_right = 630.0
-offset_bottom = 300.0
+offset_bottom = 120.0
 
 [node name="Mimi Picture" type="TextureRect" parent="Background/InMemorium"]
 layout_mode = 0
@@ -196,7 +220,7 @@ layout_mode = 0
 offset_left = 6.0
 offset_top = 841.0
 offset_right = 655.0
-offset_bottom = 983.0
+offset_bottom = 1022.0
 theme_override_font_sizes/normal_font_size = 43
 text = "In Memorium of Yvette Hachez
 January 22, 1925 — February 28, 2025"

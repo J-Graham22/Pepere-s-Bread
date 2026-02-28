@@ -57,14 +57,17 @@ func _physics_process(delta: float) -> void:
 	match state:
 		PATROL:
 			patrol()
+			sprite.play("Run")
 		WINDUP:
 			velocity.x = 0
+			sprite.play("Idle")
 		LUNGING:
 			handle_lunge_landing()
 		COOLDOWN:
 			velocity.x = 0
 		STUNNED:
 			velocity.x = move_toward(velocity.x, 0, 1000 * delta)
+			sprite.play("Stun")
 
 	move_and_slide()
 	check_turnaround()
@@ -160,10 +163,12 @@ func take_damage():
 	
 	if current_health == 0:
 		is_dead = true
-		
-		await get_tree().create_timer(0.4).timeout
+		sprite.play("Die")
+		AudioManager.enemy_death_sfx.play()
+		await get_tree().create_timer(1.4).timeout
 		queue_free()
 	else:
+		sprite.play("Hit")
 		stun()
 		# stun logic here
 
@@ -190,5 +195,5 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 
 func flash_damage():
 	modulate = Color(1,0.4,0.4)
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.6).timeout
 	modulate = Color.WHITE

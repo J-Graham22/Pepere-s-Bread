@@ -9,12 +9,15 @@ extends Node2D
 
 @onready var character = GameState.selected_character
 
+@onready var level1: PackedScene = preload("res://Scenes/Levels/Level_01.tscn")
+
 var jamie_dialogue = 'Hello Jessie! Wait, you’re not Jessie? Well, while you’re here, could you do me a favor? I’m trying to make ‘Pepere’s Bread’ but I can’t seem to find all the ‘Ingredients’. If you could bring me the ‘Ingredients’ I can make Pepere’s delicious bread. Oh thank you so much! Come back later and I will give you some of ‘Pepere’s Bread’ while it’s still warm.'
 
 var jess_dialogue = 'Hello Jessie! While you’re here, could you do me a favor? I’m trying to make ‘Pepere’s Bread’ but I can’t seem to find all the ‘Ingredients’. If you could bring me the ‘Ingredients’ I can make Pepere’s delicious bread. Oh thank you so much! Come back later and I will give you some of ‘Pepere’s Bread’ while it’s still warm.'
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	MusicManager.play_music(null)
 	#$ColorRect.modulate.a = 0.0
 	run_cutscene()
 
@@ -62,6 +65,8 @@ func jess_intro():
 	animator.play("fade_out")
 	await animator.animation_finished
 	
+	SceneTransition.load_scene(level1)
+	
 func jamie_intro():
 	#get_tree().paused = true
 	animator.play("mimi_idle")
@@ -81,7 +86,14 @@ func jamie_intro():
 	animator.play("hide_dialogue")
 	await animator.animation_finished
 	
+	AudioManager.achievement_sfx.play()
+	animator.play("show_obj")
+	await animator.animation_finished
 	
+	await get_tree().create_timer(5.0).timeout
+	
+	animator.play_backwards("show_obj")
+	await animator.animation_finished
 	
 	jamie_sprite.flip_h = true
 	animator.play_backwards("jami3_enter")
@@ -89,6 +101,8 @@ func jamie_intro():
 	
 	animator.play("fade_out")
 	await animator.animation_finished
+	
+	SceneTransition.load_scene(level1)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	print(anim_name)

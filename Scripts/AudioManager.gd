@@ -8,6 +8,11 @@ extends Node
 @onready var respawn_sfx = $RespawnSfx
 @onready var level_complete_sfx = $LevelCompleteSfx
 @onready var achievement_sfx = $AchievementSfx
+@onready var enemy_death_sfx = $EnemyDeathSfx
+@onready var fireball_sfx = $FireballSfx
+@onready var slash_sfx = $SlashSfx
+@onready var damage_sfx = $DamageSfx
+@onready var fish_sfx = $FishSfx
 @onready var kitchen_sounds = $CutsceneSounds/KitchenSounds
 
 @onready var intro_jess = $"CutsceneSounds/Intro - Jess"

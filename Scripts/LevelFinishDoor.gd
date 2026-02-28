@@ -14,6 +14,7 @@ func _on_body_entered(body):
 			return
 		# need to check that player has retrieved the necessary ingredients
 		#and Input.is_action_pressed("Confirm"):
+		AudioManager.achievement_sfx.play()
 		GameState.last_completed_level += 1
 		SaveManager.save_game()
 		
@@ -24,8 +25,10 @@ func _on_body_entered(body):
 
 
 func _on_ingredient_collected() -> void:
+	print('1 collected')
 	ingredient_0_collected = true
 
 
 func _on_ingredient_2_collected() -> void:
+	print('2 collected')
 	ingredient_1_collected = true

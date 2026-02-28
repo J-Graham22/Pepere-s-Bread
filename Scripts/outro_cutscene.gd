@@ -9,8 +9,11 @@ var outro_jamie = 'I love you, from here to the moon, always!'
 
 @onready var character = GameState.selected_character
 
+@onready var credits: PackedScene = preload("res://Scenes/Cutscenes/Credits.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	MusicManager.play_music(null)
 	run_cutscene()
 
 func run_cutscene():
@@ -39,3 +42,5 @@ func run_cutscene():
 	
 	animator.play("mimi_stairs_second_half")
 	await animator.animation_finished
+	
+	SceneTransition.load_scene(credits)

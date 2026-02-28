@@ -27,6 +27,7 @@ func set_inactive():
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		if not activated:
+			AudioManager.coin_pickup_sfx.play()
 			set_active()
 			body.set_checkpoint(self.global_position)
 	pass # Replace with function body.

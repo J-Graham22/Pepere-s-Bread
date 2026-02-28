@@ -1,16 +1,15 @@
-[gd_scene load_steps=34 format=4 uid="uid://c6m18o5nkpqe6"]
+[gd_scene load_steps=37 format=4 uid="uid://c6m18o5nkpqe6"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_8xe5j"]
-[ext_resource type="PackedScene" uid="uid://c0qf8mryh7aer" path="res://Scenes/Levels/PauseMenu.tscn" id="1_713ns"]
-[ext_resource type="PackedScene" uid="uid://bh3naymjd6qfy" path="res://Scenes/Levels/Level_03.tscn" id="2_713ns"]
+[ext_resource type="Script" uid="uid://glwdlokimvl8" path="res://Scripts/level.gd" id="1_nuncc"]
+[ext_resource type="AudioStream" uid="uid://woym3gcp1w50" path="res://Assets/Sound/Music/WAVs/Forest Level.wav" id="2_ttuxi"]
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="3_c478d"]
+[ext_resource type="PackedScene" uid="uid://berw7tuvrgm38" path="res://Scenes/Cutscenes/CompletionCutscene.tscn" id="4_1vb2u"]
 [ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Scenes/Prefabs/Coin.tscn" id="4_d83qo"]
 [ext_resource type="Texture2D" uid="uid://jaegp53ccc7w" path="res://Assets/Spritesheet/platformPack_tilesheet.png" id="5_s8dgd"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="6_1vb2u"]
 [ext_resource type="Script" uid="uid://b44aojg1wbe58" path="res://Scripts/GameManager.gd" id="7_7l2ep"]
 [ext_resource type="Script" uid="uid://b3eweo1odt4od" path="res://Scripts/GameUI.gd" id="8_j77r3"]
-[ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="9_nuncc"]
-[ext_resource type="Texture2D" uid="uid://621as0fwjhum" path="res://Assets/Textures/star_07.png" id="10_ttuxi"]
 [ext_resource type="PackedScene" uid="uid://wi2u2cuco683" path="res://Scenes/Prefabs/goblin.tscn" id="12_1pxxe"]
 [ext_resource type="PackedScene" uid="uid://dnoshi376cqqx" path="res://Scenes/Prefabs/Ingredient.tscn" id="13_awoqt"]
 [ext_resource type="Texture2D" uid="uid://dxeavugdysdqm" path="res://Assets/Eggs.png" id="13_d83qo"]
@@ -20,6 +19,22 @@
 [ext_resource type="PackedScene" uid="uid://8w0lr8rcmf8l" path="res://Scenes/Prefabs/checkpoint.tscn" id="18_1vb2u"]
 [ext_resource type="PackedScene" uid="uid://71xdq2xl0fu" path="res://Scenes/Prefabs/skeletonBoss.tscn" id="19_1vb2u"]
 [ext_resource type="Script" uid="uid://d20hj7glkp0cy" path="res://Scripts/boss_arena.gd" id="19_7l2ep"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l2ep"]
+atlas = ExtResource("16_c478d")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j77r3"]
+atlas = ExtResource("16_c478d")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nuncc"]
+atlas = ExtResource("16_c478d")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttuxi"]
+atlas = ExtResource("16_c478d")
+region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="Gradient" id="Gradient_j77r3"]
 colors = PackedColorArray(1, 0, 0, 1, 0.99999994, 0.2221024, 0.15894744, 1)
@@ -358,13 +373,13 @@ size = Vector2(2257, 564)
 size = Vector2(74, 237)
 
 [node name="Level_05" type="Node2D"]
-
-[node name="PauseMenu" parent="." instance=ExtResource("1_713ns")]
+script = ExtResource("1_nuncc")
+level_music = ExtResource("2_ttuxi")
 
 [node name="LevelFinishDoor" parent="." instance=ExtResource("1_8xe5j")]
 z_index = 1
 position = Vector2(19973, 1678)
-next_scene = ExtResource("2_713ns")
+next_scene = ExtResource("4_1vb2u")
 
 [node name="Player" parent="." instance=ExtResource("3_c478d")]
 z_index = 1
@@ -391,42 +406,118 @@ editor_draw_drag_margin = true
 [node name="Coins" type="Node2D" parent="."]
 
 [node name="Coin" parent="Coins" instance=ExtResource("4_d83qo")]
-position = Vector2(576, 406)
+position = Vector2(570, 329)
 
 [node name="Coin2" parent="Coins" instance=ExtResource("4_d83qo")]
-position = Vector2(712, 353)
+position = Vector2(664, 240)
 
 [node name="Coin3" parent="Coins" instance=ExtResource("4_d83qo")]
-position = Vector2(844, 408)
+position = Vector2(770, 172)
 
-[node name="TutorialText" type="Node2D" parent="."]
+[node name="Coin4" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(1506, 160)
 
-[node name="Movement" type="Label" parent="TutorialText"]
-offset_left = 264.0
-offset_top = 336.0
-offset_right = 542.0
-offset_bottom = 420.0
-theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("6_1vb2u")
-theme_override_font_sizes/font_size = 32
-text = "A & D To Move
-Spacebar To Jump"
+[node name="Coin5" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(1611, 228)
 
-[node name="SetNextScene" type="Label" parent="TutorialText"]
-offset_left = 808.0
-offset_top = 256.0
-offset_right = 1239.0
-offset_bottom = 382.0
-theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("6_1vb2u")
-theme_override_font_sizes/font_size = 32
-text = "Level Finish
-Set the next scene
-from \"LevelFinishDoor\" Area"
+[node name="Coin6" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(1701, 330)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(2592, 336)
+
+[node name="Coin8" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(2603, 126)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(2610, -59)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(3911, -54)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(3907, -133)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(4510, -40)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(4503, -123)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(6087, 465)
+
+[node name="Coin15" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(6253, 371)
+
+[node name="Coin16" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(6426, 461)
+
+[node name="Coin17" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(6938, 469)
+
+[node name="Coin18" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(7137, 375)
+
+[node name="Coin19" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(7318, 473)
+
+[node name="Coin20" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(8528, 468)
+
+[node name="Coin21" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(8769, 363)
+
+[node name="Coin22" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(8995, 461)
+
+[node name="Coin23" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(9493, 473)
+
+[node name="Coin24" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(9692, 360)
+
+[node name="Coin25" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(9892, 470)
+
+[node name="Coin26" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(10623, 576)
+
+[node name="Coin27" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(10742, 696)
+
+[node name="Coin28" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(11329, 853)
+
+[node name="Coin29" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(12175, 846)
+
+[node name="Coin30" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(12412, 857)
+
+[node name="Coin31" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(12604, 853)
+
+[node name="Coin32" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(13425, 857)
+
+[node name="Coin33" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(15200, 710)
+
+[node name="Coin34" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(15403, 587)
+
+[node name="Coin35" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(15584, 443)
+
+[node name="Coin36" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(18279, 1666)
+
+[node name="Coin37" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(18464, 1670)
+
+[node name="Coin38" parent="Coins" instance=ExtResource("4_d83qo")]
+position = Vector2(18622, 1663)
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("7_7l2ep")
@@ -455,7 +546,7 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 116.0
 offset_bottom = 116.0
-texture = ExtResource("9_nuncc")
+texture = SubResource("AtlasTexture_7l2ep")
 stretch_mode = 4
 
 [node name="ScoreLabel" type="Label" parent="UserInterface/GameUI/Score"]
@@ -484,7 +575,7 @@ layout_mode = 1
 offset_right = 512.0
 offset_bottom = 512.0
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("10_ttuxi")
+texture = SubResource("AtlasTexture_j77r3")
 
 [node name="Heart2" type="TextureRect" parent="UserInterface/GameUI/PlayerHealth"]
 unique_name_in_owner = true
@@ -498,7 +589,7 @@ offset_right = 554.0
 offset_bottom = 510.0
 grow_horizontal = 2
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("10_ttuxi")
+texture = SubResource("AtlasTexture_nuncc")
 
 [node name="Heart3" type="TextureRect" parent="UserInterface/GameUI/PlayerHealth"]
 unique_name_in_owner = true
@@ -512,11 +603,10 @@ offset_right = 594.99994
 offset_bottom = 510.0
 grow_horizontal = 0
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("10_ttuxi")
+texture = SubResource("AtlasTexture_ttuxi")
 
 [node name="SkeletonHealth" type="Control" parent="UserInterface/GameUI"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

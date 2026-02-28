@@ -177,6 +177,7 @@ func handle_fireball():
 			fire_timer = fire_cooldown
 			
 func shoot_fireball():
+	AudioManager.fireball_sfx.play()
 	var fireball = fireball_scene.instantiate()
 	fireball.global_position = global_position + Vector2(24 * get_facing_direction(), -8)
 	fireball.direction = get_facing_direction()
@@ -194,6 +195,7 @@ func handle_swing():
 		swing_timer = swing_cooldown
 			
 func swing():
+	AudioManager.slash_sfx.play()
 	player_sprite.play("Attack")
 	var slash = slash_scene.instantiate()
 	slash.global_position = global_position + Vector2(24 * get_facing_direction(), -8)
@@ -215,6 +217,7 @@ func take_damage():
 	current_health -= 1
 	emit_signal("health_changed", current_health, max_health)
 	
+	AudioManager.damage_sfx.play()
 	flash_damage()
 	
 	if current_health == 0:

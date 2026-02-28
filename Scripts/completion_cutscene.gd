@@ -13,6 +13,8 @@ extends Node2D
 
 @onready var character = GameState.selected_character
 
+@onready var outro_cutscene: PackedScene = preload("res://Scenes/Cutscenes/OutroCutscene.tscn")
+
 var ingredients_ready_dialogue = 'I have the ingredients Mimi!'
 var thanks_dialogue = 'Oh thank you so much!'
 var handing_ingredients_diaglogue = 'You hand Mimi the ‘Ingredients’'
@@ -23,6 +25,7 @@ var completion_text_jamie = '‘Pepere’s Bread’ is nice and warm. Thank you 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	MusicManager.play_music(null)
 	run_cutscene()
 
 func run_cutscene():
@@ -115,6 +118,8 @@ func run_cutscene():
 	
 	animator.play_backwards("fade_in")
 	await animator.animation_finished
+	
+	SceneTransition.load_scene(outro_cutscene)
 	
 	#######################################
 	

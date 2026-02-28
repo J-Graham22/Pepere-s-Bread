@@ -146,7 +146,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func take_damage():
 	flash_damage()
 	is_dead = true
-	
+	AudioManager.enemy_death_sfx.play()
 	await get_tree().create_timer(0.4).timeout
 	queue_free()
 

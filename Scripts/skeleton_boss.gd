@@ -80,6 +80,9 @@ func flip_sprite():
 	detection_area.scale.x = direction
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
+	if is_dead:
+		return
+		
 	if body.is_in_group("Player"):
 		if state == PATROL:
 			attack()
@@ -103,6 +106,7 @@ func take_damage():
 	if current_health == 0:
 		skeleton_died.emit()
 		is_dead = true
+		AudioManager.enemy_death_sfx.play()
 		#play dead animation
 		animation_player.play("Die")
 		is_animating = true

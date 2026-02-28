@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var main_menu: PackedScene
+@onready var main_menu: PackedScene = preload("res://Scenes/Levels/TitleScreen.tscn")
 
 func _ready():
 	visible = false
@@ -31,11 +31,13 @@ func _on_resume_pressed() -> void:
 
 
 func _on_quit_to_menu_pressed() -> void:
+	#resume_game()
 	get_tree().paused = false
+	visible = false
 	# todo: set this to load main menu
 	SceneTransition.load_scene(main_menu)
 
 
 func _on_quit_to_desktop_pressed() -> void:
-	get_tree().paused = false
+	resume_game()
 	get_tree().quit()

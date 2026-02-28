@@ -44,6 +44,18 @@ func save_exists(save_slot: int):
 	else:
 		print('save does not exist')
 		return false
+		
+func delete_save(save_slot: int):
+	var save_path = get_slot_path(save_slot)
+	
+	if FileAccess.file_exists(save_path):
+		var err = DirAccess.remove_absolute(save_path)
+		if err == OK:
+			print("save deleted")
+		else:
+			print("failed to delete save:", err)
+	else:
+		print("save doesn't exist")
 
 func get_slot_path(slot: int): 
 	return "user://savegame_%d.save" % slot

@@ -1,14 +1,12 @@
-[gd_scene format=3 uid="uid://c0qf8mryh7aer"]
+[gd_scene load_steps=2 format=3 uid="uid://c0qf8mryh7aer"]
 
 [ext_resource type="Script" uid="uid://di82p3g4wxc3j" path="res://Scripts/pause_menu.gd" id="1_kuani"]
-[ext_resource type="PackedScene" uid="uid://dhdlcms0n74e1" path="res://Scenes/Levels/TitleScreen.tscn" id="2_1xl0e"]
 
-[node name="PauseMenu" type="CanvasLayer" unique_id=1512904443]
+[node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_kuani")
-main_menu = ExtResource("2_1xl0e")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1821917352]
+[node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,22 +20,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.70023346, 0.31396824, 0.37500608, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=330533062]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
 layout_mode = 0
 offset_right = 457.0
 offset_bottom = 259.0
 
-[node name="Resume" type="Button" parent="ColorRect/VBoxContainer" unique_id=1057018938]
+[node name="Resume" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Resume"
 
-[node name="QuitToMenu" type="Button" parent="ColorRect/VBoxContainer" unique_id=1759233118]
+[node name="QuitToMenu" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Quit to Main Menu"
 
-[node name="QuitToDesktop" type="Button" parent="ColorRect/VBoxContainer" unique_id=331291963]
+[node name="QuitToDesktop" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Quit to Desktop"

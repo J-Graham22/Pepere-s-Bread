@@ -40,9 +40,9 @@ func show_message():
 	message_currently_visible = true
 	
 	if is_jess:
-		message.text = "Oh look it's Jess"
+		message.text = "Hi, Jess! You can pull that lever over there to drain the water. I know how you hate water levels."
 	else:
-		message.text = "Hey, you're not Jess"
+		message.text = " !! OUT OF ORDER !!"
 		
 	message.visible = true
 	message_panel.visible = true

@@ -1,15 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://bssjjygu83iwl"]
+[gd_scene load_steps=20 format=3 uid="uid://bssjjygu83iwl"]
 
 [ext_resource type="Script" uid="uid://6jtp6qd55rwf" path="res://Scripts/AudioManager.gd" id="1_hp1cr"]
 [ext_resource type="AudioStream" uid="uid://dh5ugohi673wd" path="res://Assets/Sound/FX/404793__owlstorm__retro-video-game-sfx-jump.wav" id="2_qes3j"]
+[ext_resource type="AudioStream" uid="uid://dp4x0hskmmvnr" path="res://Assets/Sound/FX/driken5482-retro-coin-4-236671.mp3" id="3_6ivta"]
 [ext_resource type="AudioStream" uid="uid://cgh4c6ljj5k3h" path="res://Assets/Sound/FX/511385__mrthenoronha__power-up-8-bit_Freesound.org.wav" id="3_ia3a6"]
 [ext_resource type="AudioStream" uid="uid://dwoxr3smkong6" path="res://Assets/Sound/Cutscene Audio/Mimi Intro Cut Scene (Jessica).mp3" id="3_rhsx5"]
 [ext_resource type="AudioStream" uid="uid://bbp24segvb4o3" path="res://Assets/Sound/Cutscene Audio/Mimi Intro Cut Scene (Jami3).mp3" id="4_qes3j"]
+[ext_resource type="AudioStream" uid="uid://3gykpm1ha3tu" path="res://Assets/Sound/FX/415079__harrietniamh__video-game-death-sound-effect_Freesound.org.wav" id="4_stugb"]
 [ext_resource type="AudioStream" uid="uid://dxpn3qicoqhhr" path="res://Assets/Sound/Cutscene Audio/Mimi From Here To The Moon.mp3" id="5_s2x08"]
 [ext_resource type="AudioStream" uid="uid://ctvwsui8lgvip" path="res://Assets/Sound/Cutscene Audio/Mimi From Here To The Moon (Jami3).mp3" id="6_ia3a6"]
+[ext_resource type="AudioStream" uid="uid://o7ewaxn7rwpg" path="res://Assets/Sound/FX/edimar_ramide-death2-340040.mp3" id="6_k1yhb"]
 [ext_resource type="AudioStream" uid="uid://cwoqr4w0x7cf6" path="res://Assets/Sound/Cutscene Audio/Mimi Oh Thank You So Much.mp3" id="7_6fbfh"]
+[ext_resource type="AudioStream" uid="uid://dkd8l3av7s8ky" path="res://Assets/Sound/FX/431174__highpixel__fireball-explosion_freesound.org.wav" id="7_36ufx"]
+[ext_resource type="AudioStream" uid="uid://b42jiijxsbvot" path="res://Assets/Sound/FX/666herohero-slash-21834.mp3" id="7_w50ff"]
 [ext_resource type="AudioStream" uid="uid://b4vt8ur7dxnos" path="res://Assets/Sound/Cutscene Audio/Mimi Completion Dialogue (Jessica).mp3" id="8_egdra"]
+[ext_resource type="AudioStream" uid="uid://dr4poh2ouap0t" path="res://Assets/Sound/FX/virtual_vibes-thud-impact-sound-sfx-379990.mp3" id="8_y815b"]
 [ext_resource type="AudioStream" uid="uid://delc5bs027ula" path="res://Assets/Sound/Cutscene Audio/Mimi Completion Dialogue (Jami3).mp3" id="9_6ivta"]
+[ext_resource type="AudioStream" uid="uid://b3sm7hkeq4pw1" path="res://Assets/Sound/FX/fish-made-with-Voicemod.mp3" id="10_36ufx"]
 [ext_resource type="AudioStream" uid="uid://3k8er78hgcmv" path="res://Assets/Sound/Cutscene Audio/Mimi's Full Recording For Credits.mp3" id="11_6fbfh"]
 [ext_resource type="AudioStream" uid="uid://bremqm2vyj18q" path="res://Assets/Sound/FX/freesound_community-kitchen-fx-64728.mp3" id="12_egdra"]
 
@@ -21,9 +28,11 @@ stream = ExtResource("2_qes3j")
 volume_db = 1.5
 
 [node name="CoinPickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6ivta")
 volume_db = 1.5
 
 [node name="DeathSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_stugb")
 
 [node name="RespawnSfx" type="AudioStreamPlayer" parent="."]
 
@@ -34,17 +43,21 @@ pitch_scale = 0.5
 [node name="AchievementSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ia3a6")
 
-[node name="TtileTheme" type="AudioStreamPlayer" parent="."]
+[node name="EnemyDeathSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_k1yhb")
 
-[node name="Level1Theme" type="AudioStreamPlayer" parent="."]
+[node name="FireballSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_36ufx")
 
-[node name="Level2Theme" type="AudioStreamPlayer" parent="."]
+[node name="SlashSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_w50ff")
 
-[node name="Level3Theme" type="AudioStreamPlayer" parent="."]
+[node name="DamageSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_y815b")
 
-[node name="Level4Theme" type="AudioStreamPlayer" parent="."]
-
-[node name="Level5Theme" type="AudioStreamPlayer" parent="."]
+[node name="FishSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_36ufx")
+volume_db = -25.761
 
 [node name="CutsceneSounds" type="Node" parent="."]
 

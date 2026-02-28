@@ -65,7 +65,7 @@ func take_damage():
 	queue_free()
 	
 func die():
-	AudioManager.death_sfx.play()
+	AudioManager.enemy_death_sfx.play()
 	death_particles.emitting = true
 	death_tween()
 	

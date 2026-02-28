@@ -1,5 +1,13 @@
-[gd_scene format=3 uid="uid://bksg1iy03x423"]
+[gd_scene load_steps=3 format=3 uid="uid://bksg1iy03x423"]
+
+[ext_resource type="Script" uid="uid://b5tx753iru6ph" path="res://Scripts/music_manager.gd" id="1_qu4qy"]
+[ext_resource type="AudioStream" uid="uid://woym3gcp1w50" path="res://Assets/Sound/Music/WAVs/Forest Level.wav" id="2_g2nir"]
 
 [node name="MusicManager" type="Node"]
+script = ExtResource("1_qu4qy")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("2_g2nir")
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

@@ -1,13 +1,13 @@
-[gd_scene load_steps=30 format=4 uid="uid://bh3naymjd6qfy"]
+[gd_scene load_steps=34 format=4 uid="uid://bh3naymjd6qfy"]
 
-[ext_resource type="PackedScene" uid="uid://c0qf8mryh7aer" path="res://Scenes/Levels/PauseMenu.tscn" id="1_ri2yq"]
+[ext_resource type="Script" uid="uid://glwdlokimvl8" path="res://Scripts/level.gd" id="1_cxx6d"]
+[ext_resource type="AudioStream" uid="uid://ds6cfbhx0ntjd" path="res://Assets/Sound/Music/WAVs/Water Level.wav" id="2_gqh5d"]
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_lpo2y"]
 [ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Scenes/Prefabs/Coin.tscn" id="3_nht2m"]
+[ext_resource type="PackedScene" uid="uid://lrp4js5wi0tt" path="res://Scenes/Levels/Level_04.tscn" id="4_5enaq"]
 [ext_resource type="Script" uid="uid://b44aojg1wbe58" path="res://Scripts/GameManager.gd" id="4_ndpt4"]
 [ext_resource type="Texture2D" uid="uid://jaegp53ccc7w" path="res://Assets/Spritesheet/platformPack_tilesheet.png" id="5_8107p"]
 [ext_resource type="Script" uid="uid://b3eweo1odt4od" path="res://Scripts/GameUI.gd" id="6_um0jo"]
-[ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="7_ns8o6"]
-[ext_resource type="Texture2D" uid="uid://621as0fwjhum" path="res://Assets/Textures/star_07.png" id="8_5enaq"]
 [ext_resource type="FontFile" uid="uid://qgc4vi5osk7v" path="res://Assets/Fonts/Star Choco.ttf" id="8_doswy"]
 [ext_resource type="PackedScene" uid="uid://c8vwtmajax838" path="res://Scenes/Prefabs/fish.tscn" id="8_ombkc"]
 [ext_resource type="PackedScene" uid="uid://7bkgxopkfqec" path="res://Scenes/Prefabs/dumb_fish.tscn" id="9_es7ky"]
@@ -20,6 +20,22 @@
 [ext_resource type="Texture2D" uid="uid://ic8lves8ujy2" path="res://Assets/Molasses.png" id="17_blrkj"]
 [ext_resource type="Script" uid="uid://c3n0ccnnqinpl" path="res://Scripts/sign.gd" id="18_rstqp"]
 [ext_resource type="Script" uid="uid://hblftxwnx40k" path="res://Scripts/lever.gd" id="19_blrkj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5enaq"]
+atlas = ExtResource("12_peesg")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucbbc"]
+atlas = ExtResource("12_peesg")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxx6d"]
+atlas = ExtResource("12_peesg")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqh5d"]
+atlas = ExtResource("12_peesg")
+region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aitf4"]
 texture = ExtResource("5_8107p")
@@ -343,8 +359,12 @@ sources/0 = SubResource("TileSetAtlasSource_blrkj")
 size = Vector2(64, 64)
 
 [node name="Level_03" type="Node2D"]
+script = ExtResource("1_cxx6d")
+level_music = ExtResource("2_gqh5d")
 
-[node name="PauseMenu" parent="." instance=ExtResource("1_ri2yq")]
+[node name="LevelFinishDoor" parent="." instance=ExtResource("10_7qsfn")]
+position = Vector2(5058, 3089)
+next_scene = ExtResource("4_5enaq")
 
 [node name="Player" parent="." instance=ExtResource("2_lpo2y")]
 z_index = 1
@@ -375,25 +395,56 @@ position = Vector2(864, 353)
 [node name="Coin3" parent="Coins" instance=ExtResource("3_nht2m")]
 position = Vector2(1024, 416)
 
+[node name="Coin4" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(3902, 1771)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(3896, 1666)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(3807, 1485)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(3637, 1335)
+
+[node name="Coin8" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(3641, 1211)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(3641, 1074)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(3031, 1794)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(2543, 1792)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(1895, 1801)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(4375, 3050)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(4377, 2860)
+
+[node name="Coin15" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(4377, 2669)
+
+[node name="Coin16" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(4377, 2486)
+
+[node name="Coin17" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(4701, 2482)
+
+[node name="Coin18" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(4701, 2669)
+
+[node name="Coin19" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(4703, 2861)
+
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("4_ndpt4")
-
-[node name="TutorialText" type="Node2D" parent="."]
-
-[node name="Credits" type="Label" parent="TutorialText"]
-offset_left = 1416.0
-offset_top = 256.0
-offset_right = 1694.0
-offset_bottom = 382.0
-theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("8_doswy")
-theme_override_font_sizes/font_size = 32
-text = "2D PLATFORMER
-STARTER KIT BY
-G2P STUDIOS"
-horizontal_alignment = 1
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 
@@ -419,7 +470,7 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 116.0
 offset_bottom = 116.0
-texture = ExtResource("7_ns8o6")
+texture = SubResource("AtlasTexture_5enaq")
 stretch_mode = 4
 
 [node name="ScoreLabel" type="Label" parent="UserInterface/GameUI/Score"]
@@ -467,7 +518,7 @@ layout_mode = 1
 offset_right = 512.0
 offset_bottom = 512.0
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("8_5enaq")
+texture = SubResource("AtlasTexture_ucbbc")
 
 [node name="Heart2" type="TextureRect" parent="UserInterface/PlayerHealth"]
 unique_name_in_owner = true
@@ -481,7 +532,7 @@ offset_right = 554.0
 offset_bottom = 510.0
 grow_horizontal = 2
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("8_5enaq")
+texture = SubResource("AtlasTexture_cxx6d")
 
 [node name="Heart3" type="TextureRect" parent="UserInterface/PlayerHealth"]
 unique_name_in_owner = true
@@ -495,7 +546,7 @@ offset_right = 594.99994
 offset_bottom = 510.0
 grow_horizontal = 0
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("8_5enaq")
+texture = SubResource("AtlasTexture_gqh5d")
 
 [node name="Water" type="Area2D" parent="." groups=["Water"]]
 unique_name_in_owner = true
@@ -504,9 +555,6 @@ collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Water"]
 polygon = PackedVector2Array(6.6099854, 8.289978, 411.61, 13.289978, 413.61, -405.71002, 4504.61, -371.71002, 4510.61, 2861.29, -1160.39, 2892.29, -1160.39, 1052.29, -70.390015, 1057.29, -79.390015, 91.28998)
-
-[node name="LevelFinishDoor" parent="." instance=ExtResource("10_7qsfn")]
-position = Vector2(5038, 3086)
 
 [node name="Level" type="Node2D" parent="."]
 
@@ -641,6 +689,8 @@ position = Vector2(3958, 2864)
 
 [connection signal="body_entered" from="Water" to="Player" method="_on_water_body_entered"]
 [connection signal="body_exited" from="Water" to="Player" method="_on_water_body_exited"]
+[connection signal="collected" from="Ingredient" to="LevelFinishDoor" method="_on_ingredient_collected"]
+[connection signal="collected" from="Ingredient2" to="LevelFinishDoor" method="_on_ingredient_2_collected"]
 [connection signal="body_entered" from="Sign" to="Sign" method="_on_body_entered"]
 [connection signal="body_exited" from="Sign" to="Sign" method="_on_body_exited"]
 [connection signal="body_entered" from="Lever" to="Lever" method="_on_body_entered"]

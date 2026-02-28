@@ -1,9 +1,9 @@
 [gd_scene load_steps=33 format=4 uid="uid://cjanwm3sy2x37"]
 
-[ext_resource type="PackedScene" uid="uid://c0qf8mryh7aer" path="res://Scenes/Levels/PauseMenu.tscn" id="1_i7ntp"]
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_oqkjg"]
-[ext_resource type="Script" uid="uid://glwdlokimvl8" path="res://Scripts/level_01.gd" id="1_s0ca6"]
+[ext_resource type="Script" uid="uid://glwdlokimvl8" path="res://Scripts/level.gd" id="1_s0ca6"]
 [ext_resource type="PackedScene" uid="uid://ckvxcmt44v5ot" path="res://Scenes/Levels/Level_02.tscn" id="2_0ac5u"]
+[ext_resource type="AudioStream" uid="uid://dlgq1allnccx7" path="res://Assets/Sound/Music/WAVs/Fields Level.wav" id="2_5v11l"]
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_pay8t"]
 [ext_resource type="PackedScene" uid="uid://bfmh3fm2de78o" path="res://Scenes/Prefabs/Coin.tscn" id="3_rrh80"]
 [ext_resource type="Script" uid="uid://b44aojg1wbe58" path="res://Scripts/GameManager.gd" id="4_vgfkr"]
@@ -361,8 +361,7 @@ sky = SubResource("Sky_siisw")
 
 [node name="Level_01" type="Node2D"]
 script = ExtResource("1_s0ca6")
-
-[node name="PauseMenu" parent="." instance=ExtResource("1_i7ntp")]
+level_music = ExtResource("2_5v11l")
 
 [node name="LevelFinishDoor" parent="." instance=ExtResource("1_oqkjg")]
 z_index = 1
@@ -556,6 +555,33 @@ from \"LevelFinishDoor\" Area"
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("4_vgfkr")
+
+[node name="TutorialText2" type="Node2D" parent="."]
+
+[node name="Movement" type="Label" parent="TutorialText2"]
+offset_left = 250.0
+offset_top = 180.0
+offset_right = 669.0
+offset_bottom = 264.0
+theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_gwcy2")
+theme_override_font_sizes/font_size = 32
+text = "Left & Right To Move
+X To Jump, Z to Run/Attack"
+
+[node name="SetNextScene" type="Label" parent="TutorialText2"]
+offset_left = 850.0
+offset_top = 180.0
+offset_right = 1380.0
+offset_bottom = 306.0
+theme_override_colors/font_color = Color(0.910156, 0.730469, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_gwcy2")
+theme_override_font_sizes/font_size = 32
+text = "Collect 2 Ingredients in each level"
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
 

@@ -17,7 +17,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if player_in_range and Input.is_action_pressed("Confirm"):
+	if player_in_range and Input.is_action_pressed("Confirm") and is_jess:
 		if is_water_enabled:
 			is_water_enabled = false
 			
