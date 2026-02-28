@@ -53,7 +53,7 @@ tracks/0/path = NodePath("Background/RichTextLabel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 200.575),
+"times": PackedFloat32Array(0, 209.96666),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-300, 1400), Vector2(-300, -3500)]
@@ -205,9 +205,9 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 630.0
-offset_top = 120.0
+offset_top = 40.0
 offset_right = 630.0
-offset_bottom = 120.0
+offset_bottom = 40.0
 
 [node name="Mimi Picture" type="TextureRect" parent="Background/InMemorium"]
 layout_mode = 0

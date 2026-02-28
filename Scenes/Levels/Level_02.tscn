@@ -402,6 +402,36 @@ position = Vector2(712, 353)
 [node name="Coin3" parent="Coins" instance=ExtResource("3_nht2m")]
 position = Vector2(844, 408)
 
+[node name="Coin4" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(4823, 639)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(4825, 862)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(4826, 1140)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(4828, 1433)
+
+[node name="Coin8" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(2468, 2219)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(2468, 2070)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(2217, 2012)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(1762, 2014)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(1874, 1736)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("3_nht2m")]
+position = Vector2(2143, 1745)
+
 [node name="Flier" parent="." instance=ExtResource("6_jlrok")]
 position = Vector2(2020, 23)
 
@@ -489,36 +519,6 @@ offset_bottom = 510.0
 grow_horizontal = 0
 scale = Vector2(0.1, 0.1)
 texture = SubResource("AtlasTexture_ijm6r")
-
-[node name="Coin" parent="UserInterface/GameUI/PlayerHealth" instance=ExtResource("3_nht2m")]
-position = Vector2(4823, 639)
-
-[node name="Coin2" parent="UserInterface/GameUI/PlayerHealth" instance=ExtResource("3_nht2m")]
-position = Vector2(4825, 862)
-
-[node name="Coin3" parent="UserInterface/GameUI/PlayerHealth" instance=ExtResource("3_nht2m")]
-position = Vector2(4826, 1140)
-
-[node name="Coin4" parent="UserInterface/GameUI/PlayerHealth" instance=ExtResource("3_nht2m")]
-position = Vector2(4828, 1433)
-
-[node name="Coin5" parent="UserInterface/GameUI/PlayerHealth" instance=ExtResource("3_nht2m")]
-position = Vector2(2468, 2219)
-
-[node name="Coin6" parent="UserInterface/GameUI/PlayerHealth" instance=ExtResource("3_nht2m")]
-position = Vector2(2468, 2070)
-
-[node name="Coin7" parent="UserInterface/GameUI/PlayerHealth" instance=ExtResource("3_nht2m")]
-position = Vector2(2217, 2012)
-
-[node name="Coin8" parent="UserInterface/GameUI/PlayerHealth" instance=ExtResource("3_nht2m")]
-position = Vector2(1762, 2014)
-
-[node name="Coin9" parent="UserInterface/GameUI/PlayerHealth" instance=ExtResource("3_nht2m")]
-position = Vector2(1874, 1736)
-
-[node name="Coin10" parent="UserInterface/GameUI/PlayerHealth" instance=ExtResource("3_nht2m")]
-position = Vector2(2143, 1745)
 
 [node name="Ingredient" parent="." instance=ExtResource("13_u1l2o")]
 position = Vector2(2021, 1726)
